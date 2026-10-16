@@ -1,0 +1,17 @@
+{
+  "hash_algo": "blake3",
+  "closure_depth": 2,
+  "simulate_kv": true,
+  "simulate_summary": true,
+  "budget_tokens": 4096,
+  "kv_reuse_overhead_tokens": 32,
+  "chars_per_token": 4,
+  "supported_languages": {
+    ".py": "python"
+  },
+  "paths": {
+    "db": "state/static_store.db",
+    "decision_log": "logs/decisions.jsonl",
+    "invalidation_log": "logs/invalidation_events.jsonl"
+  }
+}
