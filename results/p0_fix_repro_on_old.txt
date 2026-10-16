@@ -1,0 +1,161 @@
+FFFFFFFFFFFFFFFFFFFF.F..FFF.FFFFF....                                    [100%]
+=================================== ERRORS ====================================
+_________________ ERROR collecting tests/test_capabilities.py _________________
+ImportError while importing test module 'C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_capabilities.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+D:\IDE_Env\Python\Lib\importlib\__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_capabilities.py:11: in <module>
+    from vam_coder.router import CAPABILITY_STATUS, RuleRouter
+E   ImportError: cannot import name 'CAPABILITY_STATUS' from 'vam_coder.router' (C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\src\vam_coder\router.py)
+================================== FAILURES ===================================
+E   AssertionError: 解析失败的文件不得产生 tombstone
+    assert ['demo:core.p...e.py::helper'] == []
+      
+      Left contains 2 more items, first extra item: 'demo:core.py::compute'
+      Use -v to get more diff
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_parse_guard.py:55: AssertionError: 解析失败的文件不得产生 tombstone
+E   AssertionError: assert ['demo:core.p...e.py::helper'] == []
+      
+      Left contains 2 more items, first extra item: 'demo:core.py::compute'
+      Use -v to get more diff
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_parse_guard.py:99: AssertionError: assert ['demo:core.p...e.py::helper'] == []
+E   Failed: DID NOT RAISE FileNotFoundError
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_parse_guard.py:126: Failed: DID NOT RAISE FileNotFoundError
+E   Failed: DID NOT RAISE NotADirectoryError
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_parse_guard.py:146: Failed: DID NOT RAISE NotADirectoryError
+E   AttributeError: 'SyncOutcome' object has no attribute 'unconfirmed'
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_parse_guard.py:167: AttributeError: 'SyncOutcome' object has no attribute 'unconfirmed'
+E   AssertionError: assert ['demo:app.py...e.py::helper'] == []
+      
+      Left contains 4 more items, first extra item: 'demo:app.py::lone'
+      Use -v to get more diff
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_parse_guard.py:187: AssertionError: assert ['demo:app.py...e.py::helper'] == []
+E   OSError: injected verify read failure
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_parse_guard.py:208: OSError: injected verify read failure
+E   AssertionError: 部分解析中未观察到符号 ≠ 符号被删除
+    assert 'tombstoned' == 'unverified'
+      
+      - unverified
+      + tombstoned
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_parse_guard.py:238: AssertionError: 部分解析中未观察到符号 ≠ 符号被删除
+E   Failed: DID NOT RAISE FileNotFoundError
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_parse_guard.py:247: Failed: DID NOT RAISE FileNotFoundError
+E   AssertionError: 依赖 stale 时不得恢复 valid（修复前会直接升 valid）
+    assert 'valid' == 'unverified'
+      
+      - unverified
+      + valid
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_verify_dependencies.py:69: AssertionError: 依赖 stale 时不得恢复 valid（修复前会直接升 valid）
+E   AssertionError: assert 'valid' == 'unverified'
+      
+      - unverified
+      + valid
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_verify_dependencies.py:86: AssertionError: assert 'valid' == 'unverified'
+E   AssertionError: 依赖已删除（tombstoned）时不得恢复 valid
+    assert 'valid' == 'unverified'
+      
+      - unverified
+      + valid
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_verify_dependencies.py:112: AssertionError: 依赖已删除（tombstoned）时不得恢复 valid
+E   AssertionError: assert 'valid' == 'unverified'
+      
+      - unverified
+      + valid
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_verify_dependencies.py:134: AssertionError: assert 'valid' == 'unverified'
+E   AssertionError: dep_edges 与存储 deps 不一致 → 依赖关系无法确认
+    assert 'valid' == 'unverified'
+      
+      - unverified
+      + valid
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_verify_dependencies.py:152: AssertionError: dep_edges 与存储 deps 不一致 → 依赖关系无法确认
+E   AssertionError: 依赖版本与快照不匹配 → 本次不得恢复 valid
+    assert 'valid' == 'unverified'
+      
+      - unverified
+      + valid
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_verify_dependencies.py:179: AssertionError: 依赖版本与快照不匹配 → 本次不得恢复 valid
+E   AssertionError: assert 'valid' == 'unverified'
+      
+      - unverified
+      + valid
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_verify_dependencies.py:210: AssertionError: assert 'valid' == 'unverified'
+E   assert []
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_verify_dependencies.py:228: assert []
+E   AssertionError: 跨文件同名不得建边，实际 deps=['demo:b.py::helper']
+    assert ['demo:b.py::helper'] == []
+      
+      Left contains one more item: 'demo:b.py::helper'
+      Use -v to get more diff
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_call_resolution.py:38: AssertionError: 跨文件同名不得建边，实际 deps=['demo:b.py::helper']
+E   AssertionError: alias h 必须指向 from 来源 a.helper，而非 b.helper
+    assert [] == ['demo:a.py::helper']
+      
+      Right contains one more item: 'demo:a.py::helper'
+      Use -v to get more diff
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_call_resolution.py:61: AssertionError: alias h 必须指向 from 来源 a.helper，而非 b.helper
+E   AssertionError: assert [] == ['demo:a.py::helper']
+      
+      Right contains one more item: 'demo:a.py::helper'
+      Use -v to get more diff
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_call_resolution.py:85: AssertionError: assert [] == ['demo:a.py::helper']
+E   AssertionError: 绑定顺序未分析前不猜测（旧实现会误选）
+    assert ['demo:main.py::helper'] == []
+      
+      Left contains one more item: 'demo:main.py::helper'
+      Use -v to get more diff
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_call_resolution.py:127: AssertionError: 绑定顺序未分析前不猜测（旧实现会误选）
+E   AttributeError: <vam_coder.store.StaticStore object at 0x0000017C580C83B0> has no attribute 'set_provenance'
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_transactions.py:65: AttributeError: <vam_coder.store.StaticStore object at 0x0000017C580C83B0> has no attribute 'set_provenance'
+E   AttributeError: 'StaticStore' object has no attribute 'transaction'
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_transactions.py:107: AttributeError: 'StaticStore' object has no attribute 'transaction'
+E   AssertionError: []
+    assert [] == ['verify_aborted']
+      
+      Right contains one more item: 'verify_aborted'
+      Use -v to get more diff
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_transactions.py:155: AssertionError: []
+E   TypeError: RouteRequest.__init__() got an unexpected keyword argument 'task_content'
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_request_tracking.py:58: TypeError: RouteRequest.__init__() got an unexpected keyword argument 'task_content'
+E   TypeError: RouteRequest.__init__() got an unexpected keyword argument 'task_content'
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_request_tracking.py:72: TypeError: RouteRequest.__init__() got an unexpected keyword argument 'task_content'
+E   TypeError: RouteRequest.__init__() got an unexpected keyword argument 'task_content'
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_request_tracking.py:94: TypeError: RouteRequest.__init__() got an unexpected keyword argument 'task_content'
+E   TypeError: RouteRequest.__init__() got an unexpected keyword argument 'task_content'
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_request_tracking.py:107: TypeError: RouteRequest.__init__() got an unexpected keyword argument 'task_content'
+E   TypeError: route_repo() got an unexpected keyword argument 'episode_id'
+C:\Users\Xu176\AppData\Local\Temp\tmp.p6mtzPFcy6\tests\test_request_tracking.py:159: TypeError: route_repo() got an unexpected keyword argument 'episode_id'
+=========================== short test summary info ===========================
+ERROR tests/test_capabilities.py
+FAILED tests/test_parse_guard.py::test_syntax_error_file_never_tombstones_symbols
+FAILED tests/test_parse_guard.py::test_read_failure_file_never_tombstones_symbols
+FAILED tests/test_parse_guard.py::test_missing_repo_root_aborts_sync_without_touching_state
+FAILED tests/test_parse_guard.py::test_repo_root_not_a_directory_aborts_sync
+FAILED tests/test_parse_guard.py::test_genuine_file_deletion_still_tombstones
+FAILED tests/test_parse_guard.py::test_language_config_drop_does_not_tombstone
+FAILED tests/test_parse_guard.py::test_verify_read_failure_does_not_tombstone
+FAILED tests/test_parse_guard.py::test_verify_partial_parse_missing_symbol_not_tombstoned
+FAILED tests/test_parse_guard.py::test_verify_missing_repo_root_raises - Fail...
+FAILED tests/test_verify_dependencies.py::test_verify_blocked_while_dep_stale
+FAILED tests/test_verify_dependencies.py::test_verify_allowed_after_dep_restored
+FAILED tests/test_verify_dependencies.py::test_verify_blocked_when_dep_tombstoned
+FAILED tests/test_verify_dependencies.py::test_verify_blocked_when_dep_row_missing
+FAILED tests/test_verify_dependencies.py::test_verify_blocked_when_dep_edges_missing
+FAILED tests/test_verify_dependencies.py::test_verify_blocked_on_dependency_snapshot_mismatch
+FAILED tests/test_verify_dependencies.py::test_circular_dependency_verify_terminates
+FAILED tests/test_verify_dependencies.py::test_verify_log_distinguishes_content_and_dependency_checks
+FAILED tests/test_call_resolution.py::test_same_name_functions_are_not_guessed
+FAILED tests/test_call_resolution.py::test_import_alias_resolves_to_correct_target
+FAILED tests/test_call_resolution.py::test_module_qualified_call_resolves - A...
+FAILED tests/test_call_resolution.py::test_local_definition_shadowing_import_is_unresolved
+FAILED tests/test_transactions.py::test_sync_failure_rolls_back_everything - ...
+FAILED tests/test_transactions.py::test_inner_commit_does_not_escape_outer_transaction
+FAILED tests/test_transactions.py::test_verify_failure_rolls_back - Assertion...
+FAILED tests/test_request_tracking.py::test_same_task_same_state_reproducible
+FAILED tests/test_request_tracking.py::test_different_task_content_distinguishes_request_id
+FAILED tests/test_request_tracking.py::test_different_state_distinguishes_request_id
+FAILED tests/test_request_tracking.py::test_route_log_fields_complete_and_redacted
+FAILED tests/test_request_tracking.py::test_pipeline_route_repo_passes_tracking_fields
+29 failed, 8 passed, 1 error in 2.40s

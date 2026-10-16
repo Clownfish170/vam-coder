@@ -1,0 +1,8 @@
+captured: 2026-10-16T18:49:25+08:00
+Python 3.12.10
+platform Windows-11-10.0.26300-SP0
+tree-sitter 0.26.0
+tree-sitter-python 0.25.0
+blake3 1.0.11
+pytest 9.1.1
+sqlite 3.49.1

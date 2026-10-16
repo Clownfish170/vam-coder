@@ -11,7 +11,12 @@
       （valid: REUSE_KV/EXPAND→COMPRESS→DROP；非 valid: EXPAND→DROP），
       直到满足预算。动态层（当前指令/最新报错）保护不在本阶段范围。
 
-本阶段 KV 缓存为模拟（kv_ptr 形如 sim://…，不落真实张量），见 README。
+【动作语义（任务 G）】本路由器只**输出动作决策**：
+- EXPAND = “决定重新读取完整源码”这一路由决策；P0 不实际执行文件读取、
+  上下文装配、模型推理或 KV 复用（not implemented）。
+- 能力边界见 CAPABILITY_STATUS：每项标注 implemented / simulated /
+  not_implemented，同时写入决策日志。
+- KV 缓存为模拟（kv_ptr 形如 sim://…，不落真实张量），见 README。
 """
 
 from __future__ import annotations
@@ -27,6 +32,22 @@ from .models import (
     RouteResult,
     Validity,
 )
+
+# 任务 G：能力边界（写入决策日志，供验收核对）
+CAPABILITY_STATUS: dict[str, str] = {
+    "symbol_index": "implemented",
+    "content_hash_versioning": "implemented",
+    "dependency_invalidation_closure": "implemented",
+    "tombstone": "implemented",
+    "rule_routing_decision": "implemented",
+    "request_decision_logging": "implemented",
+    "kv_cache_reuse": "simulated",
+    "summary_generation": "simulated",
+    "token_estimation": "simulated",
+    "expand_source_read_and_assembly": "not_implemented",
+    "model_inference": "not_implemented",
+    "model_summary_generation": "not_implemented",
+}
 
 _VALIDITY_RANK = {
     Validity.VALID.value: 3,
@@ -55,6 +76,11 @@ class RuleRouter:
         return max(1, entry.size_bytes // cfg.chars_per_token)
 
     # ---------- 逐条目门控 ----------
+    _EXPAND_NOTE = (
+        "EXPAND is a routing decision only: P0 does not read/assemble "
+        "source, run inference, or reuse KV (not implemented)",
+    )
+
     def _gated(self, entry: MemoryEntry) -> tuple[str, list[str]]:
         v = entry.validity
         if v == Validity.TOMBSTONED.value:
@@ -67,12 +93,14 @@ class RuleRouter:
                 "validity=stale: content_hash basis differs from current "
                 "source → REUSE_KV forbidden",
                 "restore protocol: EXPAND (re-read full source)",
+                self._EXPAND_NOTE[0],
             ]
         if v == Validity.UNVERIFIED.value:
             return Action.EXPAND.value, [
                 "validity=unverified: dependency closure changed → "
                 "REUSE_KV forbidden",
                 "restore protocol: EXPAND or rehash-verify first",
+                self._EXPAND_NOTE[0],
             ]
         # valid
         if entry.kv_ptr and self.config.simulate_kv:
@@ -88,6 +116,7 @@ class RuleRouter:
             reasons.append("simulate_kv=false → real-KV path not implemented "
                            "in P0, fall back EXPAND")
         reasons.append("fallback EXPAND (re-read full source)")
+        reasons.append(self._EXPAND_NOTE[0])
         return Action.EXPAND.value, reasons
 
     # ---------- 主入口 ----------
@@ -170,19 +199,40 @@ class RuleRouter:
                 d.reasons.append("default: no rule matched → DROP")
             d.reasons.append(f"final action={d.action}, est_tokens={d.est_tokens}")
 
+        # 任务 E：request_id = 规范化任务内容哈希 + 预算/配置/记忆状态
+        task_hash = _task_content_hash(request.task_content, cfg.hash_algo)
+        state_digest = self._request_id(entries, budget)
+
         result = RouteResult(
-            request_id=self._request_id(entries, budget),
+            request_id=self._request_id(entries, budget, task_hash),
             budget_tokens=budget,
             total_estimated_tokens=total,
             decisions=decisions,
             config_digest=cfg.digest(),
+            task_content_hash=task_hash,
+            episode_id=request.episode_id,
+            step_id=request.step_id,
+            repo_versions=dict(request.repo_versions),
         )
         self.logger.emit(
             "route",
             request_id=result.request_id,
+            episode_id=request.episode_id,
+            step_id=request.step_id,
+            # 任务内容只落哈希与长度，不落原文（脱敏要求）
+            task_content_hash=task_hash,
+            task_content_chars=(
+                len(request.task_content) if request.task_content else 0
+            ),
+            state_digest=state_digest,
             budget_tokens=budget,
             total_estimated_tokens=total,
             config_digest=result.config_digest,
+            repo_versions=dict(request.repo_versions),
+            memory_snapshot={
+                e.symbol_id: {"validity": e.validity, "version": e.version}
+                for e in entries
+            },
             request_meta=request.request_meta,
             simulated={
                 "kv": cfg.simulate_kv,
@@ -190,12 +240,16 @@ class RuleRouter:
                 "note": "P0 KV cache is simulated (sim:// pointers); no real "
                         "tensor is allocated or reused",
             },
+            capabilities=dict(CAPABILITY_STATUS),
             decisions=[d.to_dict() for d in decisions],
         )
         return result
 
-    def _request_id(self, entries: list[MemoryEntry], budget: int) -> str:
+    def _request_id(
+        self, entries: list[MemoryEntry], budget: int, task_hash: str = ""
+    ) -> str:
         payload = {
+            "task_content_hash": task_hash,
             "budget": budget,
             "config_digest": self.config.digest(),
             "entries": [
@@ -221,3 +275,20 @@ def _dumps(obj) -> bytes:
     return json.dumps(
         obj, sort_keys=True, ensure_ascii=False, separators=(",", ":")
     ).encode("utf-8")
+
+
+def _normalize_task(text: str) -> str:
+    """任务内容规范化：NFKC + 空白折叠 + 去首尾（仅用于哈希，不落原文）。"""
+    import re
+    import unicodedata
+
+    normalized = unicodedata.normalize("NFKC", text)
+    return re.sub(r"\s+", " ", normalized).strip()
+
+
+def _task_content_hash(task_content: str | None, algo: str) -> str:
+    if task_content is None:
+        payload = b""
+    else:
+        payload = _normalize_task(task_content).encode("utf-8")
+    return content_hash(payload, algo)

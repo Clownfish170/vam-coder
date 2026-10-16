@@ -100,6 +100,11 @@ class RouteRequest:
     entries: list[MemoryEntry]
     budget_tokens: int | None = None
     request_meta: dict = field(default_factory=dict)
+    # 任务 E：可复现的请求标识 + 追踪维度（调用方可选提供）
+    episode_id: str | None = None
+    step_id: str | None = None
+    task_content: str | None = None   # 仅用于哈希，绝不原样写入日志
+    repo_versions: dict[str, int] = field(default_factory=dict)
 
 
 @dataclass
@@ -109,6 +114,11 @@ class RouteResult:
     total_estimated_tokens: int
     decisions: list[RouteDecision]
     config_digest: str
+    # 任务 E：追踪字段（request_id 含任务内容哈希，不同任务可区分）
+    task_content_hash: str = ""
+    episode_id: str | None = None
+    step_id: str | None = None
+    repo_versions: dict[str, int] = field(default_factory=dict)
 
     def actions(self) -> dict[str, str]:
         return {d.symbol_id: d.action for d in self.decisions}
@@ -119,5 +129,9 @@ class RouteResult:
             "budget_tokens": self.budget_tokens,
             "total_estimated_tokens": self.total_estimated_tokens,
             "config_digest": self.config_digest,
+            "task_content_hash": self.task_content_hash,
+            "episode_id": self.episode_id,
+            "step_id": self.step_id,
+            "repo_versions": dict(self.repo_versions),
             "decisions": [d.to_dict() for d in self.decisions],
         }

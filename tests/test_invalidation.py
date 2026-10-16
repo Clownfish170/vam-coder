@@ -10,6 +10,7 @@ from vam_coder.models import Validity
 from vam_coder.store import StaticStore
 
 from conftest import (
+    REPO_V1,
     REPO_V2_COMPUTE_CHANGED,
     REPO_V2_LONE_DELETED,
     REPO_V2_RENAMED,
@@ -112,12 +113,26 @@ def test_dependency_change_marks_dependents_unverified(
     assert helper.version == 1
     assert helper.content_hash == helper.source_hash
 
-    # 恢复协议：显式重哈希校验 → unverified 升回 valid
+    # 恢复协议（任务 B）：自身哈希匹配只是必要条件——依赖 compute 仍 stale
+    # 时 verify 不得恢复 valid（修复前此处直接升 valid，正是 P0 缺陷）
     assert mgr.verify(sid("demo", "core.py", "helper"), repo) == \
-        Validity.VALID.value
+        Validity.UNVERIFIED.value
+    assert store.get(sid("demo", "core.py", "helper")).validity == \
+        Validity.UNVERIFIED.value
     # stale 条目重哈希失配 → 保持/确认 stale
     assert mgr.verify(sid("demo", "core.py", "compute"), repo) == \
         Validity.STALE.value
+    # 依赖恢复（源码回退 → sync 自动 revert compute 为 valid）后，
+    # 显式 verify 才允许 helper 升回 valid；sync 本身不自动治愈
+    fresh_repo(REPO_V1)
+    out2 = mgr.sync(repo, "demo")
+    assert sid("demo", "core.py", "compute") in out2.reverted
+    assert store.get(sid("demo", "core.py", "compute")).validity == \
+        Validity.VALID.value
+    assert store.get(sid("demo", "core.py", "helper")).validity == \
+        Validity.UNVERIFIED.value
+    assert mgr.verify(sid("demo", "core.py", "helper"), repo) == \
+        Validity.VALID.value
 
 
 # ---------- 必过测试 4：删除/重命名 → 旧符号不能被当作有效对象 ----------

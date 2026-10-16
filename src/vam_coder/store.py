@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import json
 import sqlite3
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -79,14 +80,25 @@ def _row_to_entry(row: sqlite3.Row) -> MemoryEntry:
 
 
 class StaticStore:
+    """SQLite 存储。
+
+    事务模型（P0 修复 D）：
+    - isolation_level=None → 自动提交模式，语句默认即时持久化；
+    - 多语句原子性由 :meth:`transaction` 显式管理（BEGIN IMMEDIATE /
+      COMMIT / ROLLBACK）；
+    - 事务所有权归最外层 ``with store.transaction()``：嵌套调用仅参与
+      外层事务，:meth:`commit` 在事务内为 no-op，避免嵌套函数意外提交。
+    """
+
     def __init__(self, db_path: str | Path):
         self.db_path = Path(db_path)
         if str(self.db_path) != ":memory:":
             self.db_path.parent.mkdir(parents=True, exist_ok=True)
         self.conn = sqlite3.connect(str(self.db_path))
+        self.conn.isolation_level = None  # 显式事务管理（见类文档）
         self.conn.row_factory = sqlite3.Row
         self.conn.executescript(SCHEMA)
-        self.conn.commit()
+        self._txn_depth = 0
 
     # -- 生命周期 --
     def close(self) -> None:
@@ -98,6 +110,35 @@ class StaticStore:
     def __exit__(self, *exc) -> None:
         self.close()
 
+    # -- 事务 --
+    @contextmanager
+    def transaction(self):
+        """外层事务：成功 COMMIT，异常 ROLLBACK；嵌套调用并入外层。
+
+        事务所有权归最外层调用方：内层 ``commit()`` 不会提前提交。
+        """
+        if self._txn_depth == 0:
+            self.conn.execute("BEGIN IMMEDIATE")
+        self._txn_depth += 1
+        try:
+            yield self
+        except BaseException:
+            self._txn_depth -= 1
+            if self._txn_depth == 0:
+                self.conn.execute("ROLLBACK")
+            raise
+        else:
+            self._txn_depth -= 1
+            if self._txn_depth == 0:
+                self.conn.execute("COMMIT")
+
+    def commit(self) -> None:
+        """显式提交；处于外层事务中时为 no-op（事务所有权在最外层）。"""
+        if self._txn_depth > 0:
+            return
+        if self.conn.in_transaction:  # 自动提交模式下通常为 False
+            self.conn.commit()
+
     # -- repo 版本 --
     def get_repo_version(self, repo_id: str) -> int:
         row = self.conn.execute(
@@ -105,10 +146,10 @@ class StaticStore:
         ).fetchone()
         if row is None:
             self.conn.execute(
-                "INSERT INTO repo_state(repo_id, repo_version) VALUES (?, 0)",
+                "INSERT OR IGNORE INTO repo_state(repo_id, repo_version) "
+                "VALUES (?, 0)",
                 (repo_id,),
             )
-            self.conn.commit()
             return 0
         return int(row["repo_version"])
 
@@ -120,7 +161,7 @@ class StaticStore:
             "ON CONFLICT(repo_id) DO UPDATE SET repo_version = excluded.repo_version",
             (repo_id, new),
         )
-        self.conn.commit()
+        self.commit()
         return new
 
     # -- 条目读写 --
@@ -226,8 +267,16 @@ class StaticStore:
              _now(), symbol_id),
         )
 
-    def commit(self) -> None:
-        self.conn.commit()
+    def set_provenance(self, symbol_id: str, provenance: dict | None) -> None:
+        """仅更新 provenance（如依赖快照），不动版本/validity/哈希。"""
+        self.conn.execute(
+            "UPDATE symbols SET provenance=?, updated_at=? WHERE symbol_id=?",
+            (
+                json.dumps(provenance, ensure_ascii=False, sort_keys=True)
+                if provenance else None,
+                _now(), symbol_id,
+            ),
+        )
 
     # -- 依赖边 --
     def _rebind_edges(self, symbol_id: str, deps: list[str]) -> None:

@@ -1,0 +1,126 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.10, pytest-9.1.1, pluggy-1.6.0 -- D:\IDE_Env\Python\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Demo\DynaMem\vam-coder
+configfile: pytest.ini
+plugins: anyio-4.13.0
+collecting ... collected 13 items
+
+tests/test_partial_parse_authority.py::test_partial_changed_file_does_not_update_memory_basis FAILED [  7%]
+tests/test_partial_parse_authority.py::test_partial_missing_symbol_not_tombstoned FAILED [ 15%]
+tests/test_partial_parse_authority.py::test_new_symbols_in_partial_file_not_registered FAILED [ 23%]
+tests/test_partial_parse_authority.py::test_recovery_after_parse_fixed_resumes_authoritative_sync FAILED [ 30%]
+tests/test_partial_parse_authority.py::test_verify_partial_parse_inconclusive_even_if_symbol_extracted FAILED [ 38%]
+tests/test_partial_parse_authority.py::test_parse_statuses_recorded_per_file FAILED [ 46%]
+tests/test_import_scoping.py::test_local_import_scoped_to_its_function FAILED [ 53%]
+tests/test_import_scoping.py::test_local_import_does_not_disambiguate_sibling FAILED [ 61%]
+tests/test_import_scoping.py::test_module_level_import_and_alias_still_work PASSED [ 69%]
+tests/test_import_scoping.py::test_local_import_of_missing_module_is_unresolved PASSED [ 76%]
+tests/test_import_scoping.py::test_local_import_alias_scoped FAILED      [ 84%]
+tests/test_import_scoping.py::test_local_import_shadows_same_file_module_def_inside_function FAILED [ 92%]
+tests/test_import_scoping.py::test_nested_function_local_import_attributed_to_outer FAILED [100%]
+
+================================== FAILURES ===================================
+E   AssertionError: 部分 AST 覆盖了 source_hash
+    assert '2ab782fcde3b...49e92a89ee355' == '1928fb3678b3...9ebe194f32958'
+      
+      - 1928fb3678b3fe6c0b1911e2a4c6f2b4fdb45484cd7fa339bb79ebe194f32958
+      + 2ab782fcde3be6b6d963be9ace02d0af80d89c5541970dd98e149e92a89ee355
+D:\Demo\DynaMem\vam-coder\tests\test_partial_parse_authority.py:83: AssertionError: 部分 AST 覆盖了 source_hash
+E   AssertionError: assert 'valid' == 'unverified'
+      
+      - unverified
+      + valid
+D:\Demo\DynaMem\vam-coder\tests\test_partial_parse_authority.py:135: AssertionError: assert 'valid' == 'unverified'
+E   AssertionError: partial 文件的新符号不得注册为已验证完整记忆
+    assert MemoryEntry(symbol_id='demo:core.py::extra', repo_id='demo', file_path='core.py', qualified_name='extra', kind='function', content_hash='abe8208ee6ebf6695267913785c62dbaf5daae14c9332e015e656a2d50b0c650', source_hash='abe8208ee6ebf6695267913785c62dbaf5daae14c9332e015e656a2d50b0c650', version=1, deps=[], summary='extra: 2 lines; def extra():', validity='valid', kv_ptr='sim://kv/py-model/abe8208ee6ebf669', provenance={'outcome': 'indexed', 'repo_version': 2, 'task_id': 'p0-sync'}, size_bytes=26, start_line=4, end_line=5, last_seen_repo_version=2, updated_at='2026-10-16T07:54:51.349+00:00') is None
+     +  where MemoryEntry(symbol_id='demo:core.py::extra', repo_id='demo', file_path='core.py', qualified_name='extra', kind='function', content_hash='abe8208ee6ebf6695267913785c62dbaf5daae14c9332e015e656a2d50b0c650', source_hash='abe8208ee6ebf6695267913785c62dbaf5daae14c9332e015e656a2d50b0c650', version=1, deps=[], summary='extra: 2 lines; def extra():', validity='valid', kv_ptr='sim://kv/py-model/abe8208ee6ebf669', provenance={'outcome': 'indexed', 'repo_version': 2, 'task_id': 'p0-sync'}, size_bytes=26, start_line=4, end_line=5, last_seen_repo_version=2, updated_at='2026-10-16T07:54:51.349+00:00') = get('demo:core.py::extra')
+     +    where get = <vam_coder.store.StaticStore object at 0x000001E4BC4023C0>.get
+     +    and   'demo:core.py::extra' = sid('demo', 'core.py', 'extra')
+D:\Demo\DynaMem\vam-coder\tests\test_partial_parse_authority.py:150: AssertionError: partial 文件的新符号不得注册为已验证完整记忆
+E   AssertionError: assert ['demo:core.py::compute'] == []
+      
+      Left contains one more item: 'demo:core.py::compute'
+      
+      Full diff:
+      - []
+      + [
+      +     'demo:core.py::compute',
+      + ]
+D:\Demo\DynaMem\vam-coder\tests\test_partial_parse_authority.py:180: AssertionError: assert ['demo:core.py::compute'] == []
+E   AssertionError: 部分解析是“无法确认”，不是“权威观察到变化”
+    assert 'stale' == 'unverified'
+      
+      - unverified
+      + stale
+D:\Demo\DynaMem\vam-coder\tests\test_partial_parse_authority.py:216: AssertionError: 部分解析是“无法确认”，不是“权威观察到变化”
+E   AssertionError: assert 'parsed' == 'success'
+      
+      - success
+      + parsed
+D:\Demo\DynaMem\vam-coder\tests\test_partial_parse_authority.py:235: AssertionError: assert 'parsed' == 'success'
+E   AssertionError: 局部 import 泄漏到了 function_b：['demo:module_a.py::helper']
+    assert ['demo:module_a.py::helper'] == []
+      
+      Left contains one more item: 'demo:module_a.py::helper'
+      
+      Full diff:
+      - []
+      + [
+      +     'demo:module_a.py::helper',
+      + ]
+D:\Demo\DynaMem\vam-coder\tests\test_import_scoping.py:50: AssertionError: 局部 import 泄漏到了 function_b：['demo:module_a.py::helper']
+E   AssertionError: assert ['demo:module_a.py::helper'] == []
+      
+      Left contains one more item: 'demo:module_a.py::helper'
+      
+      Full diff:
+      - []
+      + [
+      +     'demo:module_a.py::helper',
+      + ]
+D:\Demo\DynaMem\vam-coder\tests\test_import_scoping.py:82: AssertionError: assert ['demo:module_a.py::helper'] == []
+E   AssertionError: assert ['demo:module_a.py::helper'] == []
+      
+      Left contains one more item: 'demo:module_a.py::helper'
+      
+      Full diff:
+      - []
+      + [
+      +     'demo:module_a.py::helper',
+      + ]
+D:\Demo\DynaMem\vam-coder\tests\test_import_scoping.py:170: AssertionError: assert ['demo:module_a.py::helper'] == []
+E   AssertionError: assert [] == ['demo:module_a.py::helper']
+      
+      Right contains one more item: 'demo:module_a.py::helper'
+      
+      Full diff:
+      + []
+      - [
+      -     'demo:module_a.py::helper',
+      - ]
+D:\Demo\DynaMem\vam-coder\tests\test_import_scoping.py:201: AssertionError: assert [] == ['demo:module_a.py::helper']
+E   AssertionError: assert ['demo:module_a.py::helper'] == []
+      
+      Left contains one more item: 'demo:module_a.py::helper'
+      
+      Full diff:
+      - []
+      + [
+      +     'demo:module_a.py::helper',
+      + ]
+D:\Demo\DynaMem\vam-coder\tests\test_import_scoping.py:229: AssertionError: assert ['demo:module_a.py::helper'] == []
+=========================== short test summary info ===========================
+FAILED tests/test_partial_parse_authority.py::test_partial_changed_file_does_not_update_memory_basis
+FAILED tests/test_partial_parse_authority.py::test_partial_missing_symbol_not_tombstoned
+FAILED tests/test_partial_parse_authority.py::test_new_symbols_in_partial_file_not_registered
+FAILED tests/test_partial_parse_authority.py::test_recovery_after_parse_fixed_resumes_authoritative_sync
+FAILED tests/test_partial_parse_authority.py::test_verify_partial_parse_inconclusive_even_if_symbol_extracted
+FAILED tests/test_partial_parse_authority.py::test_parse_statuses_recorded_per_file
+FAILED tests/test_import_scoping.py::test_local_import_scoped_to_its_function
+FAILED tests/test_import_scoping.py::test_local_import_does_not_disambiguate_sibling
+FAILED tests/test_import_scoping.py::test_local_import_alias_scoped - Asserti...
+FAILED tests/test_import_scoping.py::test_local_import_shadows_same_file_module_def_inside_function
+FAILED tests/test_import_scoping.py::test_nested_function_local_import_attributed_to_outer
+======================== 11 failed, 2 passed in 0.60s =========================
+exit=1

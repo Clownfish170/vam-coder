@@ -6,7 +6,10 @@
 输出：
     logs/scenario_decisions.jsonl      路由决策日志（逐条决策含理由）
     logs/scenario_invalidation.jsonl   失效事件日志（逐次失效含原因）
-    results/p0_scenario_report.json    六项必过检查的逐条结果 + 环境信息
+    results/p03_scenario_report.json   六项必过检查的逐条结果 + 环境信息
+        （P0.3 起改用带版本标识的文件名，避免覆盖 Git 基线中的
+        results/p0_scenario_report.json —— 该原始版本已归档至
+        results/archive_git_37bf61c/）
 退出码：0 = 六项全过；1 = 有失败（不修饰结果）。
 """
 
@@ -104,7 +107,7 @@ def main() -> int:
     scenario_repo = PROJECT_ROOT / "state" / "scenario_repo"
     decision_log = PROJECT_ROOT / "logs" / "scenario_decisions.jsonl"
     invalid_log = PROJECT_ROOT / "logs" / "scenario_invalidation.jsonl"
-    report_path = PROJECT_ROOT / "results" / "p0_scenario_report.json"
+    report_path = PROJECT_ROOT / "results" / "p03_scenario_report.json"
     db_path = PROJECT_ROOT / "state" / "scenario_store.db"
     for p in (decision_log, invalid_log, db_path):
         if p.exists():

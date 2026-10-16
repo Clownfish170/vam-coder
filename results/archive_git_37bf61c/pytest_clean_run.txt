@@ -1,0 +1,33 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.10, pytest-9.1.1, pluggy-1.6.0 -- D:\IDE_Env\Python\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Demo\DynaMem\vam-coder
+configfile: pytest.ini
+plugins: anyio-4.13.0
+collecting ... collected 23 items
+
+tests/test_config.py::test_default_json_exists_and_loads PASSED          [  4%]
+tests/test_config.py::test_default_json_is_valid_json_with_separated_paths PASSED [  8%]
+tests/test_config.py::test_digest_deterministic_and_sensitive_to_routing_fields PASSED [ 13%]
+tests/test_integration.py::test_end_to_end_index_invalidate_route PASSED [ 17%]
+tests/test_integration.py::test_repeated_sync_and_route_reproducible PASSED [ 21%]
+tests/test_invalidation.py::test_unchanged_source_keeps_hash_and_version PASSED [ 26%]
+tests/test_invalidation.py::test_content_change_invalidates_old_memory PASSED [ 30%]
+tests/test_invalidation.py::test_dependency_change_marks_dependents_unverified PASSED [ 34%]
+tests/test_invalidation.py::test_deleted_symbol_tombstoned PASSED        [ 39%]
+tests/test_invalidation.py::test_renamed_symbol_tombstoned_and_new_inserted PASSED [ 43%]
+tests/test_parser.py::test_extracts_functions_classes_methods PASSED     [ 47%]
+tests/test_parser.py::test_resolves_cross_file_dependencies PASSED       [ 52%]
+tests/test_parser.py::test_unsupported_language_recorded PASSED          [ 56%]
+tests/test_router.py::test_invalid_memories_never_reuse_kv[stale-EXPAND] PASSED [ 60%]
+tests/test_router.py::test_invalid_memories_never_reuse_kv[unverified-EXPAND] PASSED [ 65%]
+tests/test_router.py::test_invalid_memories_never_reuse_kv[tombstoned-DROP] PASSED [ 69%]
+tests/test_router.py::test_tombstoned_is_not_a_valid_object PASSED       [ 73%]
+tests/test_router.py::test_routing_reproducible_and_logged PASSED        [ 78%]
+tests/test_router.py::test_budget_forces_downgrade PASSED                [ 82%]
+tests/test_router.py::test_budget_allows_compress_for_valid PASSED       [ 86%]
+tests/test_store.py::test_roundtrip_preserves_required_fields PASSED     [ 91%]
+tests/test_store.py::test_repo_version_monotonic PASSED                  [ 95%]
+tests/test_store.py::test_reopen_persists PASSED                         [100%]
+
+============================= 23 passed in 0.91s ==============================
