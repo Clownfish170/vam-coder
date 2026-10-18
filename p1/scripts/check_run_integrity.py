@@ -211,7 +211,7 @@ def check_run(run_dir: Path) -> list[dict]:
     # --- 8. 决策 ↔ 装配 ↔ 请求 可相互核对（vam_coder 抽查）---
     vam_steps = [
         sd for sd in step_dirs
-        if sd.parent.name == "vam_coder"
+        if sd.parent.parent.name == "vam_coder"
     ]
     if not vam_steps:
         rec("8", "决策/装配/请求交叉核对", "SKIP", "no vam_coder steps")
