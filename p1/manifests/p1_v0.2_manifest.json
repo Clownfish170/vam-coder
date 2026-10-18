@@ -1,0 +1,66 @@
+{
+  "manifest_version": "p1-v0.2",
+  "created_at": "2026-10-18T05:03:46+00:00",
+  "task_set_version": "p1-v0.2.0",
+  "frozen_at": "2026-10-18",
+  "tasks_sha256": "7afa740949d1702375f7a600e001748239b05844e031e0f9c0507a9ac461fbd6",
+  "script_sha256": {
+    "check_run_integrity.py": "fdcd5a4206679ea3ca4358f037e84559b0f753b2c5b67f2340d99906bcaffcb1",
+    "make_manifest.py": "81480c9c8949d9f7eae83098f0d179adce5f8ac8ff762fa5002ee5ed3c679ecb",
+    "p1_common.py": "8ac9c5f32c4f0eef4c0e8f6f9ab2c5f81dfce281b2a79226d1e95a456030dcc8",
+    "run_p1.py": "0c8b7863fbc28445b8ac3c46b405855c58fa92fe091641be2ed50d6accdc94eb"
+  },
+  "test_sha256": {
+    "test_p1_harness.py": "67d2307fc49a599efe4363180195be2ff033fb1486ee90c3876692df8b363255",
+    "test_v02_hardening.py": "834ee432f31201b6cd0d3761b25cce2d8e857986c22113c8e97d84878187961e"
+  },
+  "eval_dir_sha256": {
+    "inventory_dependency/step1": "6e573045e1df7bbc1280ad65eaec87737db2704716c1a46314f71b7f10e4c108",
+    "inventory_dependency/step2": "4795b61f02ad46a63392311e41d054d9d977bba095302e85841ebe7a22d0f0f0",
+    "rename_symbol/step1": "fe26b172d53f2f2ac69071f7cb37c76de36748f5e6b041d273cba50eafdeceb8",
+    "rename_symbol/step2": "6498118dc107467c38f1d82773a1517a0164d80fda3c5e09a1f8bb09fadf2169",
+    "stale_summary_trap/step1": "d5633c6ae3627c4006b38d862a881f3a6eb4aa71033f29ce7c2e0ff75d43bd1b",
+    "stale_summary_trap/step2": "e0e2f6a7111d937ae165386b0a7bba060326ed5542111b08fc10737ae497b629"
+  },
+  "project_dir_sha256": {
+    "inventory_dependency": "49ca14db6bc79dcc11fee213a518fa8c2d268a41c0e327e82ac57108f9593436",
+    "rename_symbol": "8fc201330e279e5a3eea87cbfe9fe1d7f43a1e78715e69f6b492814cf4399b8a",
+    "stale_summary_trap": "2821b63c00f5f2c4c68592f9df1517cef67166c54ad46d3e7fcda856b4923f3c"
+  },
+  "eval_file_sha256": {
+    "inventory_dependency/step1": {
+      "test_step1.py": "176608fd1a54312291b27d37fa6640cbfe32d67383d1a91c74c703797a0e6151"
+    },
+    "inventory_dependency/step2": {
+      "test_step2.py": "dbb803407f2c0663eb0c0be82b3185be34122c4d6cccd539830663e2aade480c"
+    },
+    "rename_symbol/step1": {
+      "test_step1.py": "0a24d9d70969013dbe98d45a0ddc83949ebf53b96088b1219974523c8b7c6d83"
+    },
+    "rename_symbol/step2": {
+      "test_step2.py": "3200e35d890d6f643df54f20ae8d76beb2a66b022c0e64e61da21403cf4a38fc"
+    },
+    "stale_summary_trap/step1": {
+      "test_step1.py": "8a412fd9dd96019a1cc3efffc67f97211a7e274ce722e2a078388e92a224a90f"
+    },
+    "stale_summary_trap/step2": {
+      "test_step2.py": "039e03dce5d36233f5715555f198adb00330eca4030ef00a14fbf44864f1b5fa"
+    }
+  },
+  "project_file_sha256": {
+    "inventory_dependency": {
+      "orders.py": "6a3282b52d4144cce5791ab6b7a22a91094cc584c2f7d781b11d87d7166c7e61",
+      "report.py": "77430ec1ee34ee4d3b3770b099f7428315be45ea5303bc76433dd2fc019d25cb",
+      "stock.py": "41137a5f71133be7c8341fdef1c26ad3fff399f719248dcdbe8214c7f3cc1664"
+    },
+    "rename_symbol": {
+      "app.py": "5989384839080f69ab3e70a72d7c1ef64e8177f6a02bfb16f8bf76cbb4a679df",
+      "core.py": "aec76e9227c3f6c7d20816eb0af3886f46d7dceb9e5ba1708b1b54cf8cf03910"
+    },
+    "stale_summary_trap": {
+      "discount.py": "159f1d2561262d04fac2697cf4cbdb3316d6e3f627213f323c806d3d13605eff",
+      "pricing.py": "2c7d9ce591fa5d4e48a604d124b6b831ccd6c5751d92b48cd8b457f85c7ca836"
+    }
+  },
+  "note": "immutable freeze record; regenerate under a NEW name when scripts/tasks/evals change; historical runs keep their own hashes"
+}

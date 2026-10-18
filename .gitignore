@@ -4,3 +4,6 @@ __pycache__/
 .backup/
 state/
 logs/
+# P1-v0.2：原始 run 数据不入库（保留在磁盘；哈希锚点在 run_meta/manifests）
+p1/results/runs/
+p1/.cache/

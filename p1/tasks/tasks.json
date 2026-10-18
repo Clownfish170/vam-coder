@@ -1,0 +1,72 @@
+{
+  "task_set_version": "p1-v0.2.0",
+  "frozen_at": "2026-10-18",
+  "frozen_rules": [
+    "任务集、指标、判定规则在扩展任务集之外不得按结果修改（预注册原则）。",
+    "每步评估只用 eval/stepN 下的测试，测试目录不进入模型上下文，也不允许被模型编辑。",
+    "成功率、token、延迟、系统开销分开报告，不得互相替代。",
+    "所有原始运行记录（含失败）保留在 p1/results/runs/ 下，不挑选任务报告。",
+    "判据变更必须升版本并重生成 manifests 清单；run_p1 启动时校验，不一致则拒绝运行。",
+    "v0.2 变更：stale_summary_trap step1 显式禁止修改注释/docstring，eval 增加 docstring 未变断言，以排除顺手改文档的混淆（v0.1 运行记录保留旧哈希）。"
+  ],
+  "episodes": [
+    {
+      "id": "inventory_dependency",
+      "title": "库存计算修正与依赖变化",
+      "focus": "dependency_invalidation",
+      "hypothesis": "依赖方函数被路由为 unverified 后，重读更新源码是否比固定摘要更不容易写错。",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "stock.py 中 available() 的实现有误：它把预留量加进了可售数量。请修正 available()，使其返回 stock - reserved。只修改必要的文件。",
+          "eval": "eval/step1"
+        },
+        {
+          "id": "step2",
+          "instruction": "仓库政策变更：当可用量低于安全缓冲时应视为不可售。请在 stock.py 中新增模块级常量 BUFFER = 5，并更新 available()：先计算 stock - reserved，若结果低于 BUFFER 则返回 0。orders.py 不需要修改。",
+          "eval": "eval/step2"
+        }
+      ]
+    },
+    {
+      "id": "rename_symbol",
+      "title": "符号重命名与调用方同步",
+      "focus": "tombstone_and_caller_update",
+      "hypothesis": "旧符号被墓碑化后，路由 DROP/EXPAND 是否避免把已删除符号当作可复用对象。",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "将 core.py 中的 compute() 重命名为 compute_double()，并同步更新所有调用方。不要留下旧名字。",
+          "eval": "eval/step1"
+        },
+        {
+          "id": "step2",
+          "instruction": "修改 core.py 中的 helper()：现在应返回 compute_double(x) + 2。其他函数保持不变。",
+          "eval": "eval/step2"
+        }
+      ]
+    },
+    {
+      "id": "stale_summary_trap",
+      "title": "过期摘要陷阱",
+      "focus": "stale_summary_vs_invalidation",
+      "hypothesis": "代码已变而摘要未失效时，固定摘要基线会写出过期假设；版本感知失效应促使重读并避免该错误。",
+      "design_notes": [
+        "step1 只改 UNIT 数值，刻意不更新 docstring（现实中常见的文档漂移），使初始摘要含有过期的 (=10)。",
+        "step2 要求写死当前单价数值（禁止导入常量/调用 price），从而直接检验记忆内容是否过期。"
+      ],
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "定价政策变更：UNIT 应为 12。请只修改 pricing.py 中 UNIT 常量的数值，不要修改任何注释或 docstring，其他内容保持不变。",
+          "eval": "eval/step1"
+        },
+        {
+          "id": "step2",
+          "instruction": "为性能考虑，在 discount.py 中新增 fast_price(qty)：写死当前单价数值直接计算（禁止导入常量、禁止调用 price()），行为必须与 price() 完全一致。",
+          "eval": "eval/step2"
+        }
+      ]
+    }
+  ]
+}
