@@ -1,0 +1,23 @@
+{
+  "episode_id": "v1_DEL02_G_R3",
+  "task_id": "v1_DEL02",
+  "arm": "G",
+  "repetition": 3,
+  "timestamp": "2026-11-02T05:39:47+00:00",
+  "root": "D:\\Demo\\DynaMem\\vam-coder\\p1\\tasks\\v1_DEL02\\project",
+  "files": [
+    {
+      "relative_path": "queue.py",
+      "file_size": 132,
+      "sha256": "b93877baecc9923557273b74040103c3f0454672e3e3d4e58fb83f279b12c29b"
+    },
+    {
+      "relative_path": "worker.py",
+      "file_size": 93,
+      "sha256": "ee80165c905446ec0a81d88a6b1ec7ca18955710d7b7456ce1e52a5dd7f8a971"
+    }
+  ],
+  "total_files": 2,
+  "total_bytes": 225,
+  "manifest_sha256": "6c6a61b66e047c7b7762959b49eec95eeb9b64c40a70e9db2241423759eaf256"
+}

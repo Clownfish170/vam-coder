@@ -1,0 +1,23 @@
+{
+  "episode_id": "v13_R02_F_R2",
+  "task_id": "v13_R02",
+  "arm": "F",
+  "repetition": 2,
+  "timestamp": "2026-11-03T13:21:26+00:00",
+  "root": "D:\\Demo\\DynaMem\\vam-coder\\p1\\tasks_v13_holdout\\v13_R02\\project",
+  "files": [
+    {
+      "relative_path": "layout.py",
+      "file_size": 140,
+      "sha256": "fef019e8b3b93003fd53af3326f3a579a5df5bb37fc67e3dddab556ce18d9078"
+    },
+    {
+      "relative_path": "shapes.py",
+      "file_size": 470,
+      "sha256": "3da4e85b2bf2d410c2182b4b15510e41aab95c92fe5d5f7067be0bb794b3497e"
+    }
+  ],
+  "total_files": 2,
+  "total_bytes": 610,
+  "manifest_sha256": "90439f71c602b686a62cd00ea4862a9bed59b7af05752f51fda59b19162cf8e3"
+}

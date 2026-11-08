@@ -1,0 +1,30 @@
+{
+  "model_requested": "qwen2.5-coder-1.5b",
+  "response_model": "D:\\Demo\\DynaMem\\models\\qwen2.5-coder-1.5b-instruct-q6_k.gguf",
+  "endpoint": "http://127.0.0.1:8080/v1",
+  "params": {
+    "temperature": 0.0,
+    "seed": 0,
+    "max_tokens": 1024,
+    "stream": false
+  },
+  "started_at": "2026-11-01T06:13:35.932+00:00",
+  "ended_at": "2026-11-01T06:13:36.016+00:00",
+  "http_status": 200,
+  "latency_ms": 84.82,
+  "messages_path": "messages.json",
+  "messages_sha256": "31fffb4b08f7618b449bccff7253a656d2dd535c38667ad9003c372be69de1b7",
+  "n_messages": 3,
+  "history_tokens_est": 147,
+  "context_tokens_est": 37,
+  "usage_raw": {
+    "completion_tokens": 3,
+    "prompt_tokens": 204,
+    "total_tokens": 207,
+    "prompt_tokens_details": {
+      "cached_tokens": 115
+    }
+  },
+  "usage_source": "api",
+  "error": null
+}

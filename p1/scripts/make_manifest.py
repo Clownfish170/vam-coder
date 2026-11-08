@@ -49,6 +49,7 @@ def main() -> int:
 
     eval_hashes: dict[str, str] = {}
     project_hashes: dict[str, str] = {}
+    reference_hashes: dict[str, str] = {}
     eval_files: dict[str, dict[str, str]] = {}
     project_files: dict[str, dict[str, str]] = {}
     for ep in tasks["episodes"]:
@@ -59,6 +60,9 @@ def main() -> int:
             str(p.relative_to(proj)).replace("\\", "/"): sha256_file(p)
             for p in sorted(proj.rglob("*")) if p.is_file()
         }
+        ref = ep_root / "reference"
+        if ref.is_dir():
+            reference_hashes[ep["id"]] = dir_sha256(ref)
         for step in ep["steps"]:
             key = f"{ep['id']}/{step['id']}"
             eval_dir = ep_root / step["eval"]
@@ -68,8 +72,9 @@ def main() -> int:
                 for p in sorted(eval_dir.rglob("*")) if p.is_file()
             }
 
+    predecl = P1_ROOT / "tasks" / "predeclared_mechanisms_v1.0.json"
     manifest = {
-        "manifest_version": "p1-v0.2",
+        "manifest_version": "p1-v1.0",
         "created_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "task_set_version": tasks.get("task_set_version"),
         "frozen_at": tasks.get("frozen_at"),
@@ -78,8 +83,12 @@ def main() -> int:
         "test_sha256": tests,
         "eval_dir_sha256": eval_hashes,
         "project_dir_sha256": project_hashes,
+        "reference_dir_sha256": reference_hashes,
         "eval_file_sha256": eval_files,
         "project_file_sha256": project_files,
+        "predeclared_mechanisms_sha256": (
+            sha256_file(predecl) if predecl.is_file() else None
+        ),
         "note": (
             "immutable freeze record; regenerate under a NEW name when "
             "scripts/tasks/evals change; historical runs keep their own hashes"

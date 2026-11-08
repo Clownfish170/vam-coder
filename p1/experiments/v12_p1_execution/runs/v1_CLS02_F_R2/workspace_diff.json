@@ -1,0 +1,12 @@
+{
+  "ADDED": [],
+  "DELETED": [],
+  "MODIFIED": [
+    "b.py",
+    "hub.py"
+  ],
+  "UNCHANGED": [
+    "a.py",
+    "c.py"
+  ]
+}

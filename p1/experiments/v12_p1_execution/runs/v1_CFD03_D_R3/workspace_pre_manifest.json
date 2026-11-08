@@ -1,0 +1,23 @@
+{
+  "episode_id": "v1_CFD03_D_R3",
+  "task_id": "v1_CFD03",
+  "arm": "D",
+  "repetition": 3,
+  "timestamp": "2026-11-02T05:46:41+00:00",
+  "root": "D:\\Demo\\DynaMem\\vam-coder\\p1\\tasks\\v1_CFD03\\project",
+  "files": [
+    {
+      "relative_path": "app.py",
+      "file_size": 70,
+      "sha256": "dd04a8c0230a62fc90d5e21edb13f8c1bd88152d62c0cb1159e9caeb4d516e6f"
+    },
+    {
+      "relative_path": "util.py",
+      "file_size": 55,
+      "sha256": "74fdc1870876ca7c53c4ee504c1e6a0aa091c3c094b08e40b262c5c332ac4eaf"
+    }
+  ],
+  "total_files": 2,
+  "total_bytes": 125,
+  "manifest_sha256": "937c55e03ab85309f3282e80e36d82a1484e1be4b67b886dcf34a868c7b20648"
+}

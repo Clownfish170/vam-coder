@@ -1,0 +1,23 @@
+{
+  "episode_id": "v1_CFD02_D_R1",
+  "task_id": "v1_CFD02",
+  "arm": "D",
+  "repetition": 1,
+  "timestamp": "2026-11-02T05:29:02+00:00",
+  "root": "p1\\experiments\\v12_p1_execution\\runs\\v1_CFD02_D_R1\\runner_out\\episodes\\v1_CFD02\\vam_coder_v1.1\\workspace",
+  "files": [
+    {
+      "relative_path": "order.py",
+      "file_size": 62,
+      "sha256": "49c2e0a8f9f04c75a71fb0d39b57cfa33d20174da6491ba8eb9840a6d01566e7"
+    },
+    {
+      "relative_path": "rates.py",
+      "file_size": 48,
+      "sha256": "cf7c1339a01b8b35b4da8e8dad42e6de5db3b6bd9cfc7df5902595ef33a245b1"
+    }
+  ],
+  "total_files": 2,
+  "total_bytes": 110,
+  "manifest_sha256": "3d39cf71916731e13ee7157b831cfa5301a90677475f447e5bc6e034d58157b0"
+}

@@ -1,0 +1,16 @@
+{
+  "validated_arms": [
+    "dualtoken_A_inline_full_context",
+    "dualtoken_B_symbolic_addressing",
+    "dualtoken_C_static_rep_plus_symbolic_id",
+    "vam_coder_v1.2_F"
+  ],
+  "tasks": [
+    "p1_S02b",
+    "p1_M01a",
+    "p1_S01a"
+  ],
+  "problems": [],
+  "pass": true,
+  "note": "动态交付断言（step1 修改→step2 上下文含新值）在实跑分析中执行（补记 §2/§6）"
+}

@@ -1,0 +1,11 @@
+[ctx] v1.2-F
+--- FILE app.py (full current source) ---
+from mode import describe
+
+
+def banner():
+    return f"mode={describe()}"
+
+--- FILE mode.py (full current source) ---
+"""Mode."""
+

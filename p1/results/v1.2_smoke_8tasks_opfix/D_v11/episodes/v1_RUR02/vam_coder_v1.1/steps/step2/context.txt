@@ -1,0 +1,9 @@
+[ctx] v1.1
+--- FILE hot.py (full current source) ---
+def hot():
+    return 1
+
+--- FILE stable_a.py (full current source) ---
+def fa():
+    return "A"
+

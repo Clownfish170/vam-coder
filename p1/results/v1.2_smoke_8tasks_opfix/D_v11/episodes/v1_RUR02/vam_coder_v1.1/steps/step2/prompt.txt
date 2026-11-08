@@ -1,0 +1,15 @@
+=== TASK ===
+hot() 返回 3。
+
+=== CONTEXT ===
+[ctx] v1.1
+--- FILE hot.py (full current source) ---
+def hot():
+    return 1
+
+--- FILE stable_a.py (full current source) ---
+def fa():
+    return "A"
+
+=== OUTPUT FORMAT ===
+Respond only with FILE: blocks (or NO_EDIT).

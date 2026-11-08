@@ -1,0 +1,27 @@
+{
+  "schema": "vso-design-freeze-v1",
+  "frozen_at": "2026-11-07T02:20:10+00:00",
+  "document": "p1/docs/vso_fault_injection_evaluation_design.md",
+  "version": "v2",
+  "sha256": "0d9c292b2ef7e09fc0d6ddef137d163ca91a342c1e8144341fce3d3725f1746b",
+  "authorized_by": "用户指令：继续推进VSO专项实验（视为审阅通过+冻结授权）",
+  "pinned_ambiguities": {
+    "FBR": "False Block Rate",
+    "joint_thresholds": "UOR=0 ∧ SOR≥0.8 ∧ FBR≤0.1 ∧ FSR≥0.9",
+    "C4": "单实例（must可容纳），不加C4b",
+    "H2_expected": "FORCE_FULL",
+    "B2_semantics": "该sha曾成功发送过（历史事实）"
+  },
+  "phase2_scenarios_frozen": [
+    "V1",
+    "V4",
+    "C1",
+    "C2",
+    "C3",
+    "H1",
+    "H2",
+    "V5",
+    "P1",
+    "P5"
+  ]
+}

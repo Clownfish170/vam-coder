@@ -1,0 +1,23 @@
+{
+  "episode_id": "v1_RFS02_D_R1",
+  "task_id": "v1_RFS02",
+  "arm": "D",
+  "repetition": 1,
+  "timestamp": "2026-11-02T05:42:43+00:00",
+  "root": "D:\\Demo\\DynaMem\\vam-coder\\p1\\tasks\\v1_RFS02\\project",
+  "files": [
+    {
+      "relative_path": "client.py",
+      "file_size": 66,
+      "sha256": "f95aa41b85f1113462bda87a5fac20c96e72aa1ff9fb33d475880355840370c6"
+    },
+    {
+      "relative_path": "status.py",
+      "file_size": 82,
+      "sha256": "b290ff8c586c5710080001e7c3e9d43f9b49eb03d54168b5b75eb0042212bc04"
+    }
+  ],
+  "total_files": 2,
+  "total_bytes": 148,
+  "manifest_sha256": "e44f9c2d2e684bf3b88c814ebbc7ee15cfd2e0f8ccf876cc63a822d5f60dfed0"
+}

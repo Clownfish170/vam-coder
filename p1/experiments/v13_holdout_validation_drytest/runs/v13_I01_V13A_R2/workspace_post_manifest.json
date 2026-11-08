@@ -1,0 +1,28 @@
+{
+  "episode_id": "v13_I01_V13A_R2",
+  "task_id": "v13_I01",
+  "arm": "V13A",
+  "repetition": 2,
+  "timestamp": "2026-11-03T13:21:25+00:00",
+  "root": "p1\\experiments\\v13_holdout_validation_drytest\\runs\\v13_I01_V13A_R2\\runner_out\\episodes\\v13_I01\\vam_coder_v1.3_V13A\\workspace",
+  "files": [
+    {
+      "relative_path": "curves_body.py",
+      "file_size": 219,
+      "sha256": "55de05fe283712cd4810a9d7883fa27988eccc0e30878babf347f67383c4764e"
+    },
+    {
+      "relative_path": "engine.py",
+      "file_size": 91,
+      "sha256": "b9bfd226b0f5f30bdbbdfa32c274a6fcf1492a6ee2d715b6e6c540eaefd23a30"
+    },
+    {
+      "relative_path": "registry.py",
+      "file_size": 125,
+      "sha256": "1cb43550c15ac0f49e5adb10b23a1fae21532c80e867bbae7824cac28a0f68b4"
+    }
+  ],
+  "total_files": 3,
+  "total_bytes": 435,
+  "manifest_sha256": "5a52a449fab7d1791cdc4fcf9e1b9b6215ca706726cc3d854d05f98f03f0f865"
+}

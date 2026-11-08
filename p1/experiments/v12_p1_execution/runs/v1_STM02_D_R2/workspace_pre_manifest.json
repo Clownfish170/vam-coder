@@ -1,0 +1,23 @@
+{
+  "episode_id": "v1_STM02_D_R2",
+  "task_id": "v1_STM02",
+  "arm": "D",
+  "repetition": 2,
+  "timestamp": "2026-11-02T05:33:36+00:00",
+  "root": "D:\\Demo\\DynaMem\\vam-coder\\p1\\tasks\\v1_STM02\\project",
+  "files": [
+    {
+      "relative_path": "bill.py",
+      "file_size": 73,
+      "sha256": "71e9fcab9f5e9b66395c4f4b26622e781724e95560fdebb7d571f6d78d3a986a"
+    },
+    {
+      "relative_path": "fee.py",
+      "file_size": 90,
+      "sha256": "4134c05e801c81c3956bd4f86eee1ed644783b9112578ae303cd04fa03006e40"
+    }
+  ],
+  "total_files": 2,
+  "total_bytes": 163,
+  "manifest_sha256": "363234b3625b0963f8d0d5076d93c7e35a8257a2e444d58b9cdbd564052b57a7"
+}

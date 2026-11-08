@@ -1,0 +1,22 @@
+=== TASK ===
+服务费公式改为 qty*6。请更新 fee.py 中 service 的实现与 docstring 描述。
+
+=== CONTEXT ===
+[ctx] v1.2-E
+--- FILE bill.py (full current source) ---
+from fee import service
+
+
+def due(qty):
+    return service(qty) + 1
+
+--- FILE fee.py (full current source) ---
+"""Fees."""
+
+
+def service(qty):
+    """Service fee = qty * 4."""
+    return qty * 4
+
+=== OUTPUT FORMAT ===
+Respond only with FILE: blocks (or NO_EDIT).

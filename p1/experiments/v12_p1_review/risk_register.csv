@@ -1,0 +1,11 @@
+risk_id,category,description,likelihood,impact,evidence,mitigation,status
+R01,STATISTICAL,P0显示大量MODEL_NO_EDIT/REASONING压低ESR增大臂间噪声,High,High,post_review/failure_analysis.csv;prereg§4把握度,报告分层失败类别;不删任务;只用点估计+宽CI,OPEN
+R02,STATISTICAL,每臂72eps对5%TPSE与10pp非劣把握度不足,High,High,prereg§4 SE≈0.05-0.06,禁止强非劣措辞;保留bootstrap CI,OPEN
+R03,MODEL_CAPABILITY,RUR02/RUR03/DUP01成瓶颈任务,High,Medium,P0 fail by task,不剔除;解释时标模型边界,OPEN
+R04,SAFETY,INSUFFICIENT阻断未在真实路径触发,Medium,Medium,P0 0 blocked;unit 10 tests,单测+代码审查为门禁证据;可选故障注入不进指标,OPEN
+R05,DATA_WORKSPACE,缺实验前per-episode全量SHA,High,Medium,P0 evidence_gaps G1,P1强制manifest_pre/post+diff,OPEN
+R06,RESOURCE,1008+请求串行耗时数小时,Medium,Medium,resource_estimate,P0后分批;pause≥1s;监控server,OPEN
+R07,ENGINEERING,P1含D臂需v1.1 runner与v1.2并存,Medium,Low,prereg§3 A,B,D,执行手册明确两入口;禁止混目录,OPEN
+R08,INTERPRETATION,误将P0/P1写成架构有效或显著优于,Medium,High,post_review禁止表述,报告模板锁定措辞,OPEN
+R09,TRACE,随机化seed若P1更换未记录,Low,High,prereg§7,P1前冻结randomization_manifest,OPEN
+R10,SCOPE,误把RECOMMEND EXECUTION REVIEW当P1授权,Low,High,本评审结论,需用户单独批准,OPEN

@@ -1,0 +1,14 @@
+[
+  {
+    "role": "system",
+    "content": "You are a careful code editor working on a small Python repository.\nEach turn you receive one task and (depending on the agent's memory mode)\nsome repository context.\nReply ONLY with the files you change, using exactly this format:\n\nFILE: relative/path.py\n```python\n<full new content of the file>\n```\n\nRules:\n- Output complete file contents, not diffs.\n- Change only what the task requires.\n- Do not invent new files unless the task requires it.\n- If no change is needed, reply exactly: NO_EDIT\n"
+  },
+  {
+    "role": "assistant",
+    "content": "FILE: app.py\n```python\nfrom mode import describe\n\n\ndef banner():\n    return f\"mode={describe()}\"\n```\n\nFILE: mode.py\n```python\n\"\"\"Mode.\"\"\"\n\ndef describe():\n    \"\"\"Return the active mode name: active.\"\"\"\n    return \"active\"\n```"
+  },
+  {
+    "role": "user",
+    "content": "=== TASK ===\napp.py 新增 is_active()：当模式为 active 时返回 True。\n\n=== CONTEXT ===\n[ctx] v1.2-G\n--- FILE app.py (full current source) ---\nfrom mode import describe\n\n\ndef banner():\n    return f\"mode={describe()}\"\n\n=== OUTPUT FORMAT ===\nRespond only with FILE: blocks (or NO_EDIT)."
+  }
+]

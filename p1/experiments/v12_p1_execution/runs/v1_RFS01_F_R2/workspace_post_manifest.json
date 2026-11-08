@@ -1,0 +1,23 @@
+{
+  "episode_id": "v1_RFS01_F_R2",
+  "task_id": "v1_RFS01",
+  "arm": "F",
+  "repetition": 2,
+  "timestamp": "2026-11-02T05:32:49+00:00",
+  "root": "p1\\experiments\\v12_p1_execution\\runs\\v1_RFS01_F_R2\\runner_out\\episodes\\v1_RFS01\\vam_coder_v1.2_F\\workspace",
+  "files": [
+    {
+      "relative_path": "app.py",
+      "file_size": 116,
+      "sha256": "6e579605d52e901425018bd999ff9639e31d1f70ccbe2a7f55df4fd7a478a5ba"
+    },
+    {
+      "relative_path": "mode.py",
+      "file_size": 83,
+      "sha256": "c5dc673cfba585bd27a2b4bc83dd39ab0e39350a6f63bdac77677d80aec5bcd1"
+    }
+  ],
+  "total_files": 2,
+  "total_bytes": 199,
+  "manifest_sha256": "e613b4fdcd8b90c32a404f57687f2fea41d8914c3a7d7c209a4dc92510558dca"
+}

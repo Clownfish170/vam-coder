@@ -1,0 +1,23 @@
+{
+  "episode_id": "v1_REN02_B_R1",
+  "task_id": "v1_REN02",
+  "arm": "B",
+  "repetition": 1,
+  "timestamp": "2026-11-02T05:46:41+00:00",
+  "root": "p1\\experiments\\v12_p1_execution\\runs\\v1_REN02_B_R1\\runner_out\\episodes\\v1_REN02\\symbol_full_read\\workspace",
+  "files": [
+    {
+      "relative_path": "api.py",
+      "file_size": 71,
+      "sha256": "4fa236506351e1df354646a98b4f7103e5a538d3abe7f8dbbf362bc40a0315ba"
+    },
+    {
+      "relative_path": "app.py",
+      "file_size": 68,
+      "sha256": "a7ac7403f7c1e9c687f348e12a456c9ef653e9fc9ef6a92fa03393ed4e0232f4"
+    }
+  ],
+  "total_files": 2,
+  "total_bytes": 139,
+  "manifest_sha256": "226aad37b6d63da765f38bbaa72e52d6663214f8294b571a46e8ca09f7be6806"
+}

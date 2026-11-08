@@ -1,0 +1,17 @@
+{
+  "ok": true,
+  "missing_or_mismatch": [],
+  "reasons": {},
+  "revised": false,
+  "force_full": [],
+  "omitted_after": [],
+  "edit_targets": [
+    "invoice.py",
+    "tax.py"
+  ],
+  "candidate_full": [],
+  "edit_target_full_verified": true,
+  "candidate_full_verified": true,
+  "edit_target_missing": [],
+  "candidate_missing": []
+}

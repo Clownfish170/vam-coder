@@ -1,0 +1,14 @@
+[
+  {
+    "role": "system",
+    "content": "You are a careful code editor working on a small Python repository.\nEach turn you receive one task and (depending on the agent's memory mode)\nsome repository context.\nReply ONLY with the files you change, using exactly this format:\n\nFILE: relative/path.py\n```python\n<full new content of the file>\n```\n\nRules:\n- Output complete file contents, not diffs.\n- Change only what the task requires.\n- Do not invent new files unless the task requires it.\n- If no change is needed, reply exactly: NO_EDIT\n"
+  },
+  {
+    "role": "assistant",
+    "content": "NO_EDIT"
+  },
+  {
+    "role": "user",
+    "content": "=== TASK ===\ntextx 新增 norm2(s)：返回 norm(s).upper()（textx 的 norm）。\n\n=== CONTEXT ===\n[ctx] v1.2-G\n--- FILE mathx.py (full current source) ---\ndef norm(x):\n    return x / 2\n\n--- FILE textx.py (full current source) ---\ndef norm(s):\n    return s.strip()\n\n=== OUTPUT FORMAT ===\nRespond only with FILE: blocks (or NO_EDIT)."
+  }
+]

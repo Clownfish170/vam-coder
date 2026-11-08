@@ -1,0 +1,23 @@
+{
+  "episode_id": "v1_DUP02_E_R2",
+  "task_id": "v1_DUP02",
+  "arm": "E",
+  "repetition": 2,
+  "timestamp": "2026-11-02T05:35:31+00:00",
+  "root": "p1\\experiments\\v12_p1_execution\\runs\\v1_DUP02_E_R2\\runner_out\\episodes\\v1_DUP02\\vam_coder_v1.2_E\\workspace",
+  "files": [
+    {
+      "relative_path": "conf.py",
+      "file_size": 86,
+      "sha256": "27f2eaecb3a6785efd5a21bc0b054a87f998607910fcfc53da1d42a303c7adde"
+    },
+    {
+      "relative_path": "conf2.py",
+      "file_size": 50,
+      "sha256": "c0b02db965287e1b681376045b7d788878f6ab82acd6500e20a70180cfeb7225"
+    }
+  ],
+  "total_files": 2,
+  "total_bytes": 136,
+  "manifest_sha256": "c0dd390135ba099e990b6d398ca88f2a8bec14ac15efd2b29d4978eca07e520a"
+}

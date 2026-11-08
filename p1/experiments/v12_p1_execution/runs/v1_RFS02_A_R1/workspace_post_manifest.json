@@ -1,0 +1,23 @@
+{
+  "episode_id": "v1_RFS02_A_R1",
+  "task_id": "v1_RFS02",
+  "arm": "A",
+  "repetition": 1,
+  "timestamp": "2026-11-02T05:30:00+00:00",
+  "root": "p1\\experiments\\v12_p1_execution\\runs\\v1_RFS02_A_R1\\runner_out\\episodes\\v1_RFS02\\memory_off\\workspace",
+  "files": [
+    {
+      "relative_path": "client.py",
+      "file_size": 117,
+      "sha256": "e274ad4ce99b0970964de7b5b5807733f667c5417236374ad7bd23ec7ba02b6c"
+    },
+    {
+      "relative_path": "status.py",
+      "file_size": 82,
+      "sha256": "40623c59273c3b5574d36c7bd7fc6c5e128c4b8207848637dffd1b253f114b1c"
+    }
+  ],
+  "total_files": 2,
+  "total_bytes": 199,
+  "manifest_sha256": "d785f6c161b14dbf6c154fcde4a0729c696cd24151709faa47260c9c5641670c"
+}

@@ -1,0 +1,5 @@
+FILE: lib.py
+```python
+def keep():
+    return 21
+```

@@ -1,0 +1,21 @@
+item,expected,observed,status,evidence
+model,Qwen2.5-Coder-1.5B-Instruct Q6_K,qwen2.5-coder-1.5b-instruct-q6_k.gguf exists,PASS,model path
+llama-server ctx,8192,P0 cmdline -c 8192; server now down,WARNING,resource_final prior P0
+parallel,1,P0 --parallel 1,WARNING,server not running now
+seed,0,runner default 0,PASS,run_p1_v12 args
+temperature,0,runner default 0,PASS,run_p1_v12 args
+max_tokens,1024,runner default 1024,PASS,run_p1_v12 args
+history,keep,P1 will pass keep,PASS,prereg§2
+closure_depth,2,config default 2,PASS,v12/config
+Kmax,8,config k_max 8,PASS,v12/config
+tasks,24,tasks_v1.0.json 24 episodes,PASS,prereg§4
+arms,A B D E F G H,prereg§3,PASS,prereg
+R,3,prereg§4,PASS,prereg
+episodes,504,24*7*3,PASS,prereg
+steps,1008,504*2,PASS,prereg
+theoretical_requests,1008,1 per step if no block,PASS,prereg
+P1_randomization_manifest,required independent,NOT YET CREATED,NOT_VERIFIED,no file
+output_root,independent of P0 and v1_formal,planned v12_* / p1 output root,PASS,prereg§2
+no_reuse_P0_randomization,required,P0 seed 20261102 is P0 only,PASS,plan
+cached_tokens_not_KV_claim,required,P0 reports comply,PASS,prereg§2
+sample_size_arms_frozen,no擅自改,未改,PASS,hash match prereg

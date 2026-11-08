@@ -1,0 +1,5 @@
+[ctx] v1.2-F
+--- FILE alpha.py (full current source) ---
+def a():
+    return 1
+

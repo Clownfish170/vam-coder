@@ -1,0 +1,19 @@
+{
+  "architecture": "v1.2-r2.2",
+  "created_at": "2026-11-01T12:39:43+00:00",
+  "model": "qwen2.5-coder-1.5b",
+  "arms": [
+    "E"
+  ],
+  "episodes": [
+    "v1_IRR01"
+  ],
+  "rep": 1,
+  "dry_run": true,
+  "p0_dry_run": false,
+  "closure_depth_draft": 2,
+  "protocol": "p1/docs/v1.2_experiment_preregistration.md",
+  "config_digests": {
+    "E": "d0658aaa276e28ef2ed4919862bcfe7feec51529fdaff445bd72eeda0311048c"
+  }
+}

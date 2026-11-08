@@ -1,0 +1,13 @@
+{
+  "schema": "dualtoken-addendum-freeze-v2",
+  "frozen_at": "2026-11-07T05:00:05+00:00",
+  "document": "p1\\docs\\v12f_validation_preregistration_addendum_dualtoken_v2.md",
+  "sha256": "2c5e9c487b96fd6448e3b4855a0884f10fc5497deb90b4a54af500c6bb13d625",
+  "supersedes": {
+    "document": "p1/docs/v12f_validation_preregistration_addendum_dualtoken.md",
+    "sha256": "d664d602fc3c82a9494c4eed7108e22f5ac272bff41ae732414ef3d60aa2a088"
+  },
+  "change": "任务集 → Part2 独立任务集（剂量产验证据 39/1360=2.9%）；机制/假设/指标不变",
+  "declared_before_any_abcd_request": true,
+  "dose_gate": "Part2 冻结前 dry-run 审计：B/C 可变换步 ≥15%"
+}

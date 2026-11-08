@@ -7,3 +7,10 @@ logs/
 # P1-v0.2：原始 run 数据不入库（保留在磁盘；哈希锚点在 run_meta/manifests）
 p1/results/runs/
 p1/.cache/
+# 实验逐步日志/工作区快照（体量大且含临时 workspace；摘要与 CSV/报告入库）
+p1/experiments/**/episode_logs/
+p1/experiments/**/phase2_runs/runs/
+p1/experiments/validation_p0/protocol_retest_4096/runs/
+p1/experiments/**/validate_ctx/
+p1/experiments/**/drytest/
+p1/experiments/**/runner_out/

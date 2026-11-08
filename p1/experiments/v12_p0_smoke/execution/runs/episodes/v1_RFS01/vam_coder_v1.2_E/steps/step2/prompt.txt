@@ -1,0 +1,14 @@
+=== TASK ===
+app.py 新增 is_active()：当模式为 active 时返回 True。
+
+=== CONTEXT ===
+[ctx] v1.2-E
+--- FILE app.py (full current source) ---
+from mode import describe
+
+
+def banner():
+    return f"mode={describe()}"
+
+=== OUTPUT FORMAT ===
+Respond only with FILE: blocks (or NO_EDIT).

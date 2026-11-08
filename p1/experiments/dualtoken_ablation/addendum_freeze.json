@@ -1,0 +1,19 @@
+{
+  "schema": "dualtoken-addendum-freeze-v1",
+  "frozen_at": "2026-11-07T04:32:40+00:00",
+  "document": "p1\\docs\\v12f_validation_preregistration_addendum_dualtoken.md",
+  "sha256": "d664d602fc3c82a9494c4eed7108e22f5ac272bff41ae732414ef3d60aa2a088",
+  "declared_before_any_abcd_request": true,
+  "arms": [
+    "dualtoken_A_inline_full_context",
+    "dualtoken_B_symbolic_addressing",
+    "dualtoken_C_static_rep_plus_symbolic_id",
+    "vam_coder_v1.2_F"
+  ],
+  "hypotheses": [
+    "H-B",
+    "H-C",
+    "H-AB"
+  ],
+  "production_code_changes": "none（orchestrator 侧包装）"
+}

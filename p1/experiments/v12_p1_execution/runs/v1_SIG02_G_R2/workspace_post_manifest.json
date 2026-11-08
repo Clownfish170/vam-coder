@@ -1,0 +1,23 @@
+{
+  "episode_id": "v1_SIG02_G_R2",
+  "task_id": "v1_SIG02",
+  "arm": "G",
+  "repetition": 2,
+  "timestamp": "2026-11-02T05:41:40+00:00",
+  "root": "p1\\experiments\\v12_p1_execution\\runs\\v1_SIG02_G_R2\\runner_out\\episodes\\v1_SIG02\\vam_coder_v1.2_G\\workspace",
+  "files": [
+    {
+      "relative_path": "geom.py",
+      "file_size": 47,
+      "sha256": "d32ff83e85a4c95600ed13bb157a684fb30cf23b35397d3b2006c7ee2fcb7bc2"
+    },
+    {
+      "relative_path": "report.py",
+      "file_size": 128,
+      "sha256": "4dbfbb439a75b3412e5799afd194d9caa9c971bb91ea64ca79735f28f1f7fbfb"
+    }
+  ],
+  "total_files": 2,
+  "total_bytes": 175,
+  "manifest_sha256": "0f2bd5bb484ed93e3c82ef923ae4d17ac5f24fc62bf69391f489dd6a5eb29775"
+}

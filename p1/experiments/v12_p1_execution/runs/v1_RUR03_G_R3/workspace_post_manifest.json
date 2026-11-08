@@ -1,0 +1,18 @@
+{
+  "episode_id": "v1_RUR03_G_R3",
+  "task_id": "v1_RUR03",
+  "arm": "G",
+  "repetition": 3,
+  "timestamp": "2026-11-02T05:41:12+00:00",
+  "root": "p1\\experiments\\v12_p1_execution\\runs\\v1_RUR03_G_R3\\runner_out\\episodes\\v1_RUR03\\vam_coder_v1.2_G\\workspace",
+  "files": [
+    {
+      "relative_path": "core.py",
+      "file_size": 83,
+      "sha256": "cd0dfe7fba6688629f0268ed8ec5d130d79f467550a0ec60f3886cb2c43160e8"
+    }
+  ],
+  "total_files": 1,
+  "total_bytes": 83,
+  "manifest_sha256": "7dae8732be5b25e8020dc10ad9805dc60a576b740f9573ce2f31ccde318c572f"
+}

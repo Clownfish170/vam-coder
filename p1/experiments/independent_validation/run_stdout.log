@@ -1,0 +1,3 @@
+[resume] done=0 prior_tokens=0
+[10/720] ind_L06a_memory_off_R4 -> OK steps=10 tok=17635 cum=48229
+[20/720] ind_M01b_symbol_full_read_R3 -> OK steps=5 tok=4157 cum=105174

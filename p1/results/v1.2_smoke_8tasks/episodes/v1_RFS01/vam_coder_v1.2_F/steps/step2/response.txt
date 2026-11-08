@@ -1,0 +1,13 @@
+FILE: mode.py
+```python
+"""Mode."""
+from typing import Optional
+
+class Mode:
+    def __init__(self, name: str, active: bool):
+        self.name = name
+        self.active = active
+
+    def is_active(self) -> bool:
+        return self.active
+```

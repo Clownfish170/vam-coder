@@ -1,0 +1,23 @@
+{
+  "episode_id": "v13_S02_V13A_R2",
+  "task_id": "v13_S02",
+  "arm": "V13A",
+  "repetition": 2,
+  "timestamp": "2026-11-03T13:21:44+00:00",
+  "root": "p1\\experiments\\v13_holdout_validation_drytest\\runs\\v13_S02_V13A_R2\\runner_out\\episodes\\v13_S02\\vam_coder_v1.3_V13A\\workspace",
+  "files": [
+    {
+      "relative_path": "reportx.py",
+      "file_size": 133,
+      "sha256": "7c3a827b52c3e8c901a91a0378138d689a91cbbaaba452952198d8b6b5d08bda"
+    },
+    {
+      "relative_path": "tokens.py",
+      "file_size": 143,
+      "sha256": "16ea764ca174befe8fe716724fdd253649a433e98b17dfde74c01fbd447349f1"
+    }
+  ],
+  "total_files": 2,
+  "total_bytes": 276,
+  "manifest_sha256": "f8fa84a0928d96800e2af20f4ff40a37a1fd483f745424f3c1fe91b7a5a3a20f"
+}

@@ -1,0 +1,12 @@
+[ctx] v1.1
+--- FILE app.py (full current source) ---
+from lib import keep
+
+
+def use():
+    return keep()
+
+--- FILE lib.py (full current source) ---
+def keep():
+    return 21
+

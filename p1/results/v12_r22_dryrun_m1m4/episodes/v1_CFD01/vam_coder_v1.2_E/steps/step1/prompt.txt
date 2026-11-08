@@ -1,0 +1,22 @@
+=== TASK ===
+tax_rate() 的税率应为 0.5。请修改 tax.py 中的返回值。
+
+=== CONTEXT ===
+[ctx] v1.2-E
+--- FILE invoice.py (full current source) ---
+from tax import tax_rate
+
+
+def grand_total(cents):
+    return int(cents * (1 + tax_rate()))
+
+--- FILE tax.py (full current source) ---
+"""Tax helpers."""
+
+
+def tax_rate():
+    """Current tax rate."""
+    return 0.25
+
+=== OUTPUT FORMAT ===
+Respond only with FILE: blocks (or NO_EDIT).

@@ -1,0 +1,5 @@
+FILE: alpha.py
+```python
+def a():
+    return 10
+```

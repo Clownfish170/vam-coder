@@ -1,0 +1,11 @@
+F.                                                                       [100%]
+================================== FAILURES ===================================
+________________________________ test_due_fast ________________________________
+eval\test_behavior.py:5: in test_due_fast
+    assert bill.due_fast(2) == 13
+E   assert 12 == 13
+E    +  where 12 = <function due_fast at 0x0000023B94E5A980>(2)
+E    +    where <function due_fast at 0x0000023B94E5A980> = bill.due_fast
+=========================== short test summary info ===========================
+FAILED eval/test_behavior.py::test_due_fast - assert 12 == 13
+1 failed, 1 passed in 0.13s

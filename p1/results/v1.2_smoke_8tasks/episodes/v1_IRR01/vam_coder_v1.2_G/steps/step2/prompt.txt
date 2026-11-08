@@ -1,0 +1,8 @@
+=== TASK ===
+只新增 alpha.py 的 a2() 返回 a()+1。不要修改 beta.py。
+
+=== CONTEXT ===
+[ctx] v1.2-G
+
+=== OUTPUT FORMAT ===
+Respond only with FILE: blocks (or NO_EDIT).

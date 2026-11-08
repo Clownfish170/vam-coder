@@ -1,0 +1,123 @@
+{
+  "schema": "vso-phase2-summary-v1",
+  "model": "deepseek-v4.1-flash-1017",
+  "scenarios_frozen": [
+    "V1",
+    "V4",
+    "C1",
+    "C2",
+    "C3",
+    "H1",
+    "H2",
+    "V5",
+    "P1",
+    "P5"
+  ],
+  "reps": [
+    1,
+    2,
+    3
+  ],
+  "episodes_total": 30,
+  "decision_correct": 30,
+  "decision_accuracy": 1.0,
+  "scenarios_pass": 10,
+  "scenarios_total": 10,
+  "per_scenario": {
+    "V4": {
+      "runs": 3,
+      "correct": 3,
+      "expected": "FORCE_FULL",
+      "observed_set": [
+        "FORCE_FULL"
+      ],
+      "scenario_pass": true
+    },
+    "C3": {
+      "runs": 3,
+      "correct": 3,
+      "expected": "INSUFFICIENT",
+      "observed_set": [
+        "INSUFFICIENT"
+      ],
+      "scenario_pass": true
+    },
+    "P1": {
+      "runs": 3,
+      "correct": 3,
+      "expected": "ALLOW_OMISSION",
+      "observed_set": [
+        "ALLOW_OMISSION"
+      ],
+      "scenario_pass": true
+    },
+    "P5": {
+      "runs": 3,
+      "correct": 3,
+      "expected": "ALLOW_OMISSION",
+      "observed_set": [
+        "ALLOW_OMISSION"
+      ],
+      "scenario_pass": true
+    },
+    "V1": {
+      "runs": 3,
+      "correct": 3,
+      "expected": "FORCE_FULL",
+      "observed_set": [
+        "FORCE_FULL"
+      ],
+      "scenario_pass": true
+    },
+    "C1": {
+      "runs": 3,
+      "correct": 3,
+      "expected": "FORCE_FULL",
+      "observed_set": [
+        "FORCE_FULL"
+      ],
+      "scenario_pass": true
+    },
+    "C2": {
+      "runs": 3,
+      "correct": 3,
+      "expected": "FORCE_FULL",
+      "observed_set": [
+        "FORCE_FULL"
+      ],
+      "scenario_pass": true
+    },
+    "H1": {
+      "runs": 3,
+      "correct": 3,
+      "expected": "FORCE_FULL",
+      "observed_set": [
+        "FORCE_FULL"
+      ],
+      "scenario_pass": true
+    },
+    "H2": {
+      "runs": 3,
+      "correct": 3,
+      "expected": "FORCE_FULL",
+      "observed_set": [
+        "FORCE_FULL"
+      ],
+      "scenario_pass": true
+    },
+    "V5": {
+      "runs": 3,
+      "correct": 3,
+      "expected": "FORCE_FULL",
+      "observed_set": [
+        "FORCE_FULL"
+      ],
+      "scenario_pass": true
+    }
+  },
+  "unsafe_ship_total": 0,
+  "dho_total": 0,
+  "superseded_vacuous_records": "phase2_runs/execution_log_superseded_vacuous.jsonl（任务映射修正前18条，保留不删）",
+  "positioning": "confirmatory per-scenario assertion（不做显著性/泛化结论，v2 §4）",
+  "production_code_modified": false
+}

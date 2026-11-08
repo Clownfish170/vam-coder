@@ -1,0 +1,18 @@
+=== TASK ===
+app.py 新增 twice_keep()：返回 keep() 的二倍。
+
+=== CONTEXT ===
+[ctx] v1.2-H
+--- FILE app.py (full current source) ---
+from lib import keep
+
+
+def use():
+    return keep()
+
+--- FILE lib.py (full current source) ---
+def keep():
+    return 21
+
+=== OUTPUT FORMAT ===
+Respond only with FILE: blocks (or NO_EDIT).

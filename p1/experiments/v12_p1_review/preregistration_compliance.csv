@@ -1,0 +1,16 @@
+clause,source,status,notes
+环境固定 q6_k/8192/parallel1/seed0/temp0/max_tokens1024/keep,prereg§2,PASS,P0已核验一致
+任务集24冻结,prereg§2,PASS,未改
+臂A B D E F G H,prereg§3,PASS,P1范围
+P1样本 24×7×R3≈1008,prereg§4,PASS,未改样本量
+r2.2 E/C FULL与分列verified,prereg§1.1,PASS,M1-M4验收
+指标ESR SPR TPAE TPSE FETC,prereg§5,PASS,P0重算一致
+门禁0.10/0.15/0.95/1.05,prereg§6,PASS,未改
+bootstrap seed与task聚类,prereg§7,PASS,须P1新randomization另记
+FETC与重试token口径,prereg§4+method§1.3,PASS,以method为准
+禁止cached当KV节省,prereg§2,PASS,P0遵守
+排除HTTP重跑一次,prereg§4,PASS,未改
+把握度限制声明,prereg§4,PASS,须写入P1报告
+不得删困难任务,prereg§4+本评审,PASS,P0后仍保留RUR/DUP
+INSUFFICIENT请求前阻断,r2.2 method+M3-FIX-01,CONDITIONAL,单测有;live未触发
+workspace SHA前后manifest,P0 evidence_gaps,CONDITIONAL,P1须新增(操作层)

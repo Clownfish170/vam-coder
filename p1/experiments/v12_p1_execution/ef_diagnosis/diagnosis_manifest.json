@@ -1,0 +1,50 @@
+{
+  "generated_at": "2026-11-02T06:26:20.686145+00:00",
+  "seed": 20261102,
+  "B": 10000,
+  "inputs_sha256": {
+    "per_step_all": "c2c5a887ccfa996cc22cec19a4efdc58dbe8b2e0ca8469f125e9f09224ae01ee",
+    "failure_attribution": "003ca8564dc4112c9ea19215c448adc2456f6b66759082eb054c81deeb1b8299",
+    "prereg": "7d594e1c2b5de063ef75c2bdbaa65e5365607c1651a873b2960fc9b70a7425fc",
+    "config": "84d0d8c2d07d1d3be8d41bc342eab94df7a84df5a90aaddfb8e2a78a349fbf55"
+  },
+  "outputs_sha256": {
+    "arm_definition_diff.md": "287c132e5dd3b61f4b86f4c1543785ebfe7348b967d9040d4ee48bcd98de43e8",
+    "task_level_comparison.csv": "38e4f55d49496feb1eefdcfb7c4988f1b43a0331039c0c3465ef6ed0d1d87130",
+    "task_level_summary.csv": "19c0ef8cfe398d90c3c2fa5d2d0eb775f0a3bfe82d4fe1d51f1b5b2b834b9f3b",
+    "failure_comparison.csv": "9febce4483d117775f2dc657ba4a54fbffd56e402dabc62f027c0f158061ca10",
+    "context_token_comparison.csv": "fd15ada51e1e8c2ffbdd1533408ba2cd191c677d56b2c1301a217d3ecc73e6fe",
+    "ef_bootstrap.csv": "9c2f7b67945f944ed180f878a52261b10cc605d9fadff301992d46c613b74e71",
+    "case_studies.md": "e7d1c1b975950bb13b96ff6b9809673557719dedf21e34f32079fed47a811bf4",
+    "v13_optimization_proposal.md": "7c05c9c0d8acaf8c71c23a9e059d00e00a8abf12cbd90f1a063d8901d02e19f5"
+  },
+  "wins": {
+    "F_only_eps": 4,
+    "E_only_eps": 1,
+    "both_success_eps": 31,
+    "both_fail_eps": 36,
+    "tasks_F_stricter": 1,
+    "tasks_E_stricter": 0,
+    "tasks_tie": 23
+  },
+  "token_note": {
+    "E_TPAE": 579.3055555555555,
+    "F_TPAE": 584.0277777777778,
+    "E_TPSE": 1303.4375,
+    "F_TPSE": 1201.4285714285713,
+    "E_ESR": 0.4444444444444444,
+    "F_ESR": 0.4861111111111111,
+    "delta_TPAE_pct": 0.8151522416686818,
+    "delta_TPSE_pct": -7.826146521902944,
+    "delta_ESR_pp": 4.166666666666669
+  },
+  "safety": {
+    "E_et_verified_all": true,
+    "F_et_verified_all": true,
+    "E_psc_ok_all": true,
+    "F_psc_ok_all": true,
+    "E_insufficient": 0,
+    "F_insufficient": 0,
+    "note": "F advantage must not come from looser VP; both use same must/ET rules per prereg"
+  }
+}

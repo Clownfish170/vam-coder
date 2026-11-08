@@ -1,0 +1,11 @@
+FILE: mathx.py
+```python
+def norm(x):
+    return x / 2
+```
+
+FILE: textx.py
+```python
+def norm(s):
+    return s.strip().upper()
+```

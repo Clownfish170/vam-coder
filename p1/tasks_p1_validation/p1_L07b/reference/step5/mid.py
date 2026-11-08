@@ -1,0 +1,10 @@
+"""Mid stats"""
+from leaf import meanish
+
+
+def amp(n, boost):
+    return meanish(n) + 1 + boost
+
+
+def amp_x2(n):
+    return meanish(n) * 6

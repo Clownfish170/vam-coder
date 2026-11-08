@@ -1,0 +1,50 @@
+{
+  "schema": "p1-run-meta-v1",
+  "created_at": "2026-11-06T04:17:43+00:00",
+  "round": "p3_crossmodel_qwen",
+  "prereg": {
+    "path": "p1/docs/v12f_validation_preregistration.md",
+    "sha256": "088898a3aec9d08411864ea03ff79ac7ff3e78411ed34a58de89ecd0881cc7ed"
+  },
+  "task_set": {
+    "path": "D:\\Demo\\DynaMem\\vam-coder\\p1\\tasks_p1_validation\\p1_tasks.json",
+    "sha256": "d44445b2b8bff0a4338e9694194384235f73d0ea20b3d9550ae5d297c6f8f33b",
+    "manifest_sha256": "ee78e8258970124077ea4b16bf386c7e5ae42b85d26734ddca3d17471bd635d2"
+  },
+  "architectures": [
+    "vam_coder_v1.2_F",
+    "memory_off",
+    "symbol_full_read"
+  ],
+  "repetitions": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "episodes_planned": 720,
+  "requests_planned_max": 4080,
+  "max_tokens": 2048,
+  "s5_token_limit": 6000000,
+  "s5_basis": "2× dry-run estimate 3.3M (validation_p0)",
+  "randomization_seed": 20261109,
+  "bootstrap_seed": 20261102,
+  "bootstrap_B": 10000,
+  "frozen_hashes": {
+    "system_prompt_sha256": "4f59163597ba6982b2f77d2571792b3883198632b7cc9e8cd9ce297218dca01a",
+    "build_messages_source_sha256": "f0b477b0046282739ba1309e5035b2beb2f2f8d2564535d7154019a9aee9e436",
+    "p1_common_sha256": "b6ce07a3bccbcb20fe94e8346fff0b7d8f55b6dea5fc0356da3b15c26e88a9b6"
+  },
+  "model": "qwen3.8-flash",
+  "addendum": {
+    "path": "p1/docs/v12f_validation_preregistration_addendum_p3a.md",
+    "sha256": "2ce8defff22395fcfe7d48325a7c9f9fc5cd8c867b7f8be7643833dd2e38fffe"
+  },
+  "cross_model_note": "分模型独立报告，不与 deepseek-v4.1-flash-1017 结果合并（v1 §9）",
+  "endpoint": "https://maas.qianwenaiapi.com/compatible-mode/v1",
+  "temperature": 0.0,
+  "seed": 0,
+  "history_policy": "keep",
+  "python": "D:\\IDE_Env\\Python\\python.exe"
+}

@@ -1,0 +1,10 @@
+.F                                                                       [100%]
+================================== FAILURES ===================================
+______________________________ test_grand_still _______________________________
+eval\test_behavior.py:9: in test_grand_still
+    assert invoice.grand_total(1500) == 2250
+           ^^^^^^^^^^^^^^^^^^^
+E   AttributeError: module 'invoice' has no attribute 'grand_total'
+=========================== short test summary info ===========================
+FAILED eval/test_behavior.py::test_grand_still - AttributeError: module 'invo...
+1 failed, 1 passed in 0.12s

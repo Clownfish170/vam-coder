@@ -1,0 +1,10 @@
+pair,comparison_kind,metric,test,stat,p_value,p_holm_primary,B_flip,seed
+vam_coder_v1.2_F−memory_off,primary,ESR,task_signflip,mean_diff=-0.0083,0.652635,1.000000,10000,20261102
+vam_coder_v1.2_F−memory_off,primary,ESR,mcnemar_exact(sensitivity),"n10(p1only)=7,n01(p2only)=9",0.803619,NA,0,20261102
+vam_coder_v1.2_F−memory_off,primary,prompt_per_episode,task_signflip,mean_diff=-777.0,0.000100,0.000200,10000,20261102
+vam_coder_v1.2_F−symbol_full_read,primary,ESR,task_signflip,mean_diff=-0.0083,0.755024,1.000000,10000,20261102
+vam_coder_v1.2_F−symbol_full_read,primary,ESR,mcnemar_exact(sensitivity),"n10(p1only)=5,n01(p2only)=7",0.774414,NA,0,20261102
+vam_coder_v1.2_F−symbol_full_read,primary,prompt_per_episode,task_signflip,mean_diff=-801.2,0.000100,0.000200,10000,20261102
+memory_off−symbol_full_read,secondary,ESR,task_signflip,mean_diff=0.0000,1.000000,NA,10000,20261102
+memory_off−symbol_full_read,secondary,ESR,mcnemar_exact(sensitivity),"n10(p1only)=6,n01(p2only)=6",1.000000,NA,0,20261102
+memory_off−symbol_full_read,secondary,prompt_per_episode,task_signflip,mean_diff=-24.1,0.000200,NA,10000,20261102

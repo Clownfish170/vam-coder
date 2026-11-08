@@ -1,0 +1,21 @@
+FILE: invoice.py
+```python
+from tax import tax_rate
+
+
+def grand_total(cents):
+    return int(cents * (1 + tax_rate()))
+
+def net_total(cents):
+    return int(cents / (1 + tax_rate()))
+```
+
+FILE: tax.py
+```python
+"""Tax helpers."""
+
+
+def tax_rate():
+    """Current tax rate."""
+    return 0.5
+```

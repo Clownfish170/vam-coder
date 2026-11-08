@@ -1,0 +1,14 @@
+{
+  "finished_at": "2026-11-07T15:07:27+00:00",
+  "planned": 960,
+  "done_total": 960,
+  "executed_new": 946,
+  "ok_new": 946,
+  "fail_new": 0,
+  "cumulative_tokens": 3308934,
+  "s5_limit": 8000000,
+  "randomization_seed": 20261110,
+  "stop_code": "",
+  "stop_reason": "",
+  "resumed": true
+}

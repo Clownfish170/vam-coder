@@ -39,6 +39,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 P1_ROOT = Path(__file__).resolve().parent.parent
+# holdout 适配：--tasks 指向其他清单时任务根随其所在目录（默认不变）
+TASKS_ROOT = P1_ROOT / "tasks"
 PROJECT_ROOT = P1_ROOT.parent
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -59,8 +61,10 @@ from p1_common import (  # noqa: E402
     assemble_vam_coder,
     build_messages,
     chat_completion,
+    history_code_metrics,
     parse_file_blocks,
     posix,
+    redact_assistant_code,
     run_eval,
     tokens_estimate_chars,
     trim_history,
@@ -85,6 +89,7 @@ CSV_FIELDS = [
     "n_stale", "n_unverified", "n_tombstoned",
     "reuse_decisions", "reuse_omitted", "reuse_omitted_files",
     "reuse_omitted_bytes", "reuse_without_omission", "expand_included_bytes",
+    "n_verified_safe_omissions", "history_file_blocks", "history_code_chars",
     "context_file_blocks", "context_summary_blocks",
     "context_chars", "response_chars",
     "applied_files", "rejected_files", "history_pairs_dropped", "error",
@@ -325,7 +330,7 @@ def run_episode_baseline(
     workspace = base_dir / "workspace"
     steps_dir = base_dir / "steps"
     steps_dir.mkdir(parents=True, exist_ok=True)
-    copy_project(P1_ROOT / "tasks" / ep_id / "project", workspace)
+    copy_project(TASKS_ROOT / ep_id / "project", workspace)
 
     store = None
     manager = None
@@ -414,7 +419,10 @@ def run_episode_baseline(
             trimmed, dropped_pairs, history_chars = trim_history(
                 history, args.max_history_chars
             )
+            if args.history_policy == "redact":
+                trimmed = redact_assistant_code(trimmed)
             messages = build_messages(trimmed, step["instruction"], ctx.text)
+            hmetrics = history_code_metrics(messages)
             (step_out / "prompt.txt").write_text(
                 messages[-1]["content"], encoding="utf-8"
             )
@@ -522,7 +530,7 @@ def run_episode_baseline(
             eval_success = None
             eval_output = ""
             if not args.dry_run:
-                eval_dir = P1_ROOT / "tasks" / ep_id / step["eval"]
+                eval_dir = TASKS_ROOT / ep_id / step["eval"]
                 t0 = time.perf_counter()
                 eval_success, eval_output = run_eval(
                     workspace, eval_dir, timeout=args.eval_timeout
@@ -571,6 +579,9 @@ def run_episode_baseline(
                 "reuse_omitted_bytes": ctx.reuse_omitted_bytes,
                 "reuse_without_omission": ctx.reuse_without_omission,
                 "expand_included_bytes": ctx.expand_included_bytes,
+                "n_verified_safe_omissions": ctx.n_verified_safe_omissions,
+                "history_file_blocks": hmetrics["history_file_blocks"],
+                "history_code_chars": hmetrics["history_code_chars"],
                 "context_file_blocks": ctx.file_blocks,
                 "context_summary_blocks": ctx.summary_blocks,
                 "context_chars": len(ctx.text),
@@ -588,12 +599,15 @@ def run_episode_baseline(
                     "decisions": decisions,
                     "raw_usage": raw_usage,
                     "assemble_notes": ctx.notes,
+                    "assemble_audit": ctx.assemble_audit,
                     "history_policy": {
+                        "policy": args.history_policy,
                         "max_history_chars": args.max_history_chars,
                         "history_chars_after_trim": history_chars,
                         "pairs_dropped": dropped_pairs,
                         "rule": "drop oldest user+assistant pairs; never "
-                                "truncate system or the current turn",
+                                "truncate system or the current turn; "
+                                "redact replaces FILE blocks in assistant turns",
                     },
                 },
             )
@@ -655,10 +669,10 @@ def collect_hashes(tasks_path: Path, tasks: dict) -> dict:
     eval_hashes = {}
     project_hashes = {}
     for ep in tasks["episodes"]:
-        project_hashes[ep["id"]] = dir_sha256(P1_ROOT / "tasks" / ep["id"] / "project")
+        project_hashes[ep["id"]] = dir_sha256(tasks_path.parent / ep["id"] / "project")
         for step in ep["steps"]:
             key = f"{ep['id']}/{step['id']}"
-            eval_hashes[key] = dir_sha256(P1_ROOT / "tasks" / ep["id"] / step["eval"])
+            eval_hashes[key] = dir_sha256(tasks_path.parent / ep["id"] / step["eval"])
     return {
         "tasks_sha256": sha256_file(tasks_path),
         "script_sha256": {
@@ -726,6 +740,13 @@ def main() -> int:
     ap.add_argument("--budget-tokens", type=int, default=4096)
     ap.add_argument("--max-history-chars", type=int, default=24000,
                     help="统一历史预算（字符，四基线一致）")
+    ap.add_argument("--history-policy", choices=("keep", "redact"),
+                    default="keep",
+                    help="keep=条件A；redact=条件M（assistant FILE 块脱敏）")
+    ap.add_argument("--warmup", type=int, default=0,
+                    help="正式循环前的丢弃请求数（写入 warmup_requests.jsonl）")
+    ap.add_argument("--pause-seconds", type=float, default=0.0,
+                    help="episode-run 之间的串行间隔")
     ap.add_argument("--out", default="")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--manifest", default="",
@@ -740,10 +761,12 @@ def main() -> int:
                     help="推理服务上下文长度（无法探测时人工提供；0=未知）")
     args = ap.parse_args()
 
+    global TASKS_ROOT
     tasks_path = Path(args.tasks)
     if not tasks_path.is_file():
         print(f"tasks.json not found: {tasks_path}", file=sys.stderr)
         return 2
+    TASKS_ROOT = tasks_path.parent
     tasks = load_tasks(tasks_path)
     episodes = tasks["episodes"]
     if args.episode != "all":
@@ -851,11 +874,10 @@ def main() -> int:
         "max_tokens": args.max_tokens,
         "budget_tokens": args.budget_tokens,
         "max_history_chars": args.max_history_chars,
-        "history_policy": (
-            "uniform across baselines: keep system + recent turns; drop oldest "
-            "user+assistant pairs when estimated history chars exceed budget"
-        ),
+        "history_policy": args.history_policy,
         "rep": args.rep,
+        "warmup": args.warmup,
+        "pause_seconds": args.pause_seconds,
         "baselines": baselines,
         "baseline_rotation": "offset=(episode_index+rep)%N; recorded per step",
         "episodes": [e["id"] for e in episodes],
@@ -884,6 +906,24 @@ def main() -> int:
     all_rows: list[dict] = []
     summaries: list[dict] = []
     orders_log: list[dict] = []
+    # 预热：不进入 per_step.csv；request 级记录 warmup=true
+    if args.warmup > 0 and not args.dry_run:
+        warm_path = out_dir / "warmup_requests.jsonl"
+        for wi in range(args.warmup):
+            cr = chat_completion(
+                args.endpoint, args.model,
+                [{"role": "user", "content": "Reply with exactly: OK"}],
+                temperature=args.temperature, max_tokens=8,
+                timeout=args.timeout, seed=args.seed,
+            )
+            with warm_path.open("a", encoding="utf-8") as wf:
+                wf.write(json.dumps({
+                    "warmup": True, "index": wi,
+                    "error": cr.error, "http_status": cr.http_status,
+                    "latency_ms": round(cr.latency_ms, 2),
+                    "usage_raw": cr.raw_usage or None,
+                }, ensure_ascii=False) + "\n")
+        print(f"[warmup] {args.warmup} requests -> {warm_path.name}")
     for ep_idx, ep in enumerate(episodes):
         order, off = rotation_order(baselines, ep_idx, args.rep)
         orders_log.append(
@@ -892,6 +932,8 @@ def main() -> int:
         )
         print(f"[episode] {ep['id']} baseline_order={order} (offset={off})")
         for order_index, baseline in enumerate(order):
+            if args.pause_seconds > 0 and (ep_idx > 0 or order_index > 0):
+                time.sleep(args.pause_seconds)
             print(f"[run] episode={ep['id']} baseline={baseline} ...")
             rows, summary = run_episode_baseline(
                 episode=ep, baseline=baseline, out_dir=out_dir,

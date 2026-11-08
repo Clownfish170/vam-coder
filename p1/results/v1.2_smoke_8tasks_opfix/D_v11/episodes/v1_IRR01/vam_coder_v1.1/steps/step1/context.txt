@@ -1,0 +1,9 @@
+[ctx] v1.1
+--- FILE alpha.py (full current source) ---
+def a():
+    return 1
+
+--- FILE beta.py (full current source) ---
+def b():
+    return 2
+

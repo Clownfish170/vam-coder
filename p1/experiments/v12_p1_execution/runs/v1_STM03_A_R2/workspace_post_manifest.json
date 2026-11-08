@@ -1,0 +1,28 @@
+{
+  "episode_id": "v1_STM03_A_R2",
+  "task_id": "v1_STM03",
+  "arm": "A",
+  "repetition": 2,
+  "timestamp": "2026-11-02T05:24:26+00:00",
+  "root": "p1\\experiments\\v12_p1_execution\\runs\\v1_STM03_A_R2\\runner_out\\episodes\\v1_STM03\\memory_off\\workspace",
+  "files": [
+    {
+      "relative_path": "legacy_notes.py",
+      "file_size": 107,
+      "sha256": "06c823b82d65c6bd9f2db9193ce81155b85215ff2a518aaa3940047ad54874fe"
+    },
+    {
+      "relative_path": "ratemap.py",
+      "file_size": 133,
+      "sha256": "4879afb8143d563074f34686e780b40f0fe20c98a1d937c1ecbc9842af6ab384"
+    },
+    {
+      "relative_path": "shop.py",
+      "file_size": 133,
+      "sha256": "9b6808ecb96c3e462f0775ffa1d3a850823985eb951bc24ed2081ebdbb0b5b63"
+    }
+  ],
+  "total_files": 3,
+  "total_bytes": 373,
+  "manifest_sha256": "31fbc8a4473901af05fff0d9bf1312ba78bcdb774e290ebfba53cf355cb2531c"
+}

@@ -1,0 +1,23 @@
+{
+  "episode_id": "v1_SIG03_A_R1",
+  "task_id": "v1_SIG03",
+  "arm": "A",
+  "repetition": 1,
+  "timestamp": "2026-11-02T05:32:56+00:00",
+  "root": "p1\\experiments\\v12_p1_execution\\runs\\v1_SIG03_A_R1\\runner_out\\episodes\\v1_SIG03\\memory_off\\workspace",
+  "files": [
+    {
+      "relative_path": "store.py",
+      "file_size": 44,
+      "sha256": "0714c87e6217cf9982149a00f16d1f3a55a39cb395c88b0869326ae70be8ccc0"
+    },
+    {
+      "relative_path": "use.py",
+      "file_size": 98,
+      "sha256": "e51b2cd64415e8f35d514985b36ee9150293760a1a12b6270caa6b84081a5d4c"
+    }
+  ],
+  "total_files": 2,
+  "total_bytes": 142,
+  "manifest_sha256": "318da39ab34bdf1c7760eada3ccb80bb92e300af10a4ba45371a47906917661b"
+}

@@ -198,9 +198,12 @@ def test_run_refuses_nonempty_out_dir(tmp_path):
             "--episode", "stale_summary_trap",
             "--baselines", "memory_off",
             "--dry-run", "--out", str(out),
+            # v1.0 脚本改动会使 v0.2 清单不匹配（exit 3）；本测试只验证防覆盖守卫
+            "--allow-manifest-mismatch",
         ],
         capture_output=True, text=True, timeout=120,
         cwd=str(P1_ROOT.parent),
+        encoding="utf-8", errors="replace",
     )
     assert proc.returncode == 2, proc.stderr
     assert "refusing" in (proc.stderr + proc.stdout).lower()

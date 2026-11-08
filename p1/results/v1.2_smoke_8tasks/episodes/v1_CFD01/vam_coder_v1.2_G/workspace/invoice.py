@@ -1,0 +1,11 @@
+"""Invoice helpers."""
+
+
+def tax_rate():
+    """Current tax rate."""
+    return 0.5
+
+
+def net_total(cents):
+    """Current tax rate."""
+    return int(cents / (1 + tax_rate()))

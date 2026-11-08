@@ -1,0 +1,15 @@
+=== TASK ===
+textx 新增 norm2(s)：返回 norm(s).upper()（textx 的 norm）。
+
+=== CONTEXT ===
+[ctx] v1.2-G
+--- FILE mathx.py (full current source) ---
+def norm(x):
+    return x / 2
+
+--- FILE textx.py (full current source) ---
+def norm(s):
+    return s.strip()
+
+=== OUTPUT FORMAT ===
+Respond only with FILE: blocks (or NO_EDIT).

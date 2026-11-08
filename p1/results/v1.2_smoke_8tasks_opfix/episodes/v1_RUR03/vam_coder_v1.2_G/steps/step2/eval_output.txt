@@ -1,0 +1,11 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+___________________________________ test_c3 ___________________________________
+eval\test_behavior.py:5: in test_c3
+    assert core.c3() == 12
+E   assert 3 == 12
+E    +  where 3 = <function c3 at 0x0000015A5F1E2CA0>()
+E    +    where <function c3 at 0x0000015A5F1E2CA0> = core.c3
+=========================== short test summary info ===========================
+FAILED eval/test_behavior.py::test_c3 - assert 3 == 12
+1 failed in 0.13s

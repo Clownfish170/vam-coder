@@ -1,0 +1,28 @@
+{
+  "episode_id": "v1_IRR02_D_R2",
+  "task_id": "v1_IRR02",
+  "arm": "D",
+  "repetition": 2,
+  "timestamp": "2026-11-02T05:31:52+00:00",
+  "root": "p1\\experiments\\v12_p1_execution\\runs\\v1_IRR02_D_R2\\runner_out\\episodes\\v1_IRR02\\vam_coder_v1.1\\workspace",
+  "files": [
+    {
+      "relative_path": "helpers.py",
+      "file_size": 74,
+      "sha256": "d1bd48c99c1ee49eef37763a88e5176c622a61d089f2be80fb32867c29440d3e"
+    },
+    {
+      "relative_path": "main.py",
+      "file_size": 57,
+      "sha256": "7a223daaf207ae7d08bd23b43328baf7e3cb421b1c5112f045237a3b52d53dac"
+    },
+    {
+      "relative_path": "scratch.py",
+      "file_size": 26,
+      "sha256": "cf4da1ec4e2dd944c48e537fd3621138bbe14fa03930ecd7a5be28fdff0ba049"
+    }
+  ],
+  "total_files": 3,
+  "total_bytes": 157,
+  "manifest_sha256": "4815a77651d3e3294755985e0d92cee791fb2a8bbea6a04a36fb2bbfc2f2bb75"
+}

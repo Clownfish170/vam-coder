@@ -1,0 +1,14 @@
+=== TASK ===
+hot() 返回 2。不要修改 stable_a/stable_b。
+
+=== CONTEXT ===
+[ctx] v1.2-E
+--- FILE hot.py (full current source) ---
+def hot():
+    return 1
+
+--- INDEX stable_a.py ---
+--- INDEX stable_b.py ---
+
+=== OUTPUT FORMAT ===
+Respond only with FILE: blocks (or NO_EDIT).

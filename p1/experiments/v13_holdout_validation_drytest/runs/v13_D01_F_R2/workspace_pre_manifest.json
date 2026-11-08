@@ -1,0 +1,28 @@
+{
+  "episode_id": "v13_D01_F_R2",
+  "task_id": "v13_D01",
+  "arm": "F",
+  "repetition": 2,
+  "timestamp": "2026-11-03T13:21:28+00:00",
+  "root": "D:\\Demo\\DynaMem\\vam-coder\\p1\\tasks_v13_holdout\\v13_D01\\project",
+  "files": [
+    {
+      "relative_path": "geo.py",
+      "file_size": 190,
+      "sha256": "506c297cae4c550ca5d5c4973dbea5fc47be6c99f53c6cf26d275a948436ef10"
+    },
+    {
+      "relative_path": "notes.py",
+      "file_size": 116,
+      "sha256": "4f1c81668117582ad7d1d394211226cb18a1f56e8a950aab1fab3adf8980d693"
+    },
+    {
+      "relative_path": "units.py",
+      "file_size": 92,
+      "sha256": "e09d8bb00427e6b4269e900d245f52a5fe52145a7a08e22404bb4e699a2f6346"
+    }
+  ],
+  "total_files": 3,
+  "total_bytes": 398,
+  "manifest_sha256": "be597045e5cca198bf5c19f7119a6b32290e0fce934aded95fd05ca5cc717da1"
+}

@@ -1,0 +1,5 @@
+[ctx] v1.2-F
+--- FILE hot.py (full current source) ---
+def hot():
+    return 1
+

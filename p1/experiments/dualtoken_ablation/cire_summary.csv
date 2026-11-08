@@ -1,0 +1,5 @@
+architecture,point_steps,CMR_context,CMR_visible_secondary,CMR_context_redundant,CMR_context_hidden
+dualtoken_A_inline_full_context,1500,0.7053,0.8920,0.6915,0.7562
+dualtoken_B_symbolic_addressing,1500,0.5720,0.8893,0.5746,0.5625
+dualtoken_C_static_rep_plus_symbolic_id,1500,0.5733,0.8933,0.5763,0.5625
+vam_coder_v1.2_F,1500,0.5720,0.8907,0.5746,0.5625

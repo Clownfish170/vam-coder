@@ -1,0 +1,18 @@
+FILE: bill.py
+```python
+from fee import service
+
+
+def due(qty):
+    return service(qty) + 1
+```
+
+FILE: fee.py
+```python
+"""Fees."""
+
+
+def service(qty):
+    """Service fee = qty * 6."""
+    return qty * 6
+```

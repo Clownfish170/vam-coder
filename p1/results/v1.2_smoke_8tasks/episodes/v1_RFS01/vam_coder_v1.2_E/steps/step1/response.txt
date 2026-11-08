@@ -1,0 +1,17 @@
+FILE: app.py
+```python
+from mode import describe
+
+
+def banner():
+    return f"mode={describe()}"
+```
+
+FILE: mode.py
+```python
+"""Mode."""
+
+def describe():
+    """Return the active mode name: active."""
+    return "active"
+```

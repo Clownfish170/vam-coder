@@ -1,0 +1,20 @@
+{
+  "planned_episodes": 32,
+  "observed_episodes": 32,
+  "missing": [],
+  "extra": [],
+  "episodes_not_2_steps": 0,
+  "arm_episode_counts": {
+    "E": 8,
+    "F": 8,
+    "G": 8,
+    "H": 8
+  },
+  "prompt_gt_zero": 64,
+  "prompt_eq_zero": 0,
+  "nan_cells": 64,
+  "inf_cells": 0,
+  "order_log_n": 32,
+  "order_completed": 32,
+  "sum_model_requests_log": 64
+}

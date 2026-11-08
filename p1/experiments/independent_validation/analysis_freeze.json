@@ -1,0 +1,13 @@
+{
+  "schema": "independent-analysis-freeze-v1",
+  "frozen_at": "2026-11-07T08:38:44+00:00",
+  "note": "预注册 §10.4：统计/图表/就绪门脚本在开跑前冻结；只读 execution_log 与 runner 输出",
+  "scripts": {
+    "analyze_independent.py": "5476887cb434cdad2c60aa198fbfbbd73f37c8263b485483258009266b082277",
+    "make_figures_independent.py": "cbb3b98ec0d75956cfc87daed48f384fcd377a06a1055578cddc8642ef85bb3c",
+    "readiness_gate.py": "e22ca9d0fb845828d9e76eff6481a328b53d29efc32783443a00391d7a99c291",
+    "_orchestrator_independent.py": "2abc7725bd8014cabc43436e1285825413a72f1a91f07a794d3b4a73be95ff81"
+  },
+  "prereg_sha256": "7023da82be3fb9892434ca183749a8bd6b854f660842e8e809836d3baf495a33",
+  "tasks_sha256": "a6f56340bdf6dfcd74d5e7cdf51d76b81baeaec7d410a2815cb9ab2759d61878"
+}

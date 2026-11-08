@@ -1,0 +1,28 @@
+{
+  "episode_id": "v1_IRR02_G_R3",
+  "task_id": "v1_IRR02",
+  "arm": "G",
+  "repetition": 3,
+  "timestamp": "2026-11-02T05:50:18+00:00",
+  "root": "D:\\Demo\\DynaMem\\vam-coder\\p1\\tasks\\v1_IRR02\\project",
+  "files": [
+    {
+      "relative_path": "helpers.py",
+      "file_size": 83,
+      "sha256": "ec77e2d57c7d6fff80e1fa2fc8f41e0ef87ae40814f4c3e06f3f6c0794375aa6"
+    },
+    {
+      "relative_path": "main.py",
+      "file_size": 57,
+      "sha256": "7a223daaf207ae7d08bd23b43328baf7e3cb421b1c5112f045237a3b52d53dac"
+    },
+    {
+      "relative_path": "scratch.py",
+      "file_size": 26,
+      "sha256": "cf4da1ec4e2dd944c48e537fd3621138bbe14fa03930ecd7a5be28fdff0ba049"
+    }
+  ],
+  "total_files": 3,
+  "total_bytes": 166,
+  "manifest_sha256": "0f18bc880ae7167ee30ae71eef70071a30665f4f2f99907d5bfa91633ebbdd0f"
+}

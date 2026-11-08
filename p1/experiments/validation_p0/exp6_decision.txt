@@ -1,0 +1,4 @@
+P1_main_budget=2048
+budget=1024 protocol_empty=4 trunc_steps=4
+budget=2048 protocol_empty=0 trunc_steps=0
+budget=4096 protocol_empty=1 trunc_steps=1

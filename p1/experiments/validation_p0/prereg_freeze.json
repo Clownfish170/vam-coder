@@ -1,0 +1,17 @@
+{
+  "schema": "prereg-freeze-v1",
+  "frozen_at": "2026-11-04T03:00:10+00:00",
+  "document": "p1/docs/v12f_validation_preregistration.md",
+  "version": "v1",
+  "sha256": "088898a3aec9d08411864ea03ff79ac7ff3e78411ed34a58de89ecd0881cc7ed",
+  "confirmed_by_user": true,
+  "p1_main_budget": 2048,
+  "p1_design": "48 tasks (16 Short/16 Medium/16 Long) × 3 architectures × R=5 = 720 episodes",
+  "architectures": [
+    "vam_coder_v1.2_F",
+    "memory_off",
+    "symbol_full_read"
+  ],
+  "bootstrap_seed": 20261102,
+  "note": "冻结后修改须版本+1并保留变更记录"
+}

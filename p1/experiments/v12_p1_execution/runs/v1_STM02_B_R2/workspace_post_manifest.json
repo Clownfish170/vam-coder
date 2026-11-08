@@ -1,0 +1,23 @@
+{
+  "episode_id": "v1_STM02_B_R2",
+  "task_id": "v1_STM02",
+  "arm": "B",
+  "repetition": 2,
+  "timestamp": "2026-11-02T05:43:37+00:00",
+  "root": "p1\\experiments\\v12_p1_execution\\runs\\v1_STM02_B_R2\\runner_out\\episodes\\v1_STM02\\symbol_full_read\\workspace",
+  "files": [
+    {
+      "relative_path": "bill.py",
+      "file_size": 112,
+      "sha256": "c67225f27b622eb47e537746adbc58b2ae8a7a93a542b810f38bf365b6674a6c"
+    },
+    {
+      "relative_path": "fee.py",
+      "file_size": 84,
+      "sha256": "66d4557367e1a6d8478196519ef8972194402b5bbfc61158c2a75fbea1f4003f"
+    }
+  ],
+  "total_files": 2,
+  "total_bytes": 196,
+  "manifest_sha256": "9f669dfbb3ad1fb1444b836a1f0c022c0ac763f01463f900226752aef38c7a95"
+}

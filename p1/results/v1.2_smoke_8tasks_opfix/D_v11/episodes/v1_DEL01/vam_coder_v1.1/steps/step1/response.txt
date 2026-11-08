@@ -1,0 +1,14 @@
+FILE: app.py
+```python
+from lib import keep
+
+
+def use():
+    return keep()
+```
+
+FILE: lib.py
+```python
+def keep():
+    return 21
+```

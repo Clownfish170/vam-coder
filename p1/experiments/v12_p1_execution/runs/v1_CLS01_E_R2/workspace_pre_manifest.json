@@ -1,0 +1,28 @@
+{
+  "episode_id": "v1_CLS01_E_R2",
+  "task_id": "v1_CLS01",
+  "arm": "E",
+  "repetition": 2,
+  "timestamp": "2026-11-02T05:27:37+00:00",
+  "root": "D:\\Demo\\DynaMem\\vam-coder\\p1\\tasks\\v1_CLS01\\project",
+  "files": [
+    {
+      "relative_path": "high.py",
+      "file_size": 62,
+      "sha256": "3c4cd421a184f1751b9fe074e948549948779dae71ef25e1e79e82d38a493ab9"
+    },
+    {
+      "relative_path": "low.py",
+      "file_size": 32,
+      "sha256": "59d14d3035ec65ffb330e82aefd6a9bddc7fa1945f4098963948bce847880195"
+    },
+    {
+      "relative_path": "mid.py",
+      "file_size": 63,
+      "sha256": "296d7238cb74d4a0fdfd0c3166937f552c05d95e76de79ef116d292b3001e771"
+    }
+  ],
+  "total_files": 3,
+  "total_bytes": 157,
+  "manifest_sha256": "d3651572ac32aa905b5ed0a9773c22c079a9280784e2214a66528dd09b40fa98"
+}

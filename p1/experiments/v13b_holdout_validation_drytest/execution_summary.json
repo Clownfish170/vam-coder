@@ -1,0 +1,15 @@
+{
+  "finished_at": "2026-11-03T14:33:58+00:00",
+  "planned": 120,
+  "attempted": 120,
+  "ok": 120,
+  "fail": 0,
+  "requests_made": 0,
+  "cumulative_tokens": 0,
+  "s5_token_limit": 0,
+  "randomization_seed": 20261104,
+  "bootstrap_seed": 20261102,
+  "dry_run": true,
+  "stop_code": "",
+  "stop_reason": ""
+}

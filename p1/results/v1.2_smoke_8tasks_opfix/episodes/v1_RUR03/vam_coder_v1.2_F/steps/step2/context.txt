@@ -1,0 +1,9 @@
+[ctx] v1.2-F
+--- FILE core.py (full current source) ---
+def c1():
+    return 1
+
+
+def c2():
+    return 2
+

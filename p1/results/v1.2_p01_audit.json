@@ -1,0 +1,998 @@
+{
+  "run_dir": "D:\\Demo\\DynaMem\\vam-coder\\p1\\results\\runs\\v12_p01_dryrun_24tasks_EFGH_full",
+  "n_audit_rows": 192,
+  "n_tasks": 24,
+  "n_step1_arms": 96,
+  "must_full_E_step1": {
+    "n": 24,
+    "mean": 2.0416666666666665,
+    "median": 2.0,
+    "max": 4,
+    "p90": 3,
+    "min": 1
+  },
+  "over_kmax_n": 0,
+  "over_budget_n": 0,
+  "insufficient_n": 0,
+  "insufficient": [],
+  "violations": [],
+  "per_task": [
+    {
+      "task_id": "v1_CFD01",
+      "must_full_E": [
+        "invoice.py",
+        "tax.py"
+      ],
+      "must_full_count": 2,
+      "levels_E": {
+        "invoice.py": "FULL",
+        "tax.py": "FULL"
+      },
+      "levels_H": {
+        "invoice.py": "FULL",
+        "tax.py": "FULL"
+      },
+      "oprime_E_step1": [],
+      "required_context_E": 179,
+      "available_context": 8192
+    },
+    {
+      "task_id": "v1_CFD02",
+      "must_full_E": [
+        "order.py",
+        "rates.py"
+      ],
+      "must_full_count": 2,
+      "levels_E": {
+        "order.py": "FULL",
+        "rates.py": "FULL"
+      },
+      "levels_H": {
+        "order.py": "FULL",
+        "rates.py": "FULL"
+      },
+      "oprime_E_step1": [],
+      "required_context_E": 164,
+      "available_context": 8192
+    },
+    {
+      "task_id": "v1_CFD03",
+      "must_full_E": [
+        "app.py",
+        "util.py"
+      ],
+      "must_full_count": 2,
+      "levels_E": {
+        "app.py": "FULL",
+        "util.py": "FULL"
+      },
+      "levels_H": {
+        "app.py": "FULL",
+        "util.py": "FULL"
+      },
+      "oprime_E_step1": [],
+      "required_context_E": 165,
+      "available_context": 8192
+    },
+    {
+      "task_id": "v1_CLS01",
+      "must_full_E": [
+        "high.py",
+        "low.py",
+        "mid.py"
+      ],
+      "must_full_count": 3,
+      "levels_E": {
+        "high.py": "FULL",
+        "low.py": "FULL",
+        "mid.py": "FULL"
+      },
+      "levels_H": {
+        "high.py": "FULL",
+        "low.py": "FULL",
+        "mid.py": "FULL"
+      },
+      "oprime_E_step1": [],
+      "required_context_E": 171,
+      "available_context": 8192
+    },
+    {
+      "task_id": "v1_CLS02",
+      "must_full_E": [
+        "a.py",
+        "b.py",
+        "c.py",
+        "hub.py"
+      ],
+      "must_full_count": 4,
+      "levels_E": {
+        "a.py": "FULL",
+        "b.py": "FULL",
+        "c.py": "FULL",
+        "hub.py": "FULL"
+      },
+      "levels_H": {
+        "a.py": "FULL",
+        "b.py": "FULL",
+        "c.py": "FULL",
+        "hub.py": "FULL"
+      },
+      "oprime_E_step1": [],
+      "required_context_E": 186,
+      "available_context": 8192
+    },
+    {
+      "task_id": "v1_DEL01",
+      "must_full_E": [
+        "app.py",
+        "lib.py"
+      ],
+      "must_full_count": 2,
+      "levels_E": {
+        "app.py": "FULL",
+        "lib.py": "FULL"
+      },
+      "levels_H": {
+        "app.py": "FULL",
+        "lib.py": "FULL"
+      },
+      "oprime_E_step1": [],
+      "required_context_E": 162,
+      "available_context": 8192
+    },
+    {
+      "task_id": "v1_DEL02",
+      "must_full_E": [
+        "queue.py",
+        "worker.py"
+      ],
+      "must_full_count": 2,
+      "levels_E": {
+        "queue.py": "FULL",
+        "worker.py": "FULL"
+      },
+      "levels_H": {
+        "queue.py": "FULL",
+        "worker.py": "FULL"
+      },
+      "oprime_E_step1": [],
+      "required_context_E": 187,
+      "available_context": 8192
+    },
+    {
+      "task_id": "v1_DUP01",
+      "must_full_E": [
+        "mathx.py",
+        "textx.py"
+      ],
+      "must_full_count": 2,
+      "levels_E": {
+        "mathx.py": "FULL",
+        "textx.py": "FULL"
+      },
+      "levels_H": {
+        "mathx.py": "FULL",
+        "textx.py": "FULL"
+      },
+      "oprime_E_step1": [],
+      "required_context_E": 151,
+      "available_context": 8192
+    },
+    {
+      "task_id": "v1_DUP02",
+      "must_full_E": [
+        "conf.py",
+        "conf2.py"
+      ],
+      "must_full_count": 2,
+      "levels_E": {
+        "conf.py": "FULL",
+        "conf2.py": "FULL"
+      },
+      "levels_H": {
+        "conf.py": "FULL",
+        "conf2.py": "FULL"
+      },
+      "oprime_E_step1": [],
+      "required_context_E": 158,
+      "available_context": 8192
+    },
+    {
+      "task_id": "v1_IRR01",
+      "must_full_E": [
+        "alpha.py"
+      ],
+      "must_full_count": 1,
+      "levels_E": {
+        "alpha.py": "FULL",
+        "beta.py": "NONE"
+      },
+      "levels_H": {
+        "alpha.py": "FULL",
+        "beta.py": "NONE"
+      },
+      "oprime_E_step1": [],
+      "required_context_E": 141,
+      "available_context": 8192
+    },
+    {
+      "task_id": "v1_IRR02",
+      "must_full_E": [
+        "helpers.py",
+        "main.py"
+      ],
+      "must_full_count": 2,
+      "levels_E": {
+        "helpers.py": "FULL",
+        "main.py": "FULL",
+        "scratch.py": "NONE"
+      },
+      "levels_H": {
+        "helpers.py": "FULL",
+        "main.py": "FULL",
+        "scratch.py": "NONE"
+      },
+      "oprime_E_step1": [],
+      "required_context_E": 167,
+      "available_context": 8192
+    },
+    {
+      "task_id": "v1_REN01",
+      "must_full_E": [
+        "core.py",
+        "main.py"
+      ],
+      "must_full_count": 2,
+      "levels_E": {
+        "core.py": "FULL",
+        "main.py": "FULL"
+      },
+      "levels_H": {
+        "core.py": "FULL",
+        "main.py": "FULL"
+      },
+      "oprime_E_step1": [],
+      "required_context_E": 177,
+      "available_context": 8192
+    },
+    {
+      "task_id": "v1_REN02",
+      "must_full_E": [
+        "api.py",
+        "app.py"
+      ],
+      "must_full_count": 2,
+      "levels_E": {
+        "api.py": "FULL",
+        "app.py": "FULL"
+      },
+      "levels_H": {
+        "api.py": "FULL",
+        "app.py": "FULL"
+      },
+      "oprime_E_step1": [],
+      "required_context_E": 169,
+      "available_context": 8192
+    },
+    {
+      "task_id": "v1_RFS01",
+      "must_full_E": [
+        "app.py",
+        "mode.py"
+      ],
+      "must_full_count": 2,
+      "levels_E": {
+        "app.py": "FULL",
+        "mode.py": "FULL"
+      },
+      "levels_H": {
+        "app.py": "FULL",
+        "mode.py": "FULL"
+      },
+      "oprime_E_step1": [],
+      "required_context_E": 177,
+      "available_context": 8192
+    },
+    {
+      "task_id": "v1_RFS02",
+      "must_full_E": [
+        "client.py",
+        "status.py"
+      ],
+      "must_full_count": 2,
+      "levels_E": {
+        "client.py": "FULL",
+        "status.py": "FULL"
+      },
+      "levels_H": {
+        "client.py": "FULL",
+        "status.py": "FULL"
+      },
+      "oprime_E_step1": [],
+      "required_context_E": 170,
+      "available_context": 8192
+    },
+    {
+      "task_id": "v1_RUR01",
+      "must_full_E": [
+        "app.py",
+        "tables.py"
+      ],
+      "must_full_count": 2,
+      "levels_E": {
+        "app.py": "FULL",
+        "tables.py": "FULL"
+      },
+      "levels_H": {
+        "app.py": "FULL",
+        "tables.py": "FULL"
+      },
+      "oprime_E_step1": [],
+      "required_context_E": 169,
+      "available_context": 8192
+    },
+    {
+      "task_id": "v1_RUR02",
+      "must_full_E": [
+        "hot.py"
+      ],
+      "must_full_count": 1,
+      "levels_E": {
+        "hot.py": "FULL",
+        "stable_a.py": "DIGEST",
+        "stable_b.py": "DIGEST"
+      },
+      "levels_H": {
+        "hot.py": "FULL",
+        "stable_a.py": "NONE",
+        "stable_b.py": "NONE"
+      },
+      "oprime_E_step1": [],
+      "required_context_E": 154,
+      "available_context": 8192
+    },
+    {
+      "task_id": "v1_RUR03",
+      "must_full_E": [
+        "core.py"
+      ],
+      "must_full_count": 1,
+      "levels_E": {
+        "core.py": "FULL"
+      },
+      "levels_H": {
+        "core.py": "FULL"
+      },
+      "oprime_E_step1": [],
+      "required_context_E": 148,
+      "available_context": 8192
+    },
+    {
+      "task_id": "v1_SIG01",
+      "must_full_E": [
+        "cli.py",
+        "text.py"
+      ],
+      "must_full_count": 2,
+      "levels_E": {
+        "cli.py": "FULL",
+        "text.py": "FULL"
+      },
+      "levels_H": {
+        "cli.py": "FULL",
+        "text.py": "FULL"
+      },
+      "oprime_E_step1": [],
+      "required_context_E": 161,
+      "available_context": 8192
+    },
+    {
+      "task_id": "v1_SIG02",
+      "must_full_E": [
+        "geom.py",
+        "report.py"
+      ],
+      "must_full_count": 2,
+      "levels_E": {
+        "geom.py": "FULL",
+        "report.py": "FULL"
+      },
+      "levels_H": {
+        "geom.py": "FULL",
+        "report.py": "FULL"
+      },
+      "oprime_E_step1": [],
+      "required_context_E": 161,
+      "available_context": 8192
+    },
+    {
+      "task_id": "v1_SIG03",
+      "must_full_E": [
+        "store.py",
+        "use.py"
+      ],
+      "must_full_count": 2,
+      "levels_E": {
+        "store.py": "FULL",
+        "use.py": "FULL"
+      },
+      "levels_H": {
+        "store.py": "FULL",
+        "use.py": "FULL"
+      },
+      "oprime_E_step1": [],
+      "required_context_E": 166,
+      "available_context": 8192
+    },
+    {
+      "task_id": "v1_STM01",
+      "must_full_E": [
+        "discount.py",
+        "pricing.py"
+      ],
+      "must_full_count": 2,
+      "levels_E": {
+        "discount.py": "FULL",
+        "pricing.py": "FULL"
+      },
+      "levels_H": {
+        "discount.py": "FULL",
+        "pricing.py": "FULL"
+      },
+      "oprime_E_step1": [],
+      "required_context_E": 181,
+      "available_context": 8192
+    },
+    {
+      "task_id": "v1_STM02",
+      "must_full_E": [
+        "bill.py",
+        "fee.py"
+      ],
+      "must_full_count": 2,
+      "levels_E": {
+        "bill.py": "FULL",
+        "fee.py": "FULL"
+      },
+      "levels_H": {
+        "bill.py": "FULL",
+        "fee.py": "FULL"
+      },
+      "oprime_E_step1": [],
+      "required_context_E": 174,
+      "available_context": 8192
+    },
+    {
+      "task_id": "v1_STM03",
+      "must_full_E": [
+        "legacy_notes.py",
+        "ratemap.py",
+        "shop.py"
+      ],
+      "must_full_count": 3,
+      "levels_E": {
+        "legacy_notes.py": "FULL",
+        "ratemap.py": "FULL",
+        "shop.py": "FULL"
+      },
+      "levels_H": {
+        "legacy_notes.py": "FULL",
+        "ratemap.py": "FULL",
+        "shop.py": "FULL"
+      },
+      "oprime_E_step1": [],
+      "required_context_E": 215,
+      "available_context": 8192
+    }
+  ],
+  "d1_closure": [
+    {
+      "task_id": "v1_CFD01",
+      "depth": 1,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_CFD02",
+      "depth": 1,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_CFD03",
+      "depth": 1,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_SIG01",
+      "depth": 1,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_SIG02",
+      "depth": 1,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_SIG03",
+      "depth": 1,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_REN01",
+      "depth": 1,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_REN02",
+      "depth": 1,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_DEL01",
+      "depth": 1,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_DEL02",
+      "depth": 1,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_DUP01",
+      "depth": 1,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_DUP02",
+      "depth": 1,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_IRR01",
+      "depth": 1,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_IRR02",
+      "depth": 1,
+      "n_files": 3,
+      "closure_from_all": 3,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_CLS01",
+      "depth": 1,
+      "n_files": 3,
+      "closure_from_all": 3,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_CLS02",
+      "depth": 1,
+      "n_files": 4,
+      "closure_from_all": 4,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_STM01",
+      "depth": 1,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_STM02",
+      "depth": 1,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_STM03",
+      "depth": 1,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_RFS01",
+      "depth": 1,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_RFS02",
+      "depth": 1,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_RUR01",
+      "depth": 1,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_RUR02",
+      "depth": 1,
+      "n_files": 3,
+      "closure_from_all": 3,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_RUR03",
+      "depth": 1,
+      "n_files": 1,
+      "closure_from_all": 1,
+      "closure_delta": 0
+    }
+  ],
+  "d2_closure": [
+    {
+      "task_id": "v1_CFD01",
+      "depth": 2,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_CFD02",
+      "depth": 2,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_CFD03",
+      "depth": 2,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_SIG01",
+      "depth": 2,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_SIG02",
+      "depth": 2,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_SIG03",
+      "depth": 2,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_REN01",
+      "depth": 2,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_REN02",
+      "depth": 2,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_DEL01",
+      "depth": 2,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_DEL02",
+      "depth": 2,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_DUP01",
+      "depth": 2,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_DUP02",
+      "depth": 2,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_IRR01",
+      "depth": 2,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_IRR02",
+      "depth": 2,
+      "n_files": 3,
+      "closure_from_all": 3,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_CLS01",
+      "depth": 2,
+      "n_files": 3,
+      "closure_from_all": 3,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_CLS02",
+      "depth": 2,
+      "n_files": 4,
+      "closure_from_all": 4,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_STM01",
+      "depth": 2,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_STM02",
+      "depth": 2,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_STM03",
+      "depth": 2,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_RFS01",
+      "depth": 2,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_RFS02",
+      "depth": 2,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_RUR01",
+      "depth": 2,
+      "n_files": 2,
+      "closure_from_all": 2,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_RUR02",
+      "depth": 2,
+      "n_files": 3,
+      "closure_from_all": 3,
+      "closure_delta": 0
+    },
+    {
+      "task_id": "v1_RUR03",
+      "depth": 2,
+      "n_files": 1,
+      "closure_from_all": 1,
+      "closure_delta": 0
+    }
+  ],
+  "d_diff": [
+    {
+      "task_id": "v1_CFD01",
+      "n_files": 2,
+      "c1": 2,
+      "c2": 2,
+      "delta_2_minus_1": 0
+    },
+    {
+      "task_id": "v1_CFD02",
+      "n_files": 2,
+      "c1": 2,
+      "c2": 2,
+      "delta_2_minus_1": 0
+    },
+    {
+      "task_id": "v1_CFD03",
+      "n_files": 2,
+      "c1": 2,
+      "c2": 2,
+      "delta_2_minus_1": 0
+    },
+    {
+      "task_id": "v1_SIG01",
+      "n_files": 2,
+      "c1": 2,
+      "c2": 2,
+      "delta_2_minus_1": 0
+    },
+    {
+      "task_id": "v1_SIG02",
+      "n_files": 2,
+      "c1": 2,
+      "c2": 2,
+      "delta_2_minus_1": 0
+    },
+    {
+      "task_id": "v1_SIG03",
+      "n_files": 2,
+      "c1": 2,
+      "c2": 2,
+      "delta_2_minus_1": 0
+    },
+    {
+      "task_id": "v1_REN01",
+      "n_files": 2,
+      "c1": 2,
+      "c2": 2,
+      "delta_2_minus_1": 0
+    },
+    {
+      "task_id": "v1_REN02",
+      "n_files": 2,
+      "c1": 2,
+      "c2": 2,
+      "delta_2_minus_1": 0
+    },
+    {
+      "task_id": "v1_DEL01",
+      "n_files": 2,
+      "c1": 2,
+      "c2": 2,
+      "delta_2_minus_1": 0
+    },
+    {
+      "task_id": "v1_DEL02",
+      "n_files": 2,
+      "c1": 2,
+      "c2": 2,
+      "delta_2_minus_1": 0
+    },
+    {
+      "task_id": "v1_DUP01",
+      "n_files": 2,
+      "c1": 2,
+      "c2": 2,
+      "delta_2_minus_1": 0
+    },
+    {
+      "task_id": "v1_DUP02",
+      "n_files": 2,
+      "c1": 2,
+      "c2": 2,
+      "delta_2_minus_1": 0
+    },
+    {
+      "task_id": "v1_IRR01",
+      "n_files": 2,
+      "c1": 2,
+      "c2": 2,
+      "delta_2_minus_1": 0
+    },
+    {
+      "task_id": "v1_IRR02",
+      "n_files": 3,
+      "c1": 3,
+      "c2": 3,
+      "delta_2_minus_1": 0
+    },
+    {
+      "task_id": "v1_CLS01",
+      "n_files": 3,
+      "c1": 3,
+      "c2": 3,
+      "delta_2_minus_1": 0
+    },
+    {
+      "task_id": "v1_CLS02",
+      "n_files": 4,
+      "c1": 4,
+      "c2": 4,
+      "delta_2_minus_1": 0
+    },
+    {
+      "task_id": "v1_STM01",
+      "n_files": 2,
+      "c1": 2,
+      "c2": 2,
+      "delta_2_minus_1": 0
+    },
+    {
+      "task_id": "v1_STM02",
+      "n_files": 2,
+      "c1": 2,
+      "c2": 2,
+      "delta_2_minus_1": 0
+    },
+    {
+      "task_id": "v1_STM03",
+      "n_files": 2,
+      "c1": 2,
+      "c2": 2,
+      "delta_2_minus_1": 0
+    },
+    {
+      "task_id": "v1_RFS01",
+      "n_files": 2,
+      "c1": 2,
+      "c2": 2,
+      "delta_2_minus_1": 0
+    },
+    {
+      "task_id": "v1_RFS02",
+      "n_files": 2,
+      "c1": 2,
+      "c2": 2,
+      "delta_2_minus_1": 0
+    },
+    {
+      "task_id": "v1_RUR01",
+      "n_files": 2,
+      "c1": 2,
+      "c2": 2,
+      "delta_2_minus_1": 0
+    },
+    {
+      "task_id": "v1_RUR02",
+      "n_files": 3,
+      "c1": 3,
+      "c2": 3,
+      "delta_2_minus_1": 0
+    },
+    {
+      "task_id": "v1_RUR03",
+      "n_files": 1,
+      "c1": 1,
+      "c2": 1,
+      "delta_2_minus_1": 0
+    }
+  ]
+}

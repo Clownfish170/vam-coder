@@ -1,0 +1,33 @@
+{
+  "episode_id": "v1_CLS02_F_R3",
+  "task_id": "v1_CLS02",
+  "arm": "F",
+  "repetition": 3,
+  "timestamp": "2026-11-02T05:29:56+00:00",
+  "root": "p1\\experiments\\v12_p1_execution\\runs\\v1_CLS02_F_R3\\runner_out\\episodes\\v1_CLS02\\vam_coder_v1.2_F\\workspace",
+  "files": [
+    {
+      "relative_path": "a.py",
+      "file_size": 64,
+      "sha256": "45aa15ab74fd11320dc3e29c0a4dcafa931b71425a8b9773243d91574d72d2b9"
+    },
+    {
+      "relative_path": "b.py",
+      "file_size": 63,
+      "sha256": "14021022aa3b8300b8799d99eb52b11e555a2eaf6c776e4b22de2eb1bb204334"
+    },
+    {
+      "relative_path": "c.py",
+      "file_size": 64,
+      "sha256": "a1e3957f5e965b14ffcce5eb12d323667373068ff6dea2c1a2a16ce5888facc6"
+    },
+    {
+      "relative_path": "hub.py",
+      "file_size": 33,
+      "sha256": "07865454218bf0873ecdf5304ef76851bc993bf774123187ec5dfb1574bce6e7"
+    }
+  ],
+  "total_files": 4,
+  "total_bytes": 224,
+  "manifest_sha256": "d1194df79ec3560cb36a13d36bbdd70d3ebc16cfdf92ccbae1cc787bc8194faf"
+}

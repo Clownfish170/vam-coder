@@ -1,0 +1,7 @@
+[ctx] v1.2-E
+--- FILE hot.py (full current source) ---
+def hot():
+    return 1
+
+--- INDEX stable_a.py ---
+--- INDEX stable_b.py ---

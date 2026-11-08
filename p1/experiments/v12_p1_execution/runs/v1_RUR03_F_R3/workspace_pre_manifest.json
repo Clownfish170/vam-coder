@@ -1,0 +1,18 @@
+{
+  "episode_id": "v1_RUR03_F_R3",
+  "task_id": "v1_RUR03",
+  "arm": "F",
+  "repetition": 3,
+  "timestamp": "2026-11-02T05:46:04+00:00",
+  "root": "D:\\Demo\\DynaMem\\vam-coder\\p1\\tasks\\v1_RUR03\\project",
+  "files": [
+    {
+      "relative_path": "core.py",
+      "file_size": 54,
+      "sha256": "77f31be79ab9bd52c89958a275d909bfab9d569a604d4065c7add7db2308503b"
+    }
+  ],
+  "total_files": 1,
+  "total_bytes": 54,
+  "manifest_sha256": "c35b265bd61118333613c6a8e1740725393f8144b6a44679f57cf4df0e3978fc"
+}

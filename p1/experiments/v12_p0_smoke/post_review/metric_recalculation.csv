@@ -1,0 +1,5 @@
+arm,recalc_ESR,recalc_SPR,recalc_TPAE,recalc_TPSE,recalc_FETC_total,recalc_FETC_mean,claim_ESR,claim_SPR,claim_TPAE,claim_TPSE,claim_FETC_total,claim_FETC_mean,ESR_match,SPR_match,TPAE_match,TPSE_match,FETC_match
+E,4/8,9/16,539.4,1078.8,2026,506.5,4/8,9/16,539.4,1078.8,2026,506.5,True,True,True,True,True
+F,3/8,8/16,542.1,1445.7,2599,519.8,3/8,8/16,542.1,1445.7,2599,519.8,True,True,True,True,True
+G,4/8,9/16,556.5,1113.0,2089,522.2,4/8,9/16,556.5,1113.0,2089,522.2,True,True,True,True,True
+H,4/8,9/16,542.5,1085.0,2013,503.2,4/8,9/16,542.5,1085.0,2013,503.2,True,True,True,True,True

@@ -1,0 +1,10 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+___________________________________ test_c3 ___________________________________
+eval\test_behavior.py:5: in test_c3
+    assert core.c3() == 12
+           ^^^^^^^
+E   AttributeError: module 'core' has no attribute 'c3'
+=========================== short test summary info ===========================
+FAILED eval/test_behavior.py::test_c3 - AttributeError: module 'core' has no ...
+1 failed in 0.11s

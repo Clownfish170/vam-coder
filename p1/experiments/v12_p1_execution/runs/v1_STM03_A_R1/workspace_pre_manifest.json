@@ -1,0 +1,28 @@
+{
+  "episode_id": "v1_STM03_A_R1",
+  "task_id": "v1_STM03",
+  "arm": "A",
+  "repetition": 1,
+  "timestamp": "2026-11-02T05:40:56+00:00",
+  "root": "D:\\Demo\\DynaMem\\vam-coder\\p1\\tasks\\v1_STM03\\project",
+  "files": [
+    {
+      "relative_path": "legacy_notes.py",
+      "file_size": 107,
+      "sha256": "06c823b82d65c6bd9f2db9193ce81155b85215ff2a518aaa3940047ad54874fe"
+    },
+    {
+      "relative_path": "ratemap.py",
+      "file_size": 141,
+      "sha256": "f19e431c260b27eac018528d5728f796371c9c1595b084f915fc1b16361307b6"
+    },
+    {
+      "relative_path": "shop.py",
+      "file_size": 85,
+      "sha256": "354e2eaf6ceb4ebd40ae9f4441f4e342fbd3f2b299b5f28a4de4b6d5afb2758a"
+    }
+  ],
+  "total_files": 3,
+  "total_bytes": 333,
+  "manifest_sha256": "3752e5c3c8f0b193bb7f070b852edceaacc0d762d21424fcb49fbfe9ef99536d"
+}

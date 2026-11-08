@@ -1,0 +1,23 @@
+{
+  "episode_id": "v13_S01_V13A_R1",
+  "task_id": "v13_S01",
+  "arm": "V13A",
+  "repetition": 1,
+  "timestamp": "2026-11-03T13:21:35+00:00",
+  "root": "D:\\Demo\\DynaMem\\vam-coder\\p1\\tasks_v13_holdout\\v13_S01\\project",
+  "files": [
+    {
+      "relative_path": "backoff.py",
+      "file_size": 215,
+      "sha256": "5ea8d9738fcf9aec689056d88eb67a24ec63c696017785f083254162b68ee9b2"
+    },
+    {
+      "relative_path": "netlog.py",
+      "file_size": 180,
+      "sha256": "fa3634870733934ec2fe55732f3202a0d27caec146977c784cb82cc2144c1a47"
+    }
+  ],
+  "total_files": 2,
+  "total_bytes": 395,
+  "manifest_sha256": "b07dc090101eb53148c80cfedc098bdf71e99e51edd3e80f1833cbcd33a7aa4b"
+}

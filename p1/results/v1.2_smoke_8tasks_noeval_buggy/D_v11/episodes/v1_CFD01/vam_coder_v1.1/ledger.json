@@ -1,0 +1,13 @@
+{
+  "tokens_prompt": 556,
+  "tokens_completion": 150,
+  "tokens_total": 706,
+  "cost_index_ms": 14.917,
+  "cost_route_ms": 1.872,
+  "cost_assemble_ms": 3.158,
+  "cost_fallback_events": 0,
+  "injected_chars": 345,
+  "omitted_chars_est": 0,
+  "verified_safe_omission_files": 0,
+  "latency_model_ms": 1964.187
+}

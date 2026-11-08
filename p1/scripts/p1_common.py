@@ -95,9 +95,13 @@ def chat_completion(
     if seed is not None:
         payload["seed"] = seed
     data = json.dumps(payload).encode("utf-8")
-    req = urllib.request.Request(
-        url, data=data, headers={"Content-Type": "application/json"}
-    )
+    headers = {"Content-Type": "application/json"}
+    # 可选鉴权（round3 云端端点）：仅当环境变量存在时附加；本地 llama-server
+    # 无该变量 → 行为与历史轮完全一致。密钥不写入任何日志/产物。
+    _api_key = os.environ.get("VAM_API_KEY") or os.environ.get("OPENAI_API_KEY")
+    if _api_key:
+        headers["Authorization"] = f"Bearer {_api_key}"
+    req = urllib.request.Request(url, data=data, headers=headers)
     started_at = _iso_now()
     t0 = time.perf_counter()
     http_status: int | None = None
@@ -265,6 +269,9 @@ class AssembledContext:
     file_blocks: int = 0
     summary_blocks: int = 0
     notes: list[str] = field(default_factory=list)
+    # v1.0 审计：逐文件 assemble_audit 与谓词计数
+    assemble_audit: list = field(default_factory=list)
+    n_verified_safe_omissions: int = 0
 
 
 def _file_block(rel: str, content: str) -> str:
@@ -406,6 +413,7 @@ def assemble_vam_coder(
     实际收益以最终请求的 API token 统计为准。
     """
     files = _read_workspace_files(workspace)
+    history_sent_before = dict(history_sent)
     parts = [
         "[MODE] vam_coder: context assembled by version-aware routing "
         "(EXPAND=full source, COMPRESS=summary, REUSE_KV=omitted when the exact "
@@ -483,7 +491,99 @@ def assemble_vam_coder(
     for sid, e in entries_by_id.items():
         if posix(e.file_path) in touched_files:
             history_sent[sid] = e.source_hash
+    ctx.assemble_audit = _build_assemble_audit(
+        by_file, history_sent_before, files, touched_files, chars_per_token
+    )
+    ctx.n_verified_safe_omissions = sum(
+        1 for a in ctx.assemble_audit if a["verified_safe_omission"]
+    )
     return ctx
+
+
+def _build_assemble_audit(
+    by_file: dict[str, list[tuple[dict, object]]],
+    history_before: dict[str, str],
+    files: dict[str, str],
+    touched_files: set[str],
+    chars_per_token: int,
+) -> list[dict]:
+    """逐文件审计：O = V1∧V2∧V3∧V4∧V5；O=false 时 omitted_* 必须为 0。"""
+    audit: list[dict] = []
+    for rel in sorted(by_file):
+        pairs = by_file[rel]
+        live = [(d, e) for d, e in pairs if d["action"] != "DROP"]
+        decisions = []
+        for d, e in pairs:
+            prev = history_before.get(e.symbol_id)
+            decisions.append({
+                "symbol_id": e.symbol_id,
+                "action": d["action"],
+                "history_match": (
+                    None if prev is None else prev == e.source_hash
+                ),
+                "previously_sent": prev is not None,
+            })
+        live_dec = [x for x in decisions if x["action"] != "DROP"]
+        v1 = any(x["action"] == "REUSE_KV" for x in live_dec)
+        v2 = bool(live_dec) and all(x["history_match"] is True for x in live_dec)
+        v3 = bool(live_dec) and all(x["previously_sent"] for x in live_dec)
+        included = rel in touched_files
+        v4 = not included
+        content = files.get(rel, "")
+        nbytes = len(content.encode("utf-8")) if not included else 0
+        v5 = nbytes > 0
+        verified = bool(v1 and v2 and v3 and v4 and v5)
+        audit.append({
+            "file": rel,
+            "decisions": decisions,
+            "hash_match_all": v2,
+            "previously_sent": v3,
+            "included": included,
+            "omitted_bytes": nbytes if verified else 0,
+            "omitted_tokens_est": (
+                nbytes // max(1, chars_per_token) if verified else 0
+            ),
+            "verified_safe_omission": verified,
+        })
+    return audit
+
+
+def redact_assistant_code(messages: list[dict]) -> list[dict]:
+    """条件 M：把 assistant 消息中的 FILE 围栏块替换为占位符（统一脱敏）。"""
+    pattern = re.compile(
+        r"FILE:\s*(?P<path>[^\n]+)\n```[^\n]*\n(?P<body>[\s\S]*?)```"
+    )
+    out: list[dict] = []
+    for m in messages:
+        if m.get("role") != "assistant":
+            out.append(dict(m))
+            continue
+        content = m.get("content") or ""
+
+        def _sub(mo: "re.Match[str]") -> str:
+            n = len(mo.group(0))
+            return f"FILE: {mo.group('path').strip()} [redacted, {n} chars]"
+
+        out.append({**m, "content": pattern.sub(_sub, content)})
+    return out
+
+
+def history_code_metrics(history: list[dict]) -> dict:
+    """历史中 FILE 块数量与 assistant 代码字符数（估算稀释效应用）。"""
+    n_blocks = 0
+    code_chars = 0
+    for m in history:
+        if m.get("role") != "assistant":
+            continue
+        content = m.get("content") or ""
+        matches = list(
+            re.finditer(
+                r"FILE:\s*[^\n]+\n```[^\n]*\n([\s\S]*?)```", content
+            )
+        )
+        n_blocks += len(matches)
+        code_chars += sum(len(mo.group(1)) for mo in matches)
+    return {"history_file_blocks": n_blocks, "history_code_chars": code_chars}
 
 
 def trim_history(

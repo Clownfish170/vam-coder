@@ -1,0 +1,60 @@
+{
+  "schema": "p1-run-meta-v1",
+  "created_at": "2026-11-05T04:16:29+00:00",
+  "round": "p2_ablation",
+  "prereg": {
+    "path": "p1/docs/v12f_validation_preregistration.md",
+    "sha256": "088898a3aec9d08411864ea03ff79ac7ff3e78411ed34a58de89ecd0881cc7ed"
+  },
+  "task_set": {
+    "path": "D:\\Demo\\DynaMem\\vam-coder\\p1\\tasks_p1_validation\\p1_tasks.json",
+    "sha256": "d44445b2b8bff0a4338e9694194384235f73d0ea20b3d9550ae5d297c6f8f33b",
+    "manifest_sha256": "ee78e8258970124077ea4b16bf386c7e5ae42b85d26734ddca3d17471bd635d2"
+  },
+  "architectures": [
+    "vam_coder_v1.2_E",
+    "vam_coder_v1.2_H",
+    "vam_coder_v1.2_F_ablate_no_must_closure",
+    "vam_coder_v1.2_F_ablate_no_oprime",
+    "vam_coder_v1.2_F_ablate_history_redact",
+    "vam_coder_v1.3_V13B",
+    "vam_coder_v1.2_E_ablate_no_must_closure"
+  ],
+  "repetitions": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "episodes_planned": 1680,
+  "requests_planned_max": 9600,
+  "max_tokens": 2048,
+  "s5_token_limit": 13000000,
+  "s5_basis": "2× estimate 6.5M (P1 per-arch 0.93M × 7 arms)",
+  "ablation_definitions": {
+    "vam_coder_v1.2_E": "消融1: non_target_related=digest（= v12 原生 E 配置）",
+    "vam_coder_v1.2_H": "消融2: 非目标全 NONE（= v12 原生 H 配置）",
+    "vam_coder_v1.2_F_ablate_no_must_closure": "消融3: must_full_dep_closure=False",
+    "vam_coder_v1.2_F_ablate_no_oprime": "消融4: o_prime=False",
+    "vam_coder_v1.2_F_ablate_history_redact": "消融5: history_policy=redact（assistant 代码脱敏）",
+    "vam_coder_v1.3_V13B": "反例: V13B no-body→NONE（round3 已证伪该规则）",
+    "vam_coder_v1.2_E_ablate_no_must_closure": "交互: digest × 无依赖闭包（索引×闭包协同检验）"
+  },
+  "p1_baseline_reference": "p1_experiments/p1_validation (vam_coder_v1.2_F, R5, same task set/model/budget)",
+  "runner_sha256": "19fd96695403a53c20b18f226d15ff013fe3ee25cccb41285bf179aaf2ef56c2",
+  "randomization_seed": 20261108,
+  "bootstrap_seed": 20261102,
+  "bootstrap_B": 10000,
+  "frozen_hashes": {
+    "system_prompt_sha256": "4f59163597ba6982b2f77d2571792b3883198632b7cc9e8cd9ce297218dca01a",
+    "build_messages_source_sha256": "f0b477b0046282739ba1309e5035b2beb2f2f8d2564535d7154019a9aee9e436",
+    "p1_common_sha256": "b6ce07a3bccbcb20fe94e8346fff0b7d8f55b6dea5fc0356da3b15c26e88a9b6"
+  },
+  "model": "deepseek-v4.1-flash-1017",
+  "endpoint": "https://maas.qianwenaiapi.com/compatible-mode/v1",
+  "temperature": 0.0,
+  "seed": 0,
+  "history_policy": "keep",
+  "python": "D:\\IDE_Env\\Python\\python.exe"
+}

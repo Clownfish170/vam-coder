@@ -1,0 +1,5 @@
+pair,metric,n_families,family_mean_diffs,mean_diff,n_families_same_sign_as_mean,p_value_signflip_family,seed,B_flip
+vam_coder_v1.2_F−memory_off,ESR,8,-0.0750;0.0000;-0.0250;0.0250;-0.0500;0.0000;0.0000;0.0000,-0.0156,3,0.377762,20261102,10000
+vam_coder_v1.2_F−memory_off,prompt_per_episode,8,-1702.1750;-2005.1250;-534.0500;-455.3250;-145.2500;-133.7500;-91.1000;-145.5000,-651.5344,8,0.007899,20261102,10000
+vam_coder_v1.2_F−symbol_full_read,ESR,8,-0.0750;0.0000;-0.0250;0.0000;0.0000;0.0000;0.0000;0.0000,-0.0125,2,0.490851,20261102,10000
+vam_coder_v1.2_F−symbol_full_read,prompt_per_episode,8,-1758.2750;-2069.8250;-576.0750;-489.0000;-132.7000;-75.2500;-103.1000;-157.5000,-670.2156,8,0.007199,20261102,10000

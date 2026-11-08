@@ -1,0 +1,23 @@
+{
+  "episode_id": "v1_CFD01_H_R3",
+  "task_id": "v1_CFD01",
+  "arm": "H",
+  "repetition": 3,
+  "timestamp": "2026-11-02T05:32:16+00:00",
+  "root": "p1\\experiments\\v12_p1_execution\\runs\\v1_CFD01_H_R3\\runner_out\\episodes\\v1_CFD01\\vam_coder_v1.2_H\\workspace",
+  "files": [
+    {
+      "relative_path": "invoice.py",
+      "file_size": 182,
+      "sha256": "b740d81c10a0e06e39814558fb3fbeaf1e6b7b137c1ecd4208af3e2adc12cc62"
+    },
+    {
+      "relative_path": "tax.py",
+      "file_size": 80,
+      "sha256": "9042f0dec6ca97f270350a30807ffa763e49572d1cc15d5e8b06dd3f0a7f2c53"
+    }
+  ],
+  "total_files": 2,
+  "total_bytes": 262,
+  "manifest_sha256": "5a1499eddff789a8786f5c9dce19de7e49da64afe1d1282772c7525e946cfef2"
+}

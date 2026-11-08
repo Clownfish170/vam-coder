@@ -1,0 +1,315 @@
+{
+  "frozen_hashes": {
+    "rev3_plan": {
+      "expected": "8ceed45d6554ba952a641fbbebb49b4f3eb0f69858c16ba9d58d7025eb9ee13f",
+      "actual": "8ceed45d6554ba952a641fbbebb49b4f3eb0f69858c16ba9d58d7025eb9ee13f",
+      "match": true
+    },
+    "prereg_v1": {
+      "expected": "088898a3aec9d08411864ea03ff79ac7ff3e78411ed34a58de89ecd0881cc7ed",
+      "actual": "088898a3aec9d08411864ea03ff79ac7ff3e78411ed34a58de89ecd0881cc7ed",
+      "match": true
+    },
+    "p3a_addendum": {
+      "expected": "2ce8defff22395fcfe7d48325a7c9f9fc5cd8c867b7f8be7643833dd2e38fffe",
+      "actual": "2ce8defff22395fcfe7d48325a7c9f9fc5cd8c867b7f8be7643833dd2e38fffe",
+      "match": true
+    },
+    "vso_design": {
+      "expected": "0d9c292b2ef7e09fc0d6ddef137d163ca91a342c1e8144341fce3d3725f1746b",
+      "actual": "0d9c292b2ef7e09fc0d6ddef137d163ca91a342c1e8144341fce3d3725f1746b",
+      "match": true
+    },
+    "holdout_tasks": {
+      "expected": "59cebdd9471ae07d1a416f8b9f7249002087454523df062d8b4e6db68849f4d4",
+      "actual": "59cebdd9471ae07d1a416f8b9f7249002087454523df062d8b4e6db68849f4d4",
+      "match": true
+    },
+    "holdout_manifest": {
+      "expected": "fcb8762f1ada7bfb57a533db3d0f20d2d0282892bbf4f05ba7b7163418bb9c05",
+      "actual": "fcb8762f1ada7bfb57a533db3d0f20d2d0282892bbf4f05ba7b7163418bb9c05",
+      "match": true
+    },
+    "p1_tasks": {
+      "expected": "d44445b2b8bff0a4338e9694194384235f73d0ea20b3d9550ae5d297c6f8f33b",
+      "actual": "d44445b2b8bff0a4338e9694194384235f73d0ea20b3d9550ae5d297c6f8f33b",
+      "match": true
+    },
+    "p1_tasks_manifest": {
+      "expected": "ee78e8258970124077ea4b16bf386c7e5ae42b85d26734ddca3d17471bd635d2",
+      "actual": "ee78e8258970124077ea4b16bf386c7e5ae42b85d26734ddca3d17471bd635d2",
+      "match": true
+    }
+  },
+  "experiments": {
+    "round1_holdout": {
+      "episodes": 72,
+      "step_rows": 144,
+      "expected_episodes": 72,
+      "episodes_match": true
+    },
+    "round2_v13b": {
+      "episodes": 120,
+      "step_rows": 240,
+      "expected_episodes": 120,
+      "episodes_match": true
+    },
+    "round3_deepseek": {
+      "episodes": 120,
+      "step_rows": 240,
+      "expected_episodes": 120,
+      "episodes_match": true
+    },
+    "p1_confirmatory": {
+      "episodes": 720,
+      "step_rows": 4080,
+      "expected_episodes": 720,
+      "episodes_match": true
+    },
+    "p2_ablation": {
+      "episodes": 1680,
+      "step_rows": 9520,
+      "expected_episodes": 1680,
+      "episodes_match": true
+    },
+    "p3_crossmodel": {
+      "episodes": 720,
+      "step_rows": 4080,
+      "expected_episodes": 720,
+      "episodes_match": true
+    }
+  },
+  "run_metas": {
+    "p1_confirmatory": {
+      "model": "deepseek-v4.1-flash-1017",
+      "max_tokens": 2048,
+      "temperature": 0.0,
+      "seed": 0,
+      "history_policy": "keep",
+      "repetitions": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "randomization_seed": 20261107,
+      "bootstrap_seed": 20261102,
+      "s5": 6600000,
+      "frozen_hashes_recorded": {
+        "system_prompt_sha256": "4f59163597ba6982b2f77d2571792b3883198632b7cc9e8cd9ce297218dca01a",
+        "build_messages_source_sha256": "f0b477b0046282739ba1309e5035b2beb2f2f8d2564535d7154019a9aee9e436",
+        "p1_common_sha256": "b6ce07a3bccbcb20fe94e8346fff0b7d8f55b6dea5fc0356da3b15c26e88a9b6"
+      },
+      "architectures": [
+        "vam_coder_v1.2_F",
+        "memory_off",
+        "symbol_full_read"
+      ]
+    },
+    "p2_ablation": {
+      "model": "deepseek-v4.1-flash-1017",
+      "max_tokens": 2048,
+      "temperature": 0.0,
+      "seed": 0,
+      "history_policy": "keep",
+      "repetitions": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "randomization_seed": 20261108,
+      "bootstrap_seed": 20261102,
+      "s5": 13000000,
+      "frozen_hashes_recorded": {
+        "system_prompt_sha256": "4f59163597ba6982b2f77d2571792b3883198632b7cc9e8cd9ce297218dca01a",
+        "build_messages_source_sha256": "f0b477b0046282739ba1309e5035b2beb2f2f8d2564535d7154019a9aee9e436",
+        "p1_common_sha256": "b6ce07a3bccbcb20fe94e8346fff0b7d8f55b6dea5fc0356da3b15c26e88a9b6"
+      },
+      "architectures": [
+        "vam_coder_v1.2_E",
+        "vam_coder_v1.2_H",
+        "vam_coder_v1.2_F_ablate_no_must_closure",
+        "vam_coder_v1.2_F_ablate_no_oprime",
+        "vam_coder_v1.2_F_ablate_history_redact",
+        "vam_coder_v1.3_V13B",
+        "vam_coder_v1.2_E_ablate_no_must_closure"
+      ]
+    },
+    "p3_crossmodel": {
+      "model": "qwen3.8-flash",
+      "max_tokens": 2048,
+      "temperature": 0.0,
+      "seed": 0,
+      "history_policy": "keep",
+      "repetitions": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "randomization_seed": 20261109,
+      "bootstrap_seed": 20261102,
+      "s5": 6000000,
+      "frozen_hashes_recorded": {
+        "system_prompt_sha256": "4f59163597ba6982b2f77d2571792b3883198632b7cc9e8cd9ce297218dca01a",
+        "build_messages_source_sha256": "f0b477b0046282739ba1309e5035b2beb2f2f8d2564535d7154019a9aee9e436",
+        "p1_common_sha256": "b6ce07a3bccbcb20fe94e8346fff0b7d8f55b6dea5fc0356da3b15c26e88a9b6"
+      },
+      "architectures": [
+        "vam_coder_v1.2_F",
+        "memory_off",
+        "symbol_full_read"
+      ]
+    }
+  },
+  "stat_conventions": {
+    "p1_confirmatory": {
+      "bootstrap_seed": 20261102,
+      "bootstrap_B": 10000,
+      "cluster": "task_id"
+    },
+    "p2_ablation": {
+      "bootstrap_seed": 20261102,
+      "bootstrap_B": 10000,
+      "cluster": "task_id"
+    },
+    "p3_crossmodel": {
+      "bootstrap_seed": 20261102,
+      "bootstrap_B": 10000,
+      "cluster": "task_id"
+    },
+    "prereg_expected": {
+      "bootstrap_seed": 20261102,
+      "bootstrap_B": 10000,
+      "cluster": "task_id"
+    }
+  },
+  "report_spot_checks": {
+    "P1_F_ESR_successes": "223",
+    "P1_F_ESR": "0.9292",
+    "P1_memory_off_ESR": "0.9375",
+    "P3A_F_ESR_successes": "209",
+    "VSO_phase1_joint_pass": true,
+    "VSO_phase1_rows": 31,
+    "VSO_phase2_accuracy": 1.0,
+    "VSO_phase2_scenarios_pass": "10/10",
+    "tokenizer_note": "P1=deepseek / P3A=qwen3.8-flash：绝对 token 禁止横向比较（已在报告约束）"
+  },
+  "git_state": {
+    "branch": "p1/v1.1",
+    "head": "155f934 docs(p1): v0.2 加固验收与冒烟报告（8/8 完整性检查、真实 usage/cached_tokens 落盘）",
+    "modified_files": [
+      "M p1/scripts/make_manifest.py",
+      " M p1/scripts/p1_common.py",
+      " M p1/scripts/run_p1.py",
+      " M p1/tests/test_v02_hardening.py",
+      "?? p1/docs/p1_v1.0_design_review.md",
+      "?? p1/docs/p1_v1.0_implementation_checklist.md",
+      "?? p1/docs/p1_v1.0_rev3_change_log.md",
+      "?? p1/docs/p1_v1.0_taskset_design.md",
+      "?? p1/docs/v1.1.1_ablation_protocol.md",
+      "?? p1/docs/v1.1.1_engineering_audit.md",
+      "?? p1/docs/v1.1.1_failure_attribution.md",
+      "?? p1/docs/v1.1_architecture_design.md",
+      "?? p1/docs/v1.1_experiment_protocol.md",
+      "?? p1/docs/v1.1_failure_analysis.md",
+      "?? p1/docs/v1.2_architecture_design.md",
+      "?? p1/docs/v1.2_design_review_response.md",
+      "?? p1/docs/v1.2_experiment_preregistration.md",
+      "?? p1/docs/v1.2_implementation_roadmap.md",
+      "?? p1/docs/v1.2_method_formulation.md",
+      "?? p1/docs/v1.2_novelty_and_related_work.md",
+      "?? p1/docs/v1.2_p0_smoke_execution_prompt.md",
+      "?? p1/docs/v1.2_r2.2_change_note.md",
+      "?? p1/docs/v12f_validation_preregistration.md",
+      "?? p1/docs/v12f_validation_preregistration_addendum_dualtoken.md",
+      "?? p1/docs/v12f_validation_preregistration_addendum_dualtoken_v2.md",
+      "?? p1/docs/v12f_validation_preregistration_addendum_p3a.md",
+      "?? p1/docs/vso_fault_injection_evaluation_design.md",
+      "?? p1/experiments/",
+      "?? p1/manifests/p1_v1.0_manifest_20261030.json",
+      "?? p1/manifests/p1_v1.0_manifest_draft.json",
+      "?? p1/manifests/p1_v1.0_manifest_draft2.json",
+      "?? p1/results/V1.2-r2.2_DOCUMENT_ACCEPTANCE_AUDIT.md",
+      "?? p1/results/V1.2-r2.2_M1_M4_CODE_AUDIT.md",
+      "?? p1/results/V1.2-r2.2_M3_FIX01_M1M4_FINAL_AUDIT.md",
+      "?? p1/results/formal_closeout_blocked_20261031.md",
+      "?? p1/results/freeze_v1_0.md",
+      "?? p1/results/llama_server.log",
+      "?? p1/results/llama_server_v11.log",
+      "?? p1/results/llama_server_v1formal.log",
+      "?? p1/results/llama_server_v1qual.log"
+    ],
+    "stash_list": [
+      "stash@{0}: On p1/v1.1: !!GitHub_Desktop<p1/v1.1>"
+    ]
+  },
+  "retest": {
+    "episodes": 51,
+    "resolved_rate": 0.8627,
+    "remaining_trunc_empty": 2,
+    "max_tokens": 4096
+  },
+  "discrepancies": [],
+  "curated_deviations": [
+    {
+      "id": "D1",
+      "item": "p1_common.py 在 P1/P2 之后新增可选 VAM_API_KEY 鉴权头（P3-A 前）",
+      "handling": "P1/P2 run_meta 记录当时的 sha；P3 orchestrator 钉新 sha；SYSTEM_PROMPT/build_messages 哈希全程不变"
+    },
+    {
+      "id": "D2",
+      "item": "run_p1_v12.py 在 P2 前新增三个消融开关（history-policy/no-must-closure/no-oprime）",
+      "handling": "默认值与冻结配置等价；P2/P3 run_meta 记录 runner sha 19fd9669…"
+    },
+    {
+      "id": "D3",
+      "item": "round1–3 为探索轮（含1.5B与早期云轮），不与 P1–P3 确认性数据合并",
+      "handling": "prereg §11.3 已冻结该隔离规则"
+    },
+    {
+      "id": "D4",
+      "item": "P3-A 一集 RemoteDisconnected（RC_1，零数据）→ 断点补跑完成",
+      "handling": "RC_1 行保留在 execution_log；infrastructure 类单列"
+    },
+    {
+      "id": "D5",
+      "item": "VSO Phase2 首轮 18 集落在省略不可达任务（判定对、注入未激活）",
+      "handling": "归档 execution_log_superseded_vacuous.jsonl，修正映射后重跑；两条断言按冻结字面修正后离线复评（零模型重跑）；fault_safe_calls 字段复评时丢失（N/A，激活改用行为证据）"
+    },
+    {
+      "id": "D6",
+      "item": "协议违规 51/51=EMPTY_TRUNC（归因已修 round3 预算标注）→ 4096 受控复测",
+      "handling": "隔离目录重跑，不触碰冻结数据"
+    },
+    {
+      "id": "D7",
+      "item": "max_tokens 跨阶段：round1/2=1024 → exp6 判定 → round3/P1/P2/P3A=2048",
+      "handling": "exp6 判定记录在案；各轮 run_meta 单独记录"
+    },
+    {
+      "id": "D8",
+      "item": "P1 任务集为 8 个参数化族（有效独立设计数 < 48）",
+      "handling": "prereg §5 披露 + 族级敏感性分析；Part2 新任务集须解决真实独立性"
+    },
+    {
+      "id": "D9",
+      "item": "ESR 地板与生成非确定性（1.5B 轮64/72步重复一致；deepseek/qwen仍有抖动）",
+      "handling": "任务级聚类 + 非劣界值 + 不作优效主张"
+    },
+    {
+      "id": "D10",
+      "item": "Git：分支 p1/v1.1、4 个未提交修改、stash@{0} 存在",
+      "handling": "全程零 git 写操作；stash 不动"
+    }
+  ],
+  "unresolved_questions": [
+    "VSO 文档 §11 的5个歧义按默认值钉死（用户授权冻结时）；FBR=False Block Rate 等口径已入设计冻结记录",
+    "双 Token 独立贡献：B/C（符号寻址、静态表示）机制尚未实现——论文中不得主张其收益（任务书约束一致）",
+    "KV Cache 显存：无实测，禁止主张（约束4）"
+  ]
+}

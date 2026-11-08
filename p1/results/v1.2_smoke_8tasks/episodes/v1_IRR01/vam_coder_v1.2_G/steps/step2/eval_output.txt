@@ -1,0 +1,10 @@
+F.                                                                       [100%]
+================================== FAILURES ===================================
+___________________________________ test_a2 ___________________________________
+eval\test_behavior.py:5: in test_a2
+    assert alpha.a2() == 11
+           ^^^^^^^^
+E   AttributeError: module 'alpha' has no attribute 'a2'
+=========================== short test summary info ===========================
+FAILED eval/test_behavior.py::test_a2 - AttributeError: module 'alpha' has no...
+1 failed, 1 passed in 0.12s

@@ -1,0 +1,23 @@
+{
+  "episode_id": "v1_CFD02_A_R1",
+  "task_id": "v1_CFD02",
+  "arm": "A",
+  "repetition": 1,
+  "timestamp": "2026-11-02T05:30:50+00:00",
+  "root": "p1\\experiments\\v12_p1_execution\\runs\\v1_CFD02_A_R1\\runner_out\\episodes\\v1_CFD02\\memory_off\\workspace",
+  "files": [
+    {
+      "relative_path": "order.py",
+      "file_size": 63,
+      "sha256": "bb5e70d2b141aba4d17a8149004637a9f1d4116b6b8cf54458ac00d0bc8c7ea8"
+    },
+    {
+      "relative_path": "rates.py",
+      "file_size": 55,
+      "sha256": "fcf862bf6dd5542f03392f38eb916cfda49d4e6be3408141b7a26a54a5f7f186"
+    }
+  ],
+  "total_files": 2,
+  "total_bytes": 118,
+  "manifest_sha256": "f71050b2029b3f6c1f6a8171f7a07f4f4bef15f8f99b3ab451f42716999384ad"
+}

@@ -1,0 +1,23 @@
+{
+  "episode_id": "v1_SIG03_D_R1",
+  "task_id": "v1_SIG03",
+  "arm": "D",
+  "repetition": 1,
+  "timestamp": "2026-11-02T05:37:07+00:00",
+  "root": "D:\\Demo\\DynaMem\\vam-coder\\p1\\tasks\\v1_SIG03\\project",
+  "files": [
+    {
+      "relative_path": "store.py",
+      "file_size": 47,
+      "sha256": "22e0aa7f6a39682b455c7c49bcfcff35c157817df71c47e5d1152ab3ddc3b5c2"
+    },
+    {
+      "relative_path": "use.py",
+      "file_size": 86,
+      "sha256": "71762eaf8876acd8e39a4bad5fd3953d8e45e0104392d8b7f9c90c3e7ea9d840"
+    }
+  ],
+  "total_files": 2,
+  "total_bytes": 133,
+  "manifest_sha256": "39b40bef21245fbd29d123cc3836bc0a0bc32d997cd567f7c09ee72d605600e1"
+}
