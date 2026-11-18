@@ -21,7 +21,7 @@ V1.0 初始架构
 | --- | --- |
 | 设计目标 | 可运行的编码记忆/装配原型与任务集 |
 | 原有不足 | `history_sent` 与当前 messages 不一致（后续 V1.1 文档明确） |
-| 主要文档 | `p1/docs/v1.0/`（taskset、design review、rev3 change log） |
+| 主要文档 | `p1/docs/v1.0/`（canonical；指针 `development/V1.0/`） |
 | 冻结记录 | `p1/results/freeze_v1_0.md`；manifest `p1/manifests/p1_v1.0_manifest_*.json` |
 | 代码 | `p1/scripts/run_p1.py`（早期 runner） |
 | 遗留影响 | 可见性记账缺陷 → V1.1 必须引入 VP |
@@ -50,7 +50,7 @@ V1.0 初始架构
 | 机制 | 臂 E/F/G/H；**F = 相关非目标 FULL**；r2.2：E/C 禁 O′、CandidateFull、分列 verified |
 | 关键文档 | `p1/docs/v1.2/v1.2_architecture_design.md`, `v1.2_method_formulation.md`, `v1.2_experiment_preregistration.md`（根路径冻结） |
 | 代码 | `p1/scripts/v12/`（assemble/levels/targets/config…） |
-| 实验 | P1/P2/P3-A；报告见 `V12F_final_validation_and_submission_report.md` |
+| 实验 | P1/P2/P3-A；报告见 `experiments/V12-F/reports/V12F_final_validation_and_submission_report.md` |
 | 结果口径 | P1 prompt −23.6%/−24.2%，ESR 非劣 PASS；P2 中 O′ 主导 −398 tok/集（见总报告 §1.4） |
 | 遗留 | 历史多版本膨胀、“要求蒸发” → V13E S1/S2 |
 
@@ -77,11 +77,11 @@ V1.0 初始架构
 | 代码 | `history_project.py`, `obligations.py`；臂 `V13EPROJ`/`V13ESAH`/`V13ICGSAH` |
 | 主实验 | 双模型 crossmodel；**56** repository-editing 合成任务（`v13e_sah/definitive56*`） |
 | 扩展 | P1_TRANSFER / SWE-bench Lite 10 实例（**不取代**主实验） |
-| 规范架构说明 | `docs/architecture/ARCHITECTURE_V13E.md` |
+| 规范架构说明 | `docs/ARCHITECTURE_V13E.md` |
 
 状态标记：ACTIVE（旗舰）
 
 ## 6. 命名与映射（新文档）
 
-- O′ → **VP**（见 `docs/terminology/GLOSSARY.md`）
+- O′ → **VP**（见 `docs/GLOSSARY.md`）
 - 历史文件**不改名**；SUPERSEDED 关系写在本索引与 dualtoken v2 文档内

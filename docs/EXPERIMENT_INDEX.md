@@ -21,16 +21,16 @@
 | P1 确认性 | `p1/experiments/p1_validation/` | 预注册协议 |
 | P2 消融 | `p1/experiments/p2_ablation/` | O′/redact 等 |
 | P3-A / crossmodel Qwen | `p3_crossmodel_qwen/` | 补记后执行 |
-| 总审计 | `V12F_final_validation_and_submission_report.md` | 冻结哈希、样本量、口径 |
+| 总审计 | `experiments/V12-F/reports/V12F_final_validation_and_submission_report.md` | 冻结哈希、样本量、口径 |
 
 ## 3. 扩展与故障注入
 
 | ID | 路径 | 定位 |
 | --- | --- | --- |
-| **P1_TRANSFER** | `p1/experiments/v13e_p1_transfer/`, `v13e_p1_swebench/`；顶层 `P1_TRANSFER_PROTOCOL_AND_RESULTS.md` | **扩展验证**，10 实例 SWE-bench Lite 子集；**不取代** V13E 主实验；非官方 leaderboard |
+| **P1_TRANSFER** | 组织层 `experiments/P1-TRANSFER/`；canonical `p1/experiments/v13e_p1_transfer/`, `v13e_p1_swebench/` | **扩展验证**，10 实例 SWE-bench Lite 子集；**不取代** V13E 主实验；非官方 leaderboard |
 | VSO 故障注入 | `p1/experiments/vso_fault_injection/` | 受控注入；非生产自然故障率 |
 | 双 Token | `p1/experiments/dualtoken_ablation/` | 探索；结论见报告 |
-| Robustness | `V13E_CLUSTER_ROBUSTNESS_AUDIT.md`（顶层） | 聚类稳健性审计 |
+| Robustness | `experiments/V13E/robustness/V13E_CLUSTER_ROBUSTNESS_AUDIT.md` | 聚类稳健性审计 |
 
 ## 4. 任务集（只读，禁止当草稿改）
 

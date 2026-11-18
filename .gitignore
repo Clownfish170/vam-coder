@@ -14,3 +14,7 @@ p1/experiments/validation_p0/protocol_retest_4096/runs/
 p1/experiments/**/validate_ctx/
 p1/experiments/**/drytest/
 p1/experiments/**/runner_out/
+# 大体量归档与本地服务日志（磁盘保留；见 archive/README.md 与备份目录）
+archive/*.zip
+archive/*.bundle
+archive/server-logs/*.log

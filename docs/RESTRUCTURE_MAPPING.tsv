@@ -1,0 +1,43 @@
+﻿old_path	new_path	sha256	bytes	action	reason
+D:\Demo\DynaMem/chat.bat	D:\Demo\DynaMem\vam-coder/archive/server-logs/chat.bat	90C69D27F1C6832B756ADC26876365DE807272A2552A771D1771500FC7B22F3F	267	MOVED_OK	local launcher
+D:\Demo\DynaMem/llama_server_err.log	D:\Demo\DynaMem\vam-coder/archive/server-logs/llama_server_err.log	9C229FB0801DAD9B267349C0F7C87EE470B5C184366065DB38CF81063D4EAD3A	2904082	MOVED_OK	local server log
+D:\Demo\DynaMem/llama_server_run.log	D:\Demo\DynaMem\vam-coder/archive/server-logs/llama_server_run.log	E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855	0	MOVED_OK	local server log
+D:\Demo\DynaMem/P1_SWEBENCH_DS_analysis.json	D:\Demo\DynaMem\vam-coder/experiments/P1-TRANSFER/processed/P1_SWEBENCH_DS_analysis.json	B03FFDF3AA7B47339425CCE9120EC27AB1C76315425314067E66A97D7287E99F	14265	MOVED_OK	transfer analysis
+D:\Demo\DynaMem/P1_SWEBENCH_FULL_SUMMARY.json	D:\Demo\DynaMem\vam-coder/experiments/P1-TRANSFER/processed/P1_SWEBENCH_FULL_SUMMARY.json	57805BB37B00449F697314EB6E0EE4AE43264CD58BB5AE1E20243BFEB3A5AAC7	2289	MOVED_OK	transfer summary
+D:\Demo\DynaMem/P1_SWEBENCH_QWEN_analysis.json	D:\Demo\DynaMem\vam-coder/experiments/P1-TRANSFER/processed/P1_SWEBENCH_QWEN_analysis.json	F6575ABC39E4BBEA424CB84530D5FBBFBD0093C99B46DBAB5C07445F709A2023	14172	MOVED_OK	transfer analysis
+D:\Demo\DynaMem/P1_TRANSFER_PROTOCOL_AND_RESULTS.md	D:\Demo\DynaMem\vam-coder/experiments/P1-TRANSFER/protocol/P1_TRANSFER_PROTOCOL_AND_RESULTS.md	EA7B4D7EABDEBA43D187D722923185B373D2CCBCB21EB2DBFD7C807AA388F090	9663	MOVED_OK	transfer protocol top-level copy
+D:\Demo\DynaMem/start_server.bat	D:\Demo\DynaMem\vam-coder/archive/server-logs/start_server.bat	4D91DE0347511C55D54CD4DE62D549A9C78DC87A001CE7638ADDABF8131C4B6F	609	MOVED_OK	local launcher
+D:\Demo\DynaMem/STATS_AND_COST_P1_SWEBENCH.md	D:\Demo\DynaMem\vam-coder/experiments/P1-TRANSFER/statistics/STATS_AND_COST_P1_SWEBENCH.md	0203A2CF729453BD2DBE93FA9DEA9684C1C36BCDB4876B61AAB9972EDE9B60AC	4014	MOVED_OK	transfer stats
+D:\Demo\DynaMem/v06_figs	-	-	-	RMDIR_EMPTY	v06_figs emptied after move
+D:\Demo\DynaMem/V13A_DESIGN_PROPOSAL.md	D:\Demo\DynaMem\vam-coder/development/V1.3/exploration/V13A_DESIGN_PROPOSAL.md	02E1ACA0D7E5BEA9800A29CF780694825C2BB5F935B994E00EE1AFF9E3856A15	41335	MOVED_OK	exploration design
+D:\Demo\DynaMem/V13E_CLUSTER_ROBUSTNESS_AUDIT.md	D:\Demo\DynaMem\vam-coder/experiments/V13E/robustness/V13E_CLUSTER_ROBUSTNESS_AUDIT.md	93219C24C47DE691614F77591E0F3541AAC0A41A1828B2C0B3023D0097890B20	23002	MOVED_OK	robustness audit
+D:\Demo\DynaMem/V13E_MANUSCRIPT_REVISION_v0.6.md	D:\Demo\DynaMem\vam-coder/manuscript/source/V13E_MANUSCRIPT_REVISION_v0.6.md	888AC3B5353417854D7984D6B51049C6707B0F3A73C9A226237CD1B920835D4A	30648	MOVED_OK	manuscript revision notes
+D:\Demo\DynaMem/V13E_PROJECT_ARCHIVE.zip	D:\Demo\DynaMem\vam-coder/archive/V13E_PROJECT_ARCHIVE.zip	E8B23AEF7428B9FE7B40C88A77401D3A26D9BB77489DC6D078ED42FD5837E257	196269889	MOVED_OK	project archive zip
+D:\Demo\DynaMem/V13E_v0.5_readonly_evidence_audit.md	D:\Demo\DynaMem\vam-coder/experiments/V13E/reports/V13E_v0.5_readonly_evidence_audit.md	49B0F57A2213706CDA056694509E93099459205A9408A1CB01CC668D11C27C17	46244	MOVED_OK	evidence audit
+D:\Demo\DynaMem/VAM_CODER_V13E_FINAL_CLEANUP_REPORT.md	D:\Demo\DynaMem\vam-coder/docs/archive/VAM_CODER_V13E_FINAL_CLEANUP_REPORT.md	D02AF3C76DCEECEAF09DFA5CF9DB7333301B1AB46BA79B0AE015138D5682A20B	12399	MOVED_OK	prior cleanup report
+D:\Demo\DynaMem/vam-coder_history.bundle	D:\Demo\DynaMem\vam-coder/archive/vam-coder_history.bundle	57D7BCA7CAEF834EDF47B2E80243F3F6E78AFE54D01954643801C35C688EBF14	7078777	MOVED_OK	git history bundle
+D:\Demo\DynaMem/论文草稿_v0.6_插图版.docx	D:\Demo\DynaMem\vam-coder/manuscript/source/论文草稿_v0.6_插图版.docx	BC4E1E1598F82C75A96B689C38817385F2A4321BF4C02EDD081E457A6C0CB38A	539832	MOVED_OK	manuscript source
+D:\Demo\DynaMem/论文草稿_v0.6_正式稿.docx	D:\Demo\DynaMem\vam-coder/manuscript/source/论文草稿_v0.6_正式稿.docx	1AB92BF1B8A6C32720D81BEDE45897858B4AA7BE80AD2088D74A7C2D413F2FFE	57425	MOVED_OK	manuscript source
+D:\Demo\DynaMem/论文草稿_v0.6_正式稿.md	D:\Demo\DynaMem\vam-coder/manuscript/source/论文草稿_v0.6_正式稿.md	E74DE91EB21CCF25FD848A22C073213F240479E842769ED5FCCAAD59CFCCB93A	38022	MOVED_OK	manuscript source
+D:\Demo\DynaMem\v06_figs\fig4_prompt_line.png	D:\Demo\DynaMem\vam-coder/manuscript/figures/fig4_prompt_line.png	A8EA94D2D3CF472E5D32D9FFFBBCC74125BE4CEB3E66F54479704E617221B08D	83596	MOVED_OK	manuscript figures
+D:\Demo\DynaMem\v06_figs\fig5_esr_line.png	D:\Demo\DynaMem\vam-coder/manuscript/figures/fig5_esr_line.png	325863A7774A2FA372181DA82FBC17EFD660F98E182DADF5F8AAB914E342D26F	78289	MOVED_OK	manuscript figures
+D:\Demo\DynaMem\v06_figs\fig6_methods_bars.png	D:\Demo\DynaMem\vam-coder/manuscript/figures/fig6_methods_bars.png	70B061E3BCBF72C9774BD12E3FB0426098FA3A7D3F8EAFB128BCDC9D7FF7B69A	94040	MOVED_OK	manuscript figures
+D:\Demo\DynaMem\v06_figs\fig7_tradeoff_scatter.png	D:\Demo\DynaMem\vam-coder/manuscript/figures/fig7_tradeoff_scatter.png	36A425F74DFBC5499028AE7DDFDB0284693F78F72BD7E99E6407A8A6CE5C18CF	81760	MOVED_OK	manuscript figures
+D:\Demo\DynaMem\v06_figs\fig8_vso_ablation.png	D:\Demo\DynaMem\vam-coder/manuscript/figures/fig8_vso_ablation.png	93C2A5B436393281717F790EB64EBCF32F62F595EFEACCE34F1F8478A435A13B	49818	MOVED_OK	manuscript figures
+D:\Demo\DynaMem\v06_figs\fig9a_forest_prompt.png	D:\Demo\DynaMem\vam-coder/manuscript/figures/fig9a_forest_prompt.png	6B281974DA028542D6D3AD7911A94F62BD498181D5602A40E2BD24B77FF2A4F7	69212	MOVED_OK	manuscript figures
+D:\Demo\DynaMem\v06_figs\fig9b_forest_esr.png	D:\Demo\DynaMem\vam-coder/manuscript/figures/fig9b_forest_esr.png	1AE06F6A5EB2C10A84BC947BDF5C696A72D926FF5D08FBC96528147C0FCB841C	69630	MOVED_OK	manuscript figures
+D:\Demo\DynaMem\vam-coder/docs/architecture/ARCHITECTURE_V13E.md	D:\Demo\DynaMem\vam-coder/docs/ARCHITECTURE_V13E.md	AEC3E5D0D4B4A21D0277AED144B19C01743C1191363B06558437E002C29F08E3	5110	MOVED_OK	flatten docs
+D:\Demo\DynaMem\vam-coder/docs/development-history/DEVELOPMENT_HISTORY.md	D:\Demo\DynaMem\vam-coder/docs/DEVELOPMENT_HISTORY.md	ADA868FDE4990248032C4BE6C517974F9EE6200C70E2F3579C2026E0292D6885	4208	MOVED_OK	flatten docs
+D:\Demo\DynaMem\vam-coder/docs/mechanisms/MECHANISM_VISIBILITY_PROOF.md	D:\Demo\DynaMem\vam-coder/docs/MECHANISM_VISIBILITY_PROOF.md	667B0F093D556607176476219A5CF7A496B1D9D98AF4D20CE09E1ACA164F2DD3	2365	MOVED_OK	flatten docs
+D:\Demo\DynaMem\vam-coder/docs/methodology/EXPERIMENT_INDEX.md	D:\Demo\DynaMem\vam-coder/docs/EXPERIMENT_INDEX.md	855C9D3CAA7518459FEC5D7003C8FB4D507D79B14705ED5934FE1E57614F08B8	3296	MOVED_OK	flatten docs
+D:\Demo\DynaMem\vam-coder/docs/supplementary/APPENDIX_INDEX.md	D:\Demo\DynaMem\vam-coder/docs/APPENDIX_INDEX.md	A95D2B1124B81352A8EF390C03B98B6D344C407FAD020EF0070A284F7FE351A2	3116	MOVED_OK	flatten docs
+D:\Demo\DynaMem\vam-coder/docs/terminology/GLOSSARY.md	D:\Demo\DynaMem\vam-coder/docs/GLOSSARY.md	0C5171051AD44F8C649A7D3F71A8A53593483D13B1D48AFA0EA0F7E0BFAC45F0	4276	MOVED_OK	flatten docs
+D:\Demo\DynaMem\vam-coder/PATCH_NOTES.md	D:\Demo\DynaMem\vam-coder/archive/legacy-documents/PATCH_NOTES.md	BDB4D3C8F43B866DF5B636A85F8B28BC642006B1AFA417CD82CD4605D6E17872	11835	MOVED_OK	P0 patch notes
+D:\Demo\DynaMem\vam-coder/PATCH_NOTES_P0_FINAL.md	D:\Demo\DynaMem\vam-coder/archive/legacy-documents/PATCH_NOTES_P0_FINAL.md	ECEF88C5783F915C98E35DD844952C7412ADBE3F273F57B1BA89895E13379AC7	8443	MOVED_OK	P0 final notes
+D:\Demo\DynaMem\vam-coder/V12F_final_validation_and_submission_report.md	D:\Demo\DynaMem\vam-coder/experiments/V12-F/reports/V12F_final_validation_and_submission_report.md	A6F0A3004080A7AEDB1B9091476972F8DC7F66902036F2332B7A3ADFC570E343	25826	MOVED_OK	V12F master report
+D:\Demo\DynaMem\vam-coder\docs\architecture	-	-	-	RMDIR_EMPTY	empty docs/architecture after flatten
+D:\Demo\DynaMem\vam-coder\docs\development-history	-	-	-	RMDIR_EMPTY	empty docs/development-history after flatten
+D:\Demo\DynaMem\vam-coder\docs\mechanisms	-	-	-	RMDIR_EMPTY	empty docs/mechanisms after flatten
+D:\Demo\DynaMem\vam-coder\docs\methodology	-	-	-	RMDIR_EMPTY	empty docs/methodology after flatten
+D:\Demo\DynaMem\vam-coder\docs\supplementary	-	-	-	RMDIR_EMPTY	empty docs/supplementary after flatten
+D:\Demo\DynaMem\vam-coder\docs\terminology	-	-	-	RMDIR_EMPTY	empty docs/terminology after flatten

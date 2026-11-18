@@ -112,4 +112,4 @@ O′: hash_match ∧ previously_visible_in_messages ∧ file_not_in_current_ctx
 
 ## 7. 图与伪代码索引
 
-见 `docs/supplementary/APPENDIX_INDEX.md`（架构图、VP 流程、F+S1 流程、伪代码位置）。
+见 `docs/APPENDIX_INDEX.md`（架构图、VP 流程、F+S1 流程、伪代码位置）。

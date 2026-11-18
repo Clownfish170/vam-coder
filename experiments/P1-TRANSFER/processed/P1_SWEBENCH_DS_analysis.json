@@ -1,0 +1,526 @@
+{
+  "label": "deepseek",
+  "model": "deepseek-v4.1-flash-1017",
+  "source_log": "p1\\experiments\\v13e_p1_swebench\\runs\\p1_swebench_full_20261116_093959\\execution_log.jsonl",
+  "n_unique_ok": 90,
+  "planned": 90,
+  "wall_s": 9086.0,
+  "overall_ESR": 0.9222222222222223,
+  "overall_resolved": 83,
+  "by_arm": {
+    "F": {
+      "n": 30,
+      "resolved_n": 27,
+      "ESR": 0.9,
+      "mean_prompt": 28979.2,
+      "sum_prompt": 869376,
+      "mean_completion": 12838.266666666666,
+      "sum_completion": 385148,
+      "sum_cached": 767232,
+      "mean_cached": 25574.4,
+      "pt0_n": 0,
+      "insufficient_total": 0,
+      "mean_folded": 0.0,
+      "mean_docker_s": 14.184666666666665
+    },
+    "MOFF": {
+      "n": 30,
+      "resolved_n": 28,
+      "ESR": 0.9333333333333333,
+      "mean_prompt": 473947.5,
+      "sum_prompt": 14218425,
+      "mean_completion": 10693.566666666668,
+      "sum_completion": 320807,
+      "sum_cached": 5097216,
+      "mean_cached": 169907.2,
+      "pt0_n": 0,
+      "insufficient_total": 0,
+      "mean_folded": 0.0,
+      "mean_docker_s": 20.463
+    },
+    "PROJ": {
+      "n": 30,
+      "resolved_n": 28,
+      "ESR": 0.9333333333333333,
+      "mean_prompt": 28979.2,
+      "sum_prompt": 869376,
+      "mean_completion": 13008.433333333332,
+      "sum_completion": 390253,
+      "sum_cached": 610048,
+      "mean_cached": 20334.933333333334,
+      "pt0_n": 0,
+      "insufficient_total": 0,
+      "mean_folded": 0.0,
+      "mean_docker_s": 16.825666666666667
+    }
+  },
+  "paired_task_level": {
+    "PROJ-F": {
+      "comparison": "PROJ-F",
+      "n_tasks": 10,
+      "mean_delta_prompt": 0.0,
+      "median_delta_prompt": 0.0,
+      "ci95_prompt": {
+        "mean": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n": 10
+      },
+      "signflip_p_prompt": 1.0,
+      "mean_delta_esr": 0.03333333333333334,
+      "ci95_esr": {
+        "mean": 0.03333333333333334,
+        "lo": 0.0,
+        "hi": 0.1,
+        "n": 10
+      },
+      "signflip_p_esr": 1.0,
+      "tasks": [
+        "psf__requests-1963",
+        "pylint-dev__pylint-7993",
+        "pytest-dev__pytest-7432",
+        "pallets__flask-4045",
+        "pytest-dev__pytest-11143",
+        "pytest-dev__pytest-6116",
+        "psf__requests-863",
+        "psf__requests-3362",
+        "pytest-dev__pytest-5413",
+        "pallets__flask-5063"
+      ],
+      "per_task": [
+        {
+          "task": "psf__requests-1963",
+          "d_prompt": 0.0,
+          "d_esr": 0.33333333333333337
+        },
+        {
+          "task": "pylint-dev__pylint-7993",
+          "d_prompt": 0.0,
+          "d_esr": 0.0
+        },
+        {
+          "task": "pytest-dev__pytest-7432",
+          "d_prompt": 0.0,
+          "d_esr": 0.0
+        },
+        {
+          "task": "pallets__flask-4045",
+          "d_prompt": 0.0,
+          "d_esr": 0.0
+        },
+        {
+          "task": "pytest-dev__pytest-11143",
+          "d_prompt": 0.0,
+          "d_esr": 0.0
+        },
+        {
+          "task": "pytest-dev__pytest-6116",
+          "d_prompt": 0.0,
+          "d_esr": 0.0
+        },
+        {
+          "task": "psf__requests-863",
+          "d_prompt": 0.0,
+          "d_esr": 0.0
+        },
+        {
+          "task": "psf__requests-3362",
+          "d_prompt": 0.0,
+          "d_esr": 0.0
+        },
+        {
+          "task": "pytest-dev__pytest-5413",
+          "d_prompt": 0.0,
+          "d_esr": 0.0
+        },
+        {
+          "task": "pallets__flask-5063",
+          "d_prompt": 0.0,
+          "d_esr": 0.0
+        }
+      ]
+    },
+    "PROJ-MOFF": {
+      "comparison": "PROJ-MOFF",
+      "n_tasks": 10,
+      "mean_delta_prompt": -444968.3,
+      "median_delta_prompt": -457127.0,
+      "ci95_prompt": {
+        "mean": -444968.3,
+        "lo": -591509.8,
+        "hi": -296815.2,
+        "n": 10
+      },
+      "signflip_p_prompt": 0.0022997700229977,
+      "mean_delta_esr": 5.551115123125783e-18,
+      "ci95_esr": {
+        "mean": 5.551115123125783e-18,
+        "lo": -0.1,
+        "hi": 0.1,
+        "n": 10
+      },
+      "signflip_p_esr": 1.0,
+      "tasks": [
+        "psf__requests-1963",
+        "pylint-dev__pylint-7993",
+        "pytest-dev__pytest-7432",
+        "pallets__flask-4045",
+        "pytest-dev__pytest-11143",
+        "pytest-dev__pytest-6116",
+        "psf__requests-863",
+        "psf__requests-3362",
+        "pytest-dev__pytest-5413",
+        "pallets__flask-5063"
+      ],
+      "per_task": [
+        {
+          "task": "psf__requests-1963",
+          "d_prompt": -333404.0,
+          "d_esr": 0.33333333333333337
+        },
+        {
+          "task": "pylint-dev__pylint-7993",
+          "d_prompt": -852816.0,
+          "d_esr": 0.0
+        },
+        {
+          "task": "pytest-dev__pytest-7432",
+          "d_prompt": -591408.0,
+          "d_esr": 0.0
+        },
+        {
+          "task": "pallets__flask-4045",
+          "d_prompt": -78897.0,
+          "d_esr": 0.0
+        },
+        {
+          "task": "pytest-dev__pytest-11143",
+          "d_prompt": -692159.0,
+          "d_esr": 0.0
+        },
+        {
+          "task": "pytest-dev__pytest-6116",
+          "d_prompt": -498012.0,
+          "d_esr": 0.0
+        },
+        {
+          "task": "psf__requests-863",
+          "d_prompt": -599395.0,
+          "d_esr": -0.3333333333333333
+        },
+        {
+          "task": "psf__requests-3362",
+          "d_prompt": -322830.0,
+          "d_esr": 0.0
+        },
+        {
+          "task": "pytest-dev__pytest-5413",
+          "d_prompt": -416242.0,
+          "d_esr": 0.0
+        },
+        {
+          "task": "pallets__flask-5063",
+          "d_prompt": -64520.0,
+          "d_esr": 0.0
+        }
+      ]
+    },
+    "F-MOFF": {
+      "comparison": "F-MOFF",
+      "n_tasks": 10,
+      "mean_delta_prompt": -444968.3,
+      "median_delta_prompt": -457127.0,
+      "ci95_prompt": {
+        "mean": -444968.3,
+        "lo": -591509.8,
+        "hi": -296815.2,
+        "n": 10
+      },
+      "signflip_p_prompt": 0.0022997700229977,
+      "mean_delta_esr": -0.03333333333333333,
+      "ci95_esr": {
+        "mean": -0.03333333333333333,
+        "lo": -0.1,
+        "hi": 0.0,
+        "n": 10
+      },
+      "signflip_p_esr": 1.0,
+      "tasks": [
+        "psf__requests-1963",
+        "pylint-dev__pylint-7993",
+        "pytest-dev__pytest-7432",
+        "pallets__flask-4045",
+        "pytest-dev__pytest-11143",
+        "pytest-dev__pytest-6116",
+        "psf__requests-863",
+        "psf__requests-3362",
+        "pytest-dev__pytest-5413",
+        "pallets__flask-5063"
+      ],
+      "per_task": [
+        {
+          "task": "psf__requests-1963",
+          "d_prompt": -333404.0,
+          "d_esr": 0.0
+        },
+        {
+          "task": "pylint-dev__pylint-7993",
+          "d_prompt": -852816.0,
+          "d_esr": 0.0
+        },
+        {
+          "task": "pytest-dev__pytest-7432",
+          "d_prompt": -591408.0,
+          "d_esr": 0.0
+        },
+        {
+          "task": "pallets__flask-4045",
+          "d_prompt": -78897.0,
+          "d_esr": 0.0
+        },
+        {
+          "task": "pytest-dev__pytest-11143",
+          "d_prompt": -692159.0,
+          "d_esr": 0.0
+        },
+        {
+          "task": "pytest-dev__pytest-6116",
+          "d_prompt": -498012.0,
+          "d_esr": 0.0
+        },
+        {
+          "task": "psf__requests-863",
+          "d_prompt": -599395.0,
+          "d_esr": -0.3333333333333333
+        },
+        {
+          "task": "psf__requests-3362",
+          "d_prompt": -322830.0,
+          "d_esr": 0.0
+        },
+        {
+          "task": "pytest-dev__pytest-5413",
+          "d_prompt": -416242.0,
+          "d_esr": 0.0
+        },
+        {
+          "task": "pallets__flask-5063",
+          "d_prompt": -64520.0,
+          "d_esr": 0.0
+        }
+      ]
+    }
+  },
+  "by_repo": {
+    "pallets/flask": {
+      "F": {
+        "n": 6,
+        "resolved_n": 6,
+        "ESR": 1.0,
+        "mean_prompt": 62731.0,
+        "sum_prompt": 376386,
+        "mean_completion": 10960.0,
+        "sum_completion": 65760,
+        "sum_cached": 375552,
+        "mean_cached": 62592.0,
+        "pt0_n": 0,
+        "insufficient_total": 0,
+        "mean_folded": 0.0,
+        "mean_docker_s": 4.646666666666667
+      },
+      "MOFF": {
+        "n": 6,
+        "resolved_n": 6,
+        "ESR": 1.0,
+        "mean_prompt": 134439.5,
+        "sum_prompt": 806637,
+        "mean_completion": 13681.833333333334,
+        "sum_completion": 82091,
+        "sum_cached": 406272,
+        "mean_cached": 67712.0,
+        "pt0_n": 0,
+        "insufficient_total": 0,
+        "mean_folded": 0.0,
+        "mean_docker_s": 3.8850000000000002
+      },
+      "PROJ": {
+        "n": 6,
+        "resolved_n": 6,
+        "ESR": 1.0,
+        "mean_prompt": 62731.0,
+        "sum_prompt": 376386,
+        "mean_completion": 11177.666666666666,
+        "sum_completion": 67066,
+        "sum_cached": 198144,
+        "mean_cached": 33024.0,
+        "pt0_n": 0,
+        "insufficient_total": 0,
+        "mean_folded": 0.0,
+        "mean_docker_s": 10.23
+      }
+    },
+    "psf/requests": {
+      "F": {
+        "n": 9,
+        "resolved_n": 6,
+        "ESR": 0.6666666666666666,
+        "mean_prompt": 17048.666666666668,
+        "sum_prompt": 153438,
+        "mean_completion": 12344.333333333334,
+        "sum_completion": 111099,
+        "sum_cached": 148992,
+        "mean_cached": 16554.666666666668,
+        "pt0_n": 0,
+        "insufficient_total": 0,
+        "mean_folded": 0.0,
+        "mean_docker_s": 32.74111111111111
+      },
+      "MOFF": {
+        "n": 9,
+        "resolved_n": 7,
+        "ESR": 0.7777777777777778,
+        "mean_prompt": 435591.6666666667,
+        "sum_prompt": 3920325,
+        "mean_completion": 8064.666666666667,
+        "sum_completion": 72582,
+        "sum_cached": 1641216,
+        "mean_cached": 182357.33333333334,
+        "pt0_n": 0,
+        "insufficient_total": 0,
+        "mean_folded": 0.0,
+        "mean_docker_s": 54.715555555555554
+      },
+      "PROJ": {
+        "n": 9,
+        "resolved_n": 7,
+        "ESR": 0.7777777777777778,
+        "mean_prompt": 17048.666666666668,
+        "sum_prompt": 153438,
+        "mean_completion": 12598.0,
+        "sum_completion": 113382,
+        "sum_cached": 101888,
+        "mean_cached": 11320.888888888889,
+        "pt0_n": 0,
+        "insufficient_total": 0,
+        "mean_folded": 0.0,
+        "mean_docker_s": 38.51555555555555
+      }
+    },
+    "pylint-dev/pylint": {
+      "F": {
+        "n": 3,
+        "resolved_n": 3,
+        "ESR": 1.0,
+        "mean_prompt": 11242.0,
+        "sum_prompt": 33726,
+        "mean_completion": 15160.0,
+        "sum_completion": 45480,
+        "sum_cached": 22016,
+        "mean_cached": 7338.666666666667,
+        "pt0_n": 0,
+        "insufficient_total": 0,
+        "mean_folded": 0.0,
+        "mean_docker_s": 7.87
+      },
+      "MOFF": {
+        "n": 3,
+        "resolved_n": 3,
+        "ESR": 1.0,
+        "mean_prompt": 864058.0,
+        "sum_prompt": 2592174,
+        "mean_completion": 10856.0,
+        "sum_completion": 32568,
+        "sum_cached": 865536,
+        "mean_cached": 288512.0,
+        "pt0_n": 0,
+        "insufficient_total": 0,
+        "mean_folded": 0.0,
+        "mean_docker_s": 7.3500000000000005
+      },
+      "PROJ": {
+        "n": 3,
+        "resolved_n": 3,
+        "ESR": 1.0,
+        "mean_prompt": 11242.0,
+        "sum_prompt": 33726,
+        "mean_completion": 13217.666666666666,
+        "sum_completion": 39653,
+        "sum_cached": 33024,
+        "mean_cached": 11008.0,
+        "pt0_n": 0,
+        "insufficient_total": 0,
+        "mean_folded": 0.0,
+        "mean_docker_s": 12.893333333333333
+      }
+    },
+    "pytest-dev/pytest": {
+      "F": {
+        "n": 12,
+        "resolved_n": 12,
+        "ESR": 1.0,
+        "mean_prompt": 25485.5,
+        "sum_prompt": 305826,
+        "mean_completion": 13567.416666666666,
+        "sum_completion": 162809,
+        "sum_cached": 220672,
+        "mean_cached": 18389.333333333332,
+        "pt0_n": 0,
+        "insufficient_total": 0,
+        "mean_folded": 0.0,
+        "mean_docker_s": 6.614999999999999
+      },
+      "MOFF": {
+        "n": 12,
+        "resolved_n": 12,
+        "ESR": 1.0,
+        "mean_prompt": 574940.75,
+        "sum_prompt": 6899289,
+        "mean_completion": 11130.5,
+        "sum_completion": 133566,
+        "sum_cached": 2184192,
+        "mean_cached": 182016.0,
+        "pt0_n": 0,
+        "insufficient_total": 0,
+        "mean_folded": 0.0,
+        "mean_docker_s": 6.340833333333333
+      },
+      "PROJ": {
+        "n": 12,
+        "resolved_n": 12,
+        "ESR": 1.0,
+        "mean_prompt": 25485.5,
+        "sum_prompt": 305826,
+        "mean_completion": 14179.333333333334,
+        "sum_completion": 170152,
+        "sum_cached": 276992,
+        "mean_cached": 23082.666666666668,
+        "pt0_n": 0,
+        "insufficient_total": 0,
+        "mean_folded": 0.0,
+        "mean_docker_s": 4.839166666666666
+      }
+    }
+  },
+  "cached_tokens": {
+    "F": {
+      "sum": 767232,
+      "mean": 25574.4
+    },
+    "MOFF": {
+      "sum": 5097216,
+      "mean": 169907.2
+    },
+    "PROJ": {
+      "sum": 610048,
+      "mean": 20334.933333333334
+    }
+  },
+  "honesty": "SWE-bench Lite 10-instance subset; local Docker FAIL_TO_PASS eval; NOT official SWE-bench leaderboard; n_tasks=10 independent units.",
+  "stats_notes": [
+    "Task-level pairing: mean over 3 reps within task, then paired across 10 tasks.",
+    "Bootstrap seed=20261102 B=10000 on task-level deltas.",
+    "sign-flip two-sided on task-level mean deltas.",
+    "ESR non-inferiority margin if used: -12pp (from V13E prereg).",
+    "cached_tokens from API usage.prompt_tokens_details when present; 0 means absent/not hit."
+  ]
+}
