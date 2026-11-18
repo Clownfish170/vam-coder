@@ -18,3 +18,22 @@ p1/experiments/**/runner_out/
 archive/*.zip
 archive/*.bundle
 archive/server-logs/*.log
+# 方案B目录 junction 指向 p1/* —— 禁止 Git 跟随入库
+development/**/p1_docs_*/
+development/**/v11_visibility/
+development/**/v12_scripts/
+development/**/p1_scripts/
+development/**/dualtoken_ablation/
+development/**/v13a_cr_local/
+development/**/v13a_testpart/
+development/**/v13b_deepseek/
+development/**/v13b_icg/
+development/**/v13b_sp/
+development/**/v13d_preview/
+experiments/V12-F/runs/
+experiments/V12-F/tasks/
+experiments/V13E/runs/
+experiments/V13E/tasks/
+experiments/V13E/fault-injection/
+experiments/P1-TRANSFER/runs/
+experiments/P1-TRANSFER/tasks/

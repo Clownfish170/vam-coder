@@ -9,7 +9,7 @@ D:\Demo\DynaMem\vam-coder/development/V1.3/exploration/dualtoken_ablation	D:\Dem
 D:\Demo\DynaMem\vam-coder/development/V1.3/exploration/v13a_cr_local	D:\Demo\DynaMem\vam-coder\p1\experiments\v13a_cr_local	ALREADY_EXISTS
 D:\Demo\DynaMem\vam-coder/development/V1.3/exploration/v13a_testpart	D:\Demo\DynaMem\vam-coder\p1\experiments\v13a_testpart	ALREADY_EXISTS
 D:\Demo\DynaMem\vam-coder/development/V1.3/exploration/v13b_deepseek	D:\Demo\DynaMem\vam-coder\p1\experiments\v13b_deepseek	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/development/V1.3/exploration/v13b_icg	D:\Demo\DynaMem\vam-coder\p1\experiments\v13b_icg	ALREADY_EXISTS
+D:\Demo\DynaMem\vam-coder/development/V1.3/exploration/v13b_icg	D:\Demo\DynaMem\vam-coder\p1\experiments\v13b_icg	JUNCTION_OK sample=V13B_SKELETON.md
 D:\Demo\DynaMem\vam-coder/development/V1.3/exploration/v13b_sp	D:\Demo\DynaMem\vam-coder\p1\experiments\v13b_sp	ALREADY_EXISTS
 D:\Demo\DynaMem\vam-coder/development/V1.3/exploration/v13d_preview	D:\Demo\DynaMem\vam-coder\p1\experiments\v13d_preview	ALREADY_EXISTS
 D:\Demo\DynaMem\vam-coder/experiments/V12-F/runs/p1_validation	D:\Demo\DynaMem\vam-coder\p1\experiments\p1_validation	ALREADY_EXISTS
@@ -30,9 +30,9 @@ D:\Demo\DynaMem\vam-coder/experiments/V13E/runs/v13e_sah	D:\Demo\DynaMem\vam-cod
 D:\Demo\DynaMem\vam-coder/experiments/V13E/runs/v13e_crossmodel	D:\Demo\DynaMem\vam-coder\p1\experiments\v13e_crossmodel	ALREADY_EXISTS
 D:\Demo\DynaMem\vam-coder/experiments/V13E/fault-injection/vso_fault_injection	D:\Demo\DynaMem\vam-coder\p1\experiments\vso_fault_injection	ALREADY_EXISTS
 D:\Demo\DynaMem\vam-coder/experiments/V13E/runs/v13_holdout_validation	D:\Demo\DynaMem\vam-coder\p1\experiments\v13_holdout_validation	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/experiments/V13E/tasks/tasks_v13a_screen	D:\Demo\DynaMem\vam-coder\p1\tasks_v13a_screen	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/experiments/V13E/tasks/tasks_v13a_testpart	D:\Demo\DynaMem\vam-coder\p1\tasks_v13a_testpart	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/experiments/V13E/tasks/tasks_v13d_chain	D:\Demo\DynaMem\vam-coder\p1\tasks_v13d_chain	ALREADY_EXISTS
+D:\Demo\DynaMem\vam-coder/experiments/V13E/tasks/tasks_v13a_screen	D:\Demo\DynaMem\vam-coder\p1\tasks_v13a_screen	JUNCTION_OK sample=sc01_reuse
+D:\Demo\DynaMem\vam-coder/experiments/V13E/tasks/tasks_v13a_testpart	D:\Demo\DynaMem\vam-coder\p1\tasks_v13a_testpart	JUNCTION_OK sample=sc01_reuse
+D:\Demo\DynaMem\vam-coder/experiments/V13E/tasks/tasks_v13d_chain	D:\Demo\DynaMem\vam-coder\p1\tasks_v13d_chain	JUNCTION_OK sample=chainA_t01
 D:\Demo\DynaMem\vam-coder/experiments/P1-TRANSFER/runs/v13e_p1_transfer	D:\Demo\DynaMem\vam-coder\p1\experiments\v13e_p1_transfer	ALREADY_EXISTS
 D:\Demo\DynaMem\vam-coder/experiments/P1-TRANSFER/runs/v13e_p1_swebench	D:\Demo\DynaMem\vam-coder\p1\experiments\v13e_p1_swebench	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/experiments/P1-TRANSFER/tasks/tasks_transfer_v1	D:\Demo\DynaMem\vam-coder\p1\tasks_transfer_v1	ALREADY_EXISTS
+D:\Demo\DynaMem\vam-coder/experiments/P1-TRANSFER/tasks/tasks_transfer_v1	D:\Demo\DynaMem\vam-coder\p1\tasks_transfer_v1	JUNCTION_OK sample=tr_D01_dotenv_strict
