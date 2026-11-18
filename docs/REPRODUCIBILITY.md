@@ -32,5 +32,5 @@
 
 ## 未完成
 
-- LICENSE / 开源发布说明 — **NEEDS USER APPROVAL**
+- LICENSE：**MIT**（根目录 `LICENSE`）；发布前仍需核对第三方与数据集条款。
 - Docker/一键脚本全量打包 — **NOT COMPLETED**

@@ -1,23 +1,24 @@
-# CITATION.cff — 草稿（NEEDS USER APPROVAL 后再发布）
-# 注意：本文件为占位元数据，作者/DOI/仓库 URL 须人工确认后才能对外引用。
+# CITATION.cff — VAM-Coder
 cff-version: 1.2.0
-message: "If you use VAM-Coder, please cite this draft entry (fields marked TODO must be confirmed)."
+message: "If you use VAM-Coder, please cite this software (and the associated manuscript when published)."
 title: "VAM-Coder"
 type: software
 authors:
-  - family-names: "TODO"
-    given-names: "TODO"
+  - family-names: "Clownfish"
+    given-names: ""
 version: "1.3E"
 date-released: "2026-11-18"
+license: MIT
 abstract: >-
   VAM-Coder is a repository-editing agent framework with Visibility Proof (VP),
   Selective Context Delivery (F), and Verified History Projection (S1) for the
-  V13E flagship configuration.
+  V13E flagship configuration. Dual-Token designs are exploration only and are
+  not claimed as core contributions.
 keywords:
   - VAM-Coder
   - V13E
   - Visibility Proof
   - selective context delivery
   - repository editing
-license: "NEEDS-REVIEW"
-# TODO: repository-code URL, authors, preferred-citation for the SCI manuscript
+  - context management
+# TODO when available: repository-code URL, preferred-citation (SCI manuscript), DOI
