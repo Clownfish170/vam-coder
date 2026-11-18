@@ -1,38 +1,38 @@
 ﻿link_path	canonical_target	status
-D:\Demo\DynaMem\vam-coder/development/V1.0/documentation/p1_docs_v1.0	D:\Demo\DynaMem\vam-coder\p1\docs\v1.0	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/development/V1.1/documentation/p1_docs_v1.1	D:\Demo\DynaMem\vam-coder\p1\docs\v1.1	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/development/V1.2/V1.2F/documentation/p1_docs_v1.2	D:\Demo\DynaMem\vam-coder\p1\docs\v1.2	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/development/V1.1/VP/v11_visibility	D:\Demo\DynaMem\vam-coder\p1\scripts\v11	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/development/V1.2/V1.2F/implementation/v12_scripts	D:\Demo\DynaMem\vam-coder\p1\scripts\v12	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/development/V1.3/V1.3E/implementation/p1_scripts	D:\Demo\DynaMem\vam-coder\p1\scripts	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/development/V1.3/exploration/dualtoken_ablation	D:\Demo\DynaMem\vam-coder\p1\experiments\dualtoken_ablation	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/development/V1.3/exploration/v13a_cr_local	D:\Demo\DynaMem\vam-coder\p1\experiments\v13a_cr_local	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/development/V1.3/exploration/v13a_testpart	D:\Demo\DynaMem\vam-coder\p1\experiments\v13a_testpart	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/development/V1.3/exploration/v13b_deepseek	D:\Demo\DynaMem\vam-coder\p1\experiments\v13b_deepseek	ALREADY_EXISTS
+D:\Demo\DynaMem\vam-coder/development/V1.0/documentation/p1_docs_v1.0	D:\Demo\DynaMem\vam-coder\p1\docs\v1.0	JUNCTION_OK sample=p1_v1.0_design_review.md
+D:\Demo\DynaMem\vam-coder/development/V1.1/documentation/p1_docs_v1.1	D:\Demo\DynaMem\vam-coder\p1\docs\v1.1	JUNCTION_OK sample=v1.1.1_ablation_protocol.md
+D:\Demo\DynaMem\vam-coder/development/V1.2/V1.2F/documentation/p1_docs_v1.2	D:\Demo\DynaMem\vam-coder\p1\docs\v1.2	JUNCTION_OK sample=v1.2_architecture_design.md
+D:\Demo\DynaMem\vam-coder/development/V1.1/VP/v11_visibility	D:\Demo\DynaMem\vam-coder\p1\scripts\v11	JUNCTION_OK sample=__pycache__
+D:\Demo\DynaMem\vam-coder/development/V1.2/V1.2F/implementation/v12_scripts	D:\Demo\DynaMem\vam-coder\p1\scripts\v12	JUNCTION_OK sample=__pycache__
+D:\Demo\DynaMem\vam-coder/development/V1.3/V1.3E/implementation/p1_scripts	D:\Demo\DynaMem\vam-coder\p1\scripts	JUNCTION_OK sample=cr
+D:\Demo\DynaMem\vam-coder/development/V1.3/exploration/dualtoken_ablation	D:\Demo\DynaMem\vam-coder\p1\experiments\dualtoken_ablation	JUNCTION_OK sample=episode_logs
+D:\Demo\DynaMem\vam-coder/development/V1.3/exploration/v13a_cr_local	D:\Demo\DynaMem\vam-coder\p1\experiments\v13a_cr_local	JUNCTION_OK sample=runs
+D:\Demo\DynaMem\vam-coder/development/V1.3/exploration/v13a_testpart	D:\Demo\DynaMem\vam-coder\p1\experiments\v13a_testpart	JUNCTION_OK sample=runs
+D:\Demo\DynaMem\vam-coder/development/V1.3/exploration/v13b_deepseek	D:\Demo\DynaMem\vam-coder\p1\experiments\v13b_deepseek	JUNCTION_OK sample=runs
 D:\Demo\DynaMem\vam-coder/development/V1.3/exploration/v13b_icg	D:\Demo\DynaMem\vam-coder\p1\experiments\v13b_icg	JUNCTION_OK sample=V13B_SKELETON.md
-D:\Demo\DynaMem\vam-coder/development/V1.3/exploration/v13b_sp	D:\Demo\DynaMem\vam-coder\p1\experiments\v13b_sp	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/development/V1.3/exploration/v13d_preview	D:\Demo\DynaMem\vam-coder\p1\experiments\v13d_preview	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/experiments/V12-F/runs/p1_validation	D:\Demo\DynaMem\vam-coder\p1\experiments\p1_validation	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/experiments/V12-F/runs/p2_ablation	D:\Demo\DynaMem\vam-coder\p1\experiments\p2_ablation	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/experiments/V12-F/runs/p3_crossmodel_qwen	D:\Demo\DynaMem\vam-coder\p1\experiments\p3_crossmodel_qwen	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/experiments/V12-F/runs/independent_validation	D:\Demo\DynaMem\vam-coder\p1\experiments\independent_validation	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/experiments/V12-F/runs/validation_p0	D:\Demo\DynaMem\vam-coder\p1\experiments\validation_p0	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/experiments/V12-F/runs/v12_p0_smoke	D:\Demo\DynaMem\vam-coder\p1\experiments\v12_p0_smoke	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/experiments/V12-F/runs/v12_p1_execution	D:\Demo\DynaMem\vam-coder\p1\experiments\v12_p1_execution	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/experiments/V12-F/runs/v12_p1_final_readiness	D:\Demo\DynaMem\vam-coder\p1\experiments\v12_p1_final_readiness	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/experiments/V12-F/runs/v12_p1_readiness	D:\Demo\DynaMem\vam-coder\p1\experiments\v12_p1_readiness	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/experiments/V12-F/runs/v12_p1_review	D:\Demo\DynaMem\vam-coder\p1\experiments\v12_p1_review	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/experiments/V12-F/runs/round3_deepseek_flash	D:\Demo\DynaMem\vam-coder\p1\experiments\round3_deepseek_flash	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/experiments/V12-F/tasks/tasks_p1_validation	D:\Demo\DynaMem\vam-coder\p1\tasks_p1_validation	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/experiments/V12-F/tasks/tasks_independent_v1	D:\Demo\DynaMem\vam-coder\p1\tasks_independent_v1	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/experiments/V12-F/tasks/tasks_v13_holdout	D:\Demo\DynaMem\vam-coder\p1\tasks_v13_holdout	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/experiments/V13E/runs/v13e_sah	D:\Demo\DynaMem\vam-coder\p1\experiments\v13e_sah	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/experiments/V13E/runs/v13e_crossmodel	D:\Demo\DynaMem\vam-coder\p1\experiments\v13e_crossmodel	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/experiments/V13E/fault-injection/vso_fault_injection	D:\Demo\DynaMem\vam-coder\p1\experiments\vso_fault_injection	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/experiments/V13E/runs/v13_holdout_validation	D:\Demo\DynaMem\vam-coder\p1\experiments\v13_holdout_validation	ALREADY_EXISTS
+D:\Demo\DynaMem\vam-coder/development/V1.3/exploration/v13b_sp	D:\Demo\DynaMem\vam-coder\p1\experiments\v13b_sp	JUNCTION_OK sample=runs
+D:\Demo\DynaMem\vam-coder/development/V1.3/exploration/v13d_preview	D:\Demo\DynaMem\vam-coder\p1\experiments\v13d_preview	JUNCTION_OK sample=probe
+D:\Demo\DynaMem\vam-coder/experiments/V12-F/runs/p1_validation	D:\Demo\DynaMem\vam-coder\p1\experiments\p1_validation	JUNCTION_OK sample=episode_logs
+D:\Demo\DynaMem\vam-coder/experiments/V12-F/runs/p2_ablation	D:\Demo\DynaMem\vam-coder\p1\experiments\p2_ablation	JUNCTION_OK sample=episode_logs
+D:\Demo\DynaMem\vam-coder/experiments/V12-F/runs/p3_crossmodel_qwen	D:\Demo\DynaMem\vam-coder\p1\experiments\p3_crossmodel_qwen	JUNCTION_OK sample=episode_logs
+D:\Demo\DynaMem\vam-coder/experiments/V12-F/runs/independent_validation	D:\Demo\DynaMem\vam-coder\p1\experiments\independent_validation	JUNCTION_OK sample=drytest
+D:\Demo\DynaMem\vam-coder/experiments/V12-F/runs/validation_p0	D:\Demo\DynaMem\vam-coder\p1\experiments\validation_p0	JUNCTION_OK sample=exp6_max_tokens
+D:\Demo\DynaMem\vam-coder/experiments/V12-F/runs/v12_p0_smoke	D:\Demo\DynaMem\vam-coder\p1\experiments\v12_p0_smoke	JUNCTION_OK sample=execution
+D:\Demo\DynaMem\vam-coder/experiments/V12-F/runs/v12_p1_execution	D:\Demo\DynaMem\vam-coder\p1\experiments\v12_p1_execution	JUNCTION_OK sample=analysis
+D:\Demo\DynaMem\vam-coder/experiments/V12-F/runs/v12_p1_final_readiness	D:\Demo\DynaMem\vam-coder\p1\experiments\v12_p1_final_readiness	JUNCTION_OK sample=blocker_register.csv
+D:\Demo\DynaMem\vam-coder/experiments/V12-F/runs/v12_p1_readiness	D:\Demo\DynaMem\vam-coder\p1\experiments\v12_p1_readiness	JUNCTION_OK sample=git_integrity_report.md
+D:\Demo\DynaMem\vam-coder/experiments/V12-F/runs/v12_p1_review	D:\Demo\DynaMem\vam-coder\p1\experiments\v12_p1_review	JUNCTION_OK sample=p1_pre_execution_review.md
+D:\Demo\DynaMem\vam-coder/experiments/V12-F/runs/round3_deepseek_flash	D:\Demo\DynaMem\vam-coder\p1\experiments\round3_deepseek_flash	JUNCTION_OK sample=episode_logs
+D:\Demo\DynaMem\vam-coder/experiments/V12-F/tasks/tasks_p1_validation	D:\Demo\DynaMem\vam-coder\p1\tasks_p1_validation	JUNCTION_OK sample=p1_L01a
+D:\Demo\DynaMem\vam-coder/experiments/V12-F/tasks/tasks_independent_v1	D:\Demo\DynaMem\vam-coder\p1\tasks_independent_v1	JUNCTION_OK sample=ind_L01a
+D:\Demo\DynaMem\vam-coder/experiments/V12-F/tasks/tasks_v13_holdout	D:\Demo\DynaMem\vam-coder\p1\tasks_v13_holdout	JUNCTION_OK sample=v13_D01
+D:\Demo\DynaMem\vam-coder/experiments/V13E/runs/v13e_sah	D:\Demo\DynaMem\vam-coder\p1\experiments\v13e_sah	JUNCTION_OK sample=ABORTED_screen15b_e1_external_20261111_151756_switched_to_DS
+D:\Demo\DynaMem\vam-coder/experiments/V13E/runs/v13e_crossmodel	D:\Demo\DynaMem\vam-coder\p1\experiments\v13e_crossmodel	JUNCTION_OK sample=runs
+D:\Demo\DynaMem\vam-coder/experiments/V13E/fault-injection/vso_fault_injection	D:\Demo\DynaMem\vam-coder\p1\experiments\vso_fault_injection	JUNCTION_OK sample=phase2_runs
+D:\Demo\DynaMem\vam-coder/experiments/V13E/runs/v13_holdout_validation	D:\Demo\DynaMem\vam-coder\p1\experiments\v13_holdout_validation	JUNCTION_OK sample=episode_logs
 D:\Demo\DynaMem\vam-coder/experiments/V13E/tasks/tasks_v13a_screen	D:\Demo\DynaMem\vam-coder\p1\tasks_v13a_screen	JUNCTION_OK sample=sc01_reuse
 D:\Demo\DynaMem\vam-coder/experiments/V13E/tasks/tasks_v13a_testpart	D:\Demo\DynaMem\vam-coder\p1\tasks_v13a_testpart	JUNCTION_OK sample=sc01_reuse
 D:\Demo\DynaMem\vam-coder/experiments/V13E/tasks/tasks_v13d_chain	D:\Demo\DynaMem\vam-coder\p1\tasks_v13d_chain	JUNCTION_OK sample=chainA_t01
-D:\Demo\DynaMem\vam-coder/experiments/P1-TRANSFER/runs/v13e_p1_transfer	D:\Demo\DynaMem\vam-coder\p1\experiments\v13e_p1_transfer	ALREADY_EXISTS
-D:\Demo\DynaMem\vam-coder/experiments/P1-TRANSFER/runs/v13e_p1_swebench	D:\Demo\DynaMem\vam-coder\p1\experiments\v13e_p1_swebench	ALREADY_EXISTS
+D:\Demo\DynaMem\vam-coder/experiments/P1-TRANSFER/runs/v13e_p1_transfer	D:\Demo\DynaMem\vam-coder\p1\experiments\v13e_p1_transfer	JUNCTION_OK sample=runs
+D:\Demo\DynaMem\vam-coder/experiments/P1-TRANSFER/runs/v13e_p1_swebench	D:\Demo\DynaMem\vam-coder\p1\experiments\v13e_p1_swebench	JUNCTION_OK sample=repos
 D:\Demo\DynaMem\vam-coder/experiments/P1-TRANSFER/tasks/tasks_transfer_v1	D:\Demo\DynaMem\vam-coder\p1\tasks_transfer_v1	JUNCTION_OK sample=tr_D01_dotenv_strict
