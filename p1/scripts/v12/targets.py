@@ -154,6 +154,36 @@ def parse_edit_targets(
                 result.reasons.append(f"candidate_full:{rel}")
 
     result.candidate_full -= result.exact_paths
+
+    # 架构回退（P1_TRANSFER）：无路径/无候选时，用指令中的符号定位文件。
+    # 典型：回归步只写 unique_everseen、不写 more.py → E/C 皆空 → 上下文空。
+    # 不改任务指令；仅在 E、C 均空时注入 candidate_full（≤3）。
+    if not result.exact_paths and not result.candidate_full and symbol_to_files:
+        file_set = set(files)
+        hit_paths: list[str] = []
+        for sym, paths in symbol_to_files.items():
+            if not sym or len(sym) < 4:
+                continue
+            if not _boundary_re(sym).search(instr):
+                continue
+            for p in paths:
+                pn = _norm(p)
+                if pn in file_set and pn not in result.excluded:
+                    hit_paths.append(pn)
+        # 去重保序
+        seen: set[str] = set()
+        uniq: list[str] = []
+        for p in hit_paths:
+            if p not in seen:
+                seen.add(p)
+                uniq.append(p)
+        if 0 < len(uniq) <= 3:
+            for rel in uniq:
+                result.candidate_full.add(rel)
+                result.target_resolution_reason[rel] = "symbol_mention_fallback"
+                result.reasons.append(f"symbol_fallback:{rel}")
+            result.candidate_full -= result.exact_paths
+
     return result
 
 

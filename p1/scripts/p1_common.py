@@ -94,6 +94,10 @@ def chat_completion(
     }
     if seed is not None:
         payload["seed"] = seed
+    # P1 rescue: disable hybrid-reasoning thinking (qwen3.8-flash etc.)
+    # Do NOT combine with reasoning_effort. Only when explicitly set.
+    if os.environ.get("P1_ENABLE_THINKING", "").strip() == "0":
+        payload["enable_thinking"] = False
     data = json.dumps(payload).encode("utf-8")
     headers = {"Content-Type": "application/json"}
     # 可选鉴权（round3 云端端点）：仅当环境变量存在时附加；本地 llama-server
@@ -206,6 +210,17 @@ def apply_blocks(
         rel_n = posix(rel).strip()
         while rel_n.startswith("./"):
             rel_n = rel_n[2:]
+        # 路径漂移归一化：模型常把源码注释里的 src/pkg/... 写进 FILE 头。
+        # 工作区为扁平布局（packaging/、pluggy/…）且目标在无 src 前缀处存在时，剥掉 src/。
+        if rel_n.startswith("src/"):
+            alt = rel_n[4:]
+            if alt and (ws / alt).exists():
+                rel_n = alt
+            elif alt and not (ws / "src").exists():
+                # 尚未误建 src/ 树，且第一段在工作区根下存在
+                head = alt.split("/", 1)[0]
+                if head and (ws / head).exists():
+                    rel_n = alt
         if (
             not rel_n.endswith(".py")
             or rel_n.startswith("/")
@@ -295,7 +310,7 @@ def _read_workspace_files(workspace: Path) -> dict[str, str]:
         if rel.startswith("eval/") or "/__pycache__/" in f"/{rel}":
             continue
         try:
-            files[rel] = p.read_text(encoding="utf-8")
+            files[rel] = p.read_text(encoding="utf-8", errors="replace")
         except OSError:
             continue
     return files
@@ -617,10 +632,25 @@ def tokens_estimate_chars(text: str, chars_per_token: int = 4) -> int:
 
 
 def build_messages(
-    history: list[dict], instruction: str, context_text: str
+    history: list[dict],
+    instruction: str,
+    context_text: str,
+    *,
+    ledger_lines: list[str] | None = None,
 ) -> list[dict]:
-    user = (
-        f"=== TASK ===\n{instruction.strip()}\n\n"
+    """拼装最终 messages。
+
+    ledger_lines（V13E·S2 义务账本）：历史步骤指令的紧凑行，插在 TASK 与 CONTEXT
+    之间；为 None/空时输出与旧版**逐字节一致**。账本只含指令文本，不含文件正文，
+    不产生 `FILE:` 围栏，故不影响 `_CTX_FILE_RE` / `_ASSIST_FILE_RE` 的提取。
+    """
+    user = f"=== TASK ===\n{instruction.strip()}\n\n"
+    if ledger_lines:
+        user += "=== OBLIGATIONS ===\n"
+        for line in ledger_lines:
+            user += f"- {line}\n"
+        user += "\n"
+    user += (
         f"=== CONTEXT ===\n{context_text.strip()}\n\n"
         "=== OUTPUT FORMAT ===\n"
         "Respond only with FILE: blocks (or NO_EDIT)."

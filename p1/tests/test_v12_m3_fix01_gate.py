@@ -36,6 +36,7 @@ class _FakeChat:
             latency_ms=1.0,
             usage_source="api",
             error=None,
+            raw_usage={},
         )
 
 

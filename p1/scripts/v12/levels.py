@@ -147,8 +147,20 @@ def relevance_scores(
     *,
     task_aware: bool,
 ) -> dict[str, int]:
-    """r(f|τ)；不决定 must。"""
+    """r(f|τ)；不决定 must。
+
+    stem 命中仅在**非否定子句**中计分（“不要修改 x.py”不得把 x 抬成 related）。
+    """
     scores: dict[str, int] = {}
+    instr = instruction or ""
+    # 否定子句剥离（与 targets 同源的否定短语）
+    pos_instr = re.sub(
+        r"(不要修改|不要动|禁止改动|保持不变|勿改|禁止修改|"
+        r"do not modify|don't change|dont change|leave unchanged)[^。；;\n]*",
+        " ",
+        instr,
+        flags=re.I,
+    )
     for rel in files:
         r = 0
         if task_aware:
@@ -161,7 +173,7 @@ def relevance_scores(
                 r += 1
             base = rel.split("/")[-1]
             stem = base.rsplit(".", 1)[0] if base else ""
-            if stem and len(stem) >= 3 and stem in (instruction or ""):
+            if stem and len(stem) >= 3 and stem in pos_instr:
                 r += 1
         else:
             # G: 无任务感知过滤；对索引内文件给中性高分以便 full_if_indexed
@@ -182,6 +194,7 @@ def build_plan(
     system_history_tokens_est: int = 0,
     source_by_file: dict[str, str] | None = None,
     file_deps: dict[str, set[str]] | None = None,
+    icg_state: dict | None = None,
 ) -> ExpandPlan:
     cfg = arm_cfg
     files = [str(f).replace("\\", "/") for f in workspace_files]
@@ -496,8 +509,103 @@ def build_plan(
         plan.insufficient_reasons.append("REQUIRED_CONTEXT_EXCEEDS_LIMIT")
         plan.rules.append("REQUIRED_CONTEXT_EXCEEDS_LIMIT")
 
+    # V13A_testpart / V13B：ICG（可选 OSCA 跨步价格 + 倒排检索增强）
+    # 落选 → NONE；入选保持 FULL。不改 must/E/C/O′。
+    if getattr(cfg, "icg_enabled", False):
+        from cr.icg import ICGCandidate, path_extract_intent, _instr_hits_file, _hit_in_edit_clause
+        from cr.icg import select_optional_full
+
+        size_map = {k: int(v or 0) for k, v in (file_sizes or {}).items()}
+        for fl in plan.files:
+            if not hasattr(fl, "size_bytes"):
+                fl.size_bytes = size_map.get(fl.relpath.replace("\\", "/"), 0)  # type: ignore[attr-defined]
+
+        # 倒排检索（V13B 特别版）
+        retrieval_hits: set[str] = set()
+        if getattr(cfg, "retrieval_enabled", False) and source_by_file:
+            from cr.retrieval import build_file_index, retrieve_candidates
+
+            idx = build_file_index(source_by_file)
+            universe = {f.relpath.replace("\\", "/") for f in plan.files}
+            hits = retrieve_candidates(instruction, idx, universe=universe)
+            retrieval_hits = set(hits.keys())
+            plan.rules.append(f"retrieval_hits={len(retrieval_hits)}")
+
+        cands: list[ICGCandidate] = []
+        for fl in plan.files:
+            if fl.level != "FULL":
+                continue
+            if fl.is_must or fl.is_edit_target or fl.is_candidate:
+                continue
+            path = fl.relpath.replace("\\", "/")
+            cands.append(
+                ICGCandidate(
+                    path=path,
+                    size_bytes=int(getattr(fl, "size_bytes", 0) or 200),
+                    r_score=int(getattr(fl, "r_score", 0) or 0),
+                    instruction_hit=_instr_hits_file(path, instruction)
+                    or path in retrieval_hits,
+                    dep_touch=bool(getattr(fl, "is_must", False)),
+                    extract_intent=path_extract_intent(path, instruction),
+                )
+            )
+
+        budget = int(getattr(cfg, "icg_budget_tokens", 512) or 512)
+        if getattr(cfg, "osca_enabled", False):
+            from cr.osca import OscState, select_osca
+
+            # icg_state: dict 可跨步；缺省则进程内临时（单步）
+            if icg_state is None:
+                icg_state = {}
+            st = icg_state.setdefault(
+                "osca",
+                OscState(
+                    lam=float(icg_state.get("lam", 0.02)),
+                    used_tokens=int(icg_state.get("used", 0)),
+                    alpha=float(icg_state.get("alpha", 0.01)),
+                    rho=float(icg_state.get("rho", 0.15)),
+                ),
+            )
+            result = select_osca(
+                cands, instruction=instruction, budget_tokens=budget, state=st
+            )
+            icg_state["lam"] = st.lam
+            icg_state["used"] = st.used_tokens
+            plan.rules.append(f"osca_lam={st.lam:.4f}")
+            plan.rules.append(f"osca_used={st.used_tokens}")
+        else:
+            result = select_optional_full(cands, instruction=instruction, budget_tokens=budget)
+
+        selected = result.selected
+        for fl in plan.files:
+            if fl.level != "FULL":
+                continue
+            if fl.is_must or fl.is_edit_target or fl.is_candidate:
+                continue
+            path = fl.relpath.replace("\\", "/")
+            if path not in selected:
+                fl.level = "NONE"
+                fl.reason = "icg_skip"
+            else:
+                fl.reason = "icg_full"
+                plan.rules.append(f"icg_full:{path}")
+        plan.rules.append(f"icg_selected={len(selected)}")
+        plan.rules.append(f"icg_skipped={len(result.skipped)}")
+
+        plan.est_optional_full_tokens = 0
+        for fl in plan.files:
+            if fl.level == "FULL" and not fl.is_must and not fl.is_edit_target and not fl.is_candidate:
+                plan.est_optional_full_tokens += _est_tokens(
+                    file_sizes.get(fl.relpath, 0), cfg.chars_per_token
+                )
+        plan.required_context_tokens_est = (
+            system_history_tokens_est
+            + plan.est_must_full_tokens
+            + plan.est_digest_tokens
+            + plan.est_optional_full_tokens
+        )
+
     plan.files.sort(key=lambda f: f.relpath)
-    # attach k_max to audit via closure_depth field already
     return plan
 
 

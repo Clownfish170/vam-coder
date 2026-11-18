@@ -19,7 +19,7 @@ def _read_files(workspace: Path) -> dict[str, str]:
         if rel.startswith("eval/") or "/__pycache__/" in f"/{rel}":
             continue
         try:
-            files[rel] = p.read_text(encoding="utf-8")
+            files[rel] = p.read_text(encoding="utf-8", errors="replace")
         except OSError:
             continue
     return files

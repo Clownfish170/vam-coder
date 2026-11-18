@@ -1,4 +1,8 @@
-"""V1.2 上下文装配：Full / Digest / NONE + O′ 安全省略 + 窗口保护。"""
+"""V1.2 上下文装配：Full / Digest / NONE + O′ 安全省略 + 窗口保护。
+
+V1.3A_CR：相关非目标在 O′ 不可省略时，可改为 MEM 紧凑展开（cr_enabled）。
+E/C/must 始终 FILE 整文件；禁止裸 ID。
+"""
 
 from __future__ import annotations
 
@@ -22,7 +26,7 @@ def _read_files(workspace: Path) -> dict[str, str]:
         if rel.startswith("eval/") or "/__pycache__/" in f"/{rel}":
             continue
         try:
-            files[rel] = p.read_text(encoding="utf-8")
+            files[rel] = p.read_text(encoding="utf-8", errors="replace")
         except OSError:
             continue
     return files
@@ -61,6 +65,11 @@ class AssembledV12:
     n_verified_safe_omissions: int = 0
     summary_blocks: int = 0
     notes: list[str] = field(default_factory=list)
+    # V1.3A_CR
+    mem_blocks: int = 0
+    cr_refs: list[dict] = field(default_factory=list)
+    cr_store: object | None = None
+    cr_expanded_paths: list[str] = field(default_factory=list)
 
 
 def assemble_v12(
@@ -73,6 +82,9 @@ def assemble_v12(
     system_history_tokens_est: int = 0,
     force_full: set[str] | None = None,
     record_context_marks: bool = False,
+    cr_store: object | None = None,
+    cr_instruction: str = "",
+    slow_store: object | None = None,
 ) -> AssembledV12:
     """按计划装配。
 
@@ -80,6 +92,8 @@ def assemble_v12(
     force_full：预检失败后必须 FULL 的路径（跳过 O′）。
     record_context_marks：默认 False——**不再**把本步 context 写入 tracker 作为跨步授权
     （P0 缺陷修复；诊断可显式打开）。
+    cr_store：V1.3A_CR 内容寻址库；cfg.cr_enabled=False 时忽略。
+    slow_store：V13D 慢层；sha 一致时 related 可注入已验证紧凑正文。
     """
     symbols_by_file = symbols_by_file or {}
     force_full = {_posix(p) for p in (force_full or set())}
@@ -92,6 +106,15 @@ def assemble_v12(
     ctx.insufficient_reasons = list(plan.insufficient_reasons)
     ctx.required_context_tokens_est = plan.required_context_tokens_est
     ctx.available_context_tokens = plan.available_context_tokens
+
+    cr_on = bool(getattr(cfg, "cr_enabled", False)) and cr_store is not None
+    cr_mode = str(getattr(cfg, "cr_related_mode", "full"))
+    if cr_on:
+        ctx.cr_store = cr_store
+        ctx.notes.append(f"cr_enabled:mode={cr_mode}")
+    slow_on = bool(getattr(cfg, "slow_enabled", False)) and slow_store is not None
+    if slow_on:
+        ctx.notes.append("slow_enabled")
 
     current_paths: set[str] = set()
     for fl in plan.files:
@@ -181,6 +204,103 @@ def assemble_v12(
                     }
                 )
                 continue
+
+        # V1.3A_CR：相关非目标（非 must/ET/C）
+        # 1.5B 实证：MEM/紧凑正文 → NO_EDIT；仅完整 FILE 或不注入可靠。
+        # V13A：cr_related_mode=compact/none → O′ 失败后跳过注入。
+        # V13B（迭代）：ICG 已在 plan 层把落选降为 NONE；
+        #   入选 reason=icg_full 且 cr_related_mode=full → 走下方 FILE，不 skip。
+        is_forced_full = (
+            fl.is_must or fl.is_edit_target or fl.is_candidate or rel in force_full
+        )
+        is_icg_full = getattr(fl, "reason", "") == "icg_full"
+        if (
+            cr_on
+            and not is_forced_full
+            and fl.level == "FULL"
+            and cr_mode in ("compact", "none", "full")
+            and not is_icg_full
+        ):
+            # V13A blanket-skip（compact/none）；icg_full 或 full 模式不在此 skip
+            if cr_mode in ("compact", "none"):
+                try:
+                    from cr.store import MemoryStore
+
+                    store: MemoryStore = cr_store  # type: ignore[assignment]
+                    try:
+                        store.put_raw(
+                            content,
+                            kind="source_full",
+                            origin={"file_path": rel, "role": "related_cache"},
+                        )
+                    except Exception:
+                        pass
+                    ctx.audits.append(
+                        {
+                            "file": rel,
+                            "action": "CR_RELATED_SKIPPED",
+                            "verified_safe_omission": False,
+                            "reason": "related_non_target_not_injected",
+                            "is_must": False,
+                        }
+                    )
+                    ctx.notes.append(f"cr_skip_related:{rel}")
+                    continue
+                except Exception as e:  # fail-closed → 磁盘 FULL
+                    ctx.notes.append(f"cr_fallback_full:{rel}:{type(e).__name__}:{e}")
+
+        # V13A/V13B：入选或强制相关正文入库（内容寻址侧车）
+        if cr_on and not is_forced_full and fl.level == "FULL" and cr_store is not None:
+            try:
+                from cr.store import MemoryStore
+
+                st: MemoryStore = cr_store  # type: ignore[assignment]
+                st.put_raw(
+                    content,
+                    kind="source_full",
+                    origin={
+                        "file_path": rel,
+                        "role": "related_selected" if is_icg_full else "related_full",
+                    },
+                )
+            except Exception:
+                pass
+
+        # V13D：慢层命中（sha 一致）→ 注入已验证紧凑正文（仍用 FILE 头，保持协议）
+        if (
+            slow_on
+            and not is_forced_full
+            and fl.level == "FULL"
+            and fl.content_sha256
+        ):
+            try:
+                from cr.slowmem import SlowStore
+
+                sstore: SlowStore = slow_store  # type: ignore[assignment]
+                unit = sstore.query(rel, fl.content_sha256)
+                if unit is not None and unit.body_norm:
+                    block = _file_block(rel, unit.body_norm)
+                    parts.append(block)
+                    current_paths.add(rel)
+                    ctx.file_blocks += 1
+                    nbytes = len(unit.body_norm.encode("utf-8"))
+                    ctx.injected_chars += nbytes
+                    ctx.expand_included_bytes += nbytes
+                    ctx.audits.append(
+                        {
+                            "file": rel,
+                            "action": "SLOW_EXPAND",
+                            "verified_safe_omission": False,
+                            "content_id": unit.content_id,
+                            "origin": unit.origin,
+                            "included_bytes": nbytes,
+                            "is_must": False,
+                        }
+                    )
+                    ctx.notes.append(f"slow_hit:{rel}")
+                    continue
+            except Exception as e:  # fail-closed → 磁盘 FULL
+                ctx.notes.append(f"slow_fallback:{rel}:{type(e).__name__}")
 
         parts.append(_file_block(rel, content))
         current_paths.add(rel)

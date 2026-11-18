@@ -50,12 +50,15 @@ from p1_common import (  # noqa: E402
 )
 import p1_common as _p1c  # noqa: E402
 
-from v12.assemble import assemble_v12  # noqa: E402
+from v12.assemble import AssembledV12, assemble_v12  # noqa: E402
 from v12.audit import V12Audit  # noqa: E402
 from v12.config import load_arm  # noqa: E402
 from v12.levels import build_plan  # noqa: E402
 from v12.proof import tracker_from_history  # noqa: E402
 from v12.messages_visibility import verify_omissions_in_messages  # noqa: E402
+from v12.history_project import project_history  # noqa: E402
+from v12.obligations import open_lines, parse_obligation, raise_sha  # noqa: E402
+from v12.hist_external import bm25_select, summarize_history  # noqa: E402
 from v12.targets import parse_edit_targets  # noqa: E402
 from v11.visibility import VisibilityTracker, content_sha256  # noqa: E402
 
@@ -66,6 +69,21 @@ V12_ARMS = {
     "H": "vam_coder_v1.2_H",
     "V13A": "vam_coder_v1.3_V13A",  # adaptive_a opt-in; does not alter E/F/G/H
     "V13B": "vam_coder_v1.3_V13B",  # F-default with no-body→NONE; does not alter E/F
+    "V13ACR": "vam_coder_v1.3A_CR",  # content-addressed related non-target (MEM expand)
+    "V13ASID": "vam_coder_v1.3A_SID",  # single-ID compact control arm
+    "V13AICG": "vam_coder_v1.3A_ICG",  # information-coverage greedy optional FULL
+    "V13BICG": "vam_coder_v1.3B_ICG",  # V13B iteration: ICG default (post-testpart)
+    "V13BTESTPART": "vam_coder_v1.3B_testpart",  # ICG+C (testpart lineage)
+    "V13BSP": "vam_coder_v1.3B_special",  # ICG+OSCA+retrieval+C
+    "V13DVAD": "vam_coder_v1.3D_VAD",  # V13D: ICG + verified slow distill
+    "V13EPROJ": "vam_coder_v1.3E_PROJ",  # V13E·SAH: F + 历史状态投影（S1 消融）
+    "V13ESAH": "vam_coder_v1.3E_SAH",  # V13E·SAH: F + 投影 + 义务账本（主臂）
+    "V13ICGSAH": "vam_coder_v1.3E_ICGSAH",  # V13E·SAH: ICG + 投影 + 账本（全栈）
+    # V13E 外部对照臂（论文对比表）
+    "TRUNC": "vam_coder_ext_TRUNC",  # 滑窗截断（预算由 args.max_history_chars 按臂覆盖）
+    "SUMM": "vam_coder_ext_SUMM",  # LLM 摘要压缩（摘要器成本全计）
+    "RETR": "vam_coder_ext_RETR",  # BM25 top-k 历史检索
+    "MEMORYOFF": "memory_off",  # baseline: full repo dump each step (no VAM memory)
 }
 P0_TASKS = [
     "v1_RUR02",
@@ -158,7 +176,8 @@ def workspace_snapshot(workspace: Path) -> tuple[dict[str, str], dict[str, int],
         rel = posix(p.relative_to(workspace))
         if rel.startswith("eval/") or "__pycache__" in rel:
             continue
-        text = p.read_text(encoding="utf-8")
+        # public-repo snapshots may contain latin-1/non-utf8 .py; don't crash the episode
+        text = p.read_text(encoding="utf-8", errors="replace")
         files[rel] = text
         sizes[rel] = len(text.encode("utf-8"))
         sha[rel] = content_sha256(text)
@@ -175,10 +194,13 @@ def run_episode_arm(
     args,
     cfg: AppConfig,
     rep: int,
+    slow_store=None,
 ) -> list[dict]:
     ep_id = episode["id"]
     baseline = V12_ARMS[arm]
-    base_dir = out_dir / "episodes" / ep_id / baseline
+    # rep>1 使用独立目录，避免覆盖 R1 产物
+    arm_dir = baseline if rep <= 1 else f"{baseline}_R{rep}"
+    base_dir = out_dir / "episodes" / ep_id / arm_dir
     workspace = base_dir / "workspace"
     steps_dir = base_dir / "steps"
     steps_dir.mkdir(parents=True, exist_ok=True)
@@ -192,6 +214,7 @@ def run_episode_arm(
         # P2 消融开关（prereg §6）；默认 False → 覆盖值与冻结配置一致
         must_full_dep_closure=not getattr(args, "no_must_closure", False),
         o_prime=not getattr(args, "no_oprime", False),
+        sah_project_mode=getattr(args, "sah_project_mode", "last"),
     )
     audit = V12Audit(path=base_dir / "logs" / "injection_audit.jsonl")
     # episode 级 tracker 仅作诊断；O′ 授权用每步 history 证明 + 发送前强制校验
@@ -200,13 +223,29 @@ def run_episode_arm(
     store = manager = None
     cfg2 = copy.deepcopy(cfg)
     store, manager, cfg2 = open_memory(base_dir, cfg2)
+    # V1.3A_CR / V13B：episode 级内容寻址库（与符号 store 分离）
+    cr_store = None
+    if getattr(arm_cfg, "cr_enabled", False):
+        from cr.store import MemoryStore
+
+        cr_store = MemoryStore()
+    # V13D：跨集共享 slow_store 由参数传入；未传且开启时建 per-episode 空库
+    if slow_store is None and getattr(arm_cfg, "slow_enabled", False):
+        from cr.slowmem import SlowStore
+
+        slow_store = SlowStore()
+    # V13B 特别版：OSCA 跨步状态（episode 生命周期）
+    icg_state: dict = {}
     t0 = time.perf_counter()
     manager.sync(workspace, ep_id)
     t_init = (time.perf_counter() - t0) * 1000.0
 
     rows: list[dict] = []
     ledger_tokens = 0
-    for step in episode["steps"]:
+    # V13E·SAH：投影统计 + 义务账本（v2：窄口径 + 只留未结）
+    sah_folded_total = 0
+    sah_obligations: list = []  # list[v12.obligations.Obligation]
+    for step_no, step in enumerate(episode["steps"], start=1):
         t_step0 = time.perf_counter()
         manager.sync(workspace, ep_id)
         ebf = entries_by_file_map(store, ep_id)
@@ -218,50 +257,107 @@ def run_episode_arm(
         trimmed, dropped, _ = trim_history(history, args.max_history_chars)
         if getattr(args, "history_policy", "keep") == "redact":
             trimmed = redact_assistant_code(trimmed)
-        hist_est = tokens_estimate_chars(json.dumps(trimmed, ensure_ascii=False), cfg2.chars_per_token)
+        # V13E·S1：trim/redact 之后、hist_est / proof_tr / build_messages 之前投影，
+        # 三者共用同一份投影后历史（证明与实发一致；对 O′ 等价，见 v13e_sah_design §3）
+        sah_stats = {"folded_blocks": 0, "kept_blocks": 0}
+        if getattr(arm_cfg, "sah_project", False):
+            trimmed, sah_stats = project_history(
+                trimmed, getattr(arm_cfg, "sah_project_mode", "last")
+            )
+            sah_folded_total += int(sah_stats.get("folded_blocks", 0))
+        # V13E·S2（v2）：只渲染仍未结的义务（add=符号缺席；modify=提出后未再改）
+        sah_ledger_lines: list[str] | None = None
+        if getattr(arm_cfg, "sah_ledger", False) and sah_obligations:
+            opened = open_lines(sah_obligations, files, sha)
+            sah_ledger_lines = opened or None
+        # ---- V13E 外部对照臂（SUMM/RETR 在投影之后、证明与发包之前介入）----
+        aux_prompt_tokens = 0
+        aux_completion_tokens = 0
+        if getattr(arm_cfg, "hist_summary", False):
+            trimmed, aux_prompt_tokens, aux_completion_tokens = summarize_history(
+                trimmed,
+                call_fn=chat_completion,
+                endpoint=endpoint,
+                model=model,
+                recent=int(getattr(arm_cfg, "hist_summary_recent", 2)),
+                timeout=args.timeout,
+                seed=args.seed,
+            )
+        if getattr(arm_cfg, "hist_retrieve", False):
+            trimmed, _n_hist_sel = bm25_select(
+                trimmed,
+                step["instruction"],
+                k=int(getattr(arm_cfg, "hist_retrieve_k", 3)),
+            )
+        # hist_est 覆盖 history + 账本（账本随每步重发，属真实历史开销）
+        hist_chars = len(json.dumps(trimmed, ensure_ascii=False)) + sum(
+            len(x) for x in (sah_ledger_lines or [])
+        )
+        hist_est = hist_chars // max(1, cfg2.chars_per_token)
         # 阶段 A：O′ 候选证明 = trim 后将进入 messages 的历史（不含本步 context）
         proof_tr = tracker_from_history(trimmed)
-        plan = build_plan(
-            arm_cfg=arm_cfg,
-            instruction=step["instruction"],
-            workspace_files=sorted(files),
-            workspace_sha=sha,
-            file_sizes=sizes,
-            entries_by_file=ebf,
-            targets=targets,
-            system_history_tokens_est=hist_est,
-            source_by_file=files,
-        )
-        t_route = 0.0  # included in plan build time
-        t0 = time.perf_counter()
-        force_full: set[str] = set()
-        ctx = assemble_v12(
-            workspace,
-            plan,
-            proof_tr,
-            arm_cfg,
-            symbols_by_file=sym_idx,
-            system_history_tokens_est=hist_est,
-            force_full=force_full,
-            record_context_marks=False,
-        )
-        messages = build_messages(trimmed, step["instruction"], ctx.text)
 
-        # 阶段 B：发送前强制校验最终 messages ↔ O′ 省略 + E/C 完整性
-        disk_sha = {rel: content_sha256(text) for rel, text in files.items()}
-        et_list = sorted(plan.edit_targets)
-        cf_list = sorted(plan.candidate_full)
-        check = verify_omissions_in_messages(
-            messages,
-            list(ctx.omitted_files),
-            disk_sha,
-            edit_targets=et_list,
-            candidate_full=cf_list,
-        )
-        pre_send_revise = False
-        if not check.ok:
-            pre_send_revise = True
-            force_full = set(check.missing_or_mismatch)
+        is_memory_off = baseline == "memory_off"
+        if is_memory_off:
+            # 基线：每步全仓源码，无 plan/O′/CR
+            from p1_common import assemble_memory_off
+
+            mo = assemble_memory_off(workspace)
+            from types import SimpleNamespace
+
+            ctx = AssembledV12(
+                text=mo.text,
+                file_blocks=mo.file_blocks,
+                expand_included_bytes=mo.expand_included_bytes,
+                notes=list(getattr(mo, "notes", []) or []),
+            )
+            plan = SimpleNamespace(
+                edit_targets=set(),
+                candidate_full=set(),
+                must_full=set(),
+                insufficient=False,
+                insufficient_reasons=[],
+                required_context_tokens_est=None,
+                available_context_tokens=args.context_window,
+                files=[],
+                over_kmax=False,
+                over_budget=False,
+                dropped_optional_digest=[],
+                dropped_optional_full=[],
+                audit=lambda: {"arm": baseline, "memory_off": True},
+            )
+            check = SimpleNamespace(
+                ok=True,
+                missing_or_mismatch=[],
+                edit_target_full_verified=True,
+                candidate_full_verified=True,
+                reasons={},
+                revised=False,
+                force_full=[],
+                edit_target_missing=[],
+                candidate_missing=[],
+            )
+            et_list: list[str] = []
+            cf_list: list[str] = []
+            force_full = set()
+            pre_send_revise = False
+            t_asm = 0.0
+        else:
+            plan = build_plan(
+                arm_cfg=arm_cfg,
+                instruction=step["instruction"],
+                workspace_files=sorted(files),
+                workspace_sha=sha,
+                file_sizes=sizes,
+                entries_by_file=ebf,
+                targets=targets,
+                system_history_tokens_est=hist_est,
+                source_by_file=files,
+                icg_state=icg_state,
+            )
+            t_route = 0.0  # included in plan build time
+            t0 = time.perf_counter()
+            force_full = set()
             ctx = assemble_v12(
                 workspace,
                 plan,
@@ -271,30 +367,108 @@ def run_episode_arm(
                 system_history_tokens_est=hist_est,
                 force_full=force_full,
                 record_context_marks=False,
+                cr_store=cr_store,
+                cr_instruction=step["instruction"],
+                slow_store=slow_store,
             )
-            messages = build_messages(trimmed, step["instruction"], ctx.text)
-            check2 = verify_omissions_in_messages(
+            messages = build_messages(
+                trimmed, step["instruction"], ctx.text, ledger_lines=sah_ledger_lines
+            )
+
+            # 阶段 B：发送前强制校验最终 messages ↔ O′ 省略 + E/C 完整性
+            disk_sha = {rel: content_sha256(text) for rel, text in files.items()}
+            et_list = sorted(plan.edit_targets)
+            cf_list = sorted(plan.candidate_full)
+            check = verify_omissions_in_messages(
                 messages,
                 list(ctx.omitted_files),
                 disk_sha,
                 edit_targets=et_list,
                 candidate_full=cf_list,
             )
-            if not check2.ok:
-                ctx.insufficient = True
-                for rel in check2.missing_or_mismatch:
-                    reason = (
-                        "EDIT_TARGET_FULL_VERIFY_FAIL"
-                        if rel in et_list
-                        else "CANDIDATE_FULL_VERIFY_FAIL"
-                        if rel in cf_list
-                        else "PRE_SEND_VERIFY_FAIL"
+            pre_send_revise = False
+            if not check.ok:
+                pre_send_revise = True
+                force_full = set(check.missing_or_mismatch)
+                ctx = assemble_v12(
+                    workspace,
+                    plan,
+                    proof_tr,
+                    arm_cfg,
+                    symbols_by_file=sym_idx,
+                    system_history_tokens_est=hist_est,
+                    force_full=force_full,
+                    record_context_marks=False,
+                    cr_store=cr_store,
+                    cr_instruction=step["instruction"],
+                    slow_store=slow_store,
+                )
+                messages = build_messages(
+                    trimmed, step["instruction"], ctx.text, ledger_lines=sah_ledger_lines
+                )
+                check2 = verify_omissions_in_messages(
+                    messages,
+                    list(ctx.omitted_files),
+                    disk_sha,
+                    edit_targets=et_list,
+                    candidate_full=cf_list,
+                )
+                if not check2.ok:
+                    ctx.insufficient = True
+                    for rel in check2.missing_or_mismatch:
+                        reason = (
+                            "EDIT_TARGET_FULL_VERIFY_FAIL"
+                            if rel in et_list
+                            else "CANDIDATE_FULL_VERIFY_FAIL"
+                            if rel in cf_list
+                            else "PRE_SEND_VERIFY_FAIL"
+                        )
+                        tag = f"{reason}:{rel}"
+                        if tag not in ctx.insufficient_reasons:
+                            ctx.insufficient_reasons.append(tag)
+                check = check2
+            # V1.3A_CR：Memory/Reference 完整性（失败 → INSUFFICIENT，不发请求）
+            if cr_store is not None and getattr(ctx, "cr_refs", None):
+                from cr.validate import validate_cr
+                from cr.resolver import Reference
+
+                cr_refs = []
+                for ra in ctx.cr_refs:
+                    cr_refs.append(
+                        Reference(
+                            path=ra["path"],
+                            purpose="related",
+                            ref_kind="content",
+                            content_id=ra["content_id"],
+                            pin_sha256="",
+                            range_kind="full",
+                        )
                     )
-                    tag = f"{reason}:{rel}"
-                    if tag not in ctx.insufficient_reasons:
-                        ctx.insufficient_reasons.append(tag)
-            check = check2
-        t_asm = (time.perf_counter() - t0) * 1000.0
+                delivered = set()
+                for a in ctx.audits:
+                    if a.get("action") in ("EXPAND", "MEM_EXPAND", "DIGEST", "CR_RELATED_SKIPPED"):
+                        delivered.add(a["file"])
+                cr_check = validate_cr(
+                    cr_refs,
+                    cr_store,
+                    required_paths=set(plan.must_full)
+                    | set(plan.edit_targets)
+                    | set(plan.candidate_full),
+                    delivered_paths=delivered,
+                )
+                if not cr_check.ok:
+                    ctx.insufficient = True
+                    for code in cr_check.codes:
+                        tag = f"CR_VALIDATE_FAIL:{code}"
+                        if tag not in ctx.insufficient_reasons:
+                            ctx.insufficient_reasons.append(tag)
+            t_asm = (time.perf_counter() - t0) * 1000.0
+
+        if is_memory_off:
+            messages = build_messages(
+                trimmed, step["instruction"], ctx.text, ledger_lines=sah_ledger_lines
+            )
+        # (else 分支已在内部生成 messages)
 
         step_out = steps_dir / step["id"]
         step_out.mkdir(parents=True, exist_ok=True)
@@ -357,6 +531,14 @@ def run_episode_arm(
                 error = f"model_error: {cr.error}"
             (step_out / "response.txt").write_text(response_text, encoding="utf-8")
             history.append({"role": "assistant", "content": response_text})
+            # V13E·S2：账本与 history 同生命周期（模型未被调用的步骤不入账）；
+            # sha 取本步动作前快照 → modify 义务可判定「提出后是否动过该文件」
+            if getattr(arm_cfg, "sah_ledger", False):
+                sah_obligations.append(
+                    raise_sha(
+                        parse_obligation(step_no, step["instruction"]), sha
+                    )
+                )
             tracker_diag.mark_from_assistant(response_text)
             blocks = parse_file_blocks(response_text)
             applied, rejected = apply_blocks(workspace, blocks)
@@ -380,7 +562,7 @@ def run_episode_arm(
             t_eval = (time.perf_counter() - t0) * 1000.0
             (step_out / "eval_output.txt").write_text(eval_output, encoding="utf-8")
 
-        ledger_tokens += prompt_tokens + completion_tokens
+        ledger_tokens += prompt_tokens + completion_tokens + aux_prompt_tokens + aux_completion_tokens
 
         audit.record(
             {
@@ -458,6 +640,12 @@ def run_episode_arm(
             "t_assemble_ms": round(t_asm, 2),
             "t_initial_sync_ms": round(t_init, 2),
             "context_chars": len(ctx.text),
+            "sah_folded_blocks": int(sah_stats.get("folded_blocks", 0)),
+            "sah_ledger_lines": len(sah_ledger_lines or []),
+            "aux_prompt_tokens": int(aux_prompt_tokens),
+            "aux_completion_tokens": int(aux_completion_tokens),
+            "pre_send_revised": int(pre_send_revise),
+            "force_full_n": len(force_full),
             "applied_files": ";".join(applied),
             "error": error,
             "architecture": "v1.2-r2.2",
@@ -478,6 +666,23 @@ def run_episode_arm(
             "config_sha256": arm_cfg.digest(),
         },
     )
+    # V13D：episode 全步成功 → 蒸馏慢层（验证锚：eval 全过 + 磁盘为步末状态）
+    if slow_store is not None and rows:
+        all_ok = all(int(r.get("eval_success") or 0) == 1 for r in rows)
+        if all_ok:
+            try:
+                from cr.slowmem import distill_workspace
+
+                units = distill_workspace(
+                    workspace,
+                    slow_store,
+                    origin={"task_id": ep_id, "arm": arm, "rep": rep, "esr": 1},
+                )
+                for r in rows:
+                    r["slow_distilled"] = len(units)
+            except Exception as e:  # noqa: BLE001
+                for r in rows:
+                    r["slow_distill_error"] = f"{type(e).__name__}:{e}"
     return rows
 
 

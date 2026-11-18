@@ -14,11 +14,13 @@ from v11.visibility import _norm_path, content_sha256
 _ASSIST_FILE_RE = re.compile(
     r"FILE:\s*(?P<path>[^\n]+)\n```[^\n]*\n(?P<body>[\s\S]*?)```"
 )
-# 在 --- FILE … --- 之后，body 停在下一个 --- 块或 === 段之前（build_messages 会拼 OUTPUT FORMAT）
+# 在 --- FILE … --- 之后，body 停在下一个 --- 块（FILE/INDEX/MEM）或 === 段之前
+# （build_messages 会拼 OUTPUT FORMAT；V1.3A_CR 的 MEM 块必须作为边界，
+#  否则 MEM 正文会被并入 FILE body → ET hash 误判）
 _CTX_FILE_RE = re.compile(
     r"--- FILE (?P<path>[^\n(]+) \(full current source\) ---\n"
     r"(?P<body>[\s\S]*?)"
-    r"(?=\n--- (?:FILE|INDEX) |\n=== |\Z)"
+    r"(?=\n--- (?:FILE|INDEX|MEM) |\n=== |\Z)"
 )
 
 
