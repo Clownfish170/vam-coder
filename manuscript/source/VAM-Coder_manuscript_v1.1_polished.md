@@ -159,12 +159,25 @@ V12-F used 2,510.2 prompt tokens per episode on average, compared with 3,287.2 f
 
 Table 1 summarizes the architecture-level results. TPAE denotes total prompt-plus-completion tokens per episode; TPSE denotes total tokens per successful episode. The reported standard deviations describe episode-level prompt-token variation, not uncertainty in the paired task-level treatment effect.
 Table 1. P1 architecture-level results. ESR is the proportion of successful episodes; TPAE and TPSE are token counts per episode.
+
+| Architecture | Episodes | Success / total | ESR | Prompt tokens / episode (SD) | TPAE | TPSE |
+|---|---|---|---|---|---|---|
+| V12-F | 240 | 223 / 240 | 92.92% | 2,510.2 (1,910.5) | 3,339.8 | 3,594.4 |
+| memory_off | 240 | 225 / 240 | 93.75% | 3,287.2 (2,605.7) | 4,126.4 | 4,401.5 |
+| symbol_full_read | 240 | 225 / 240 | 93.75% | 3,311.4 (2,621.0) | 4,185.1 | 4,464.1 |
+
 The paired V12-F minus reference-arm prompt-token differences were −777.0 tokens per episode (95% CI [−974.8, −584.4]) against `memory_off` and −801.2 tokens (95% CI [−1,003.3, −603.3]) against `symbol_full_read`. The corresponding TPAE differences were −786.6 (95% CI [−979.3, −601.8]) and −845.3 (95% CI [−1,058.7, −640.1]). Both prompt-token sign-flip tests remained significant after Holm correction (adjusted p = 0.0002 for each comparison). At the task-family level, all eight family-mean prompt differences were negative for both primary comparisons (family sign-flip p = 0.0079 and 0.0072, respectively).
 
 For capability, the ESR difference was −0.83 pp for V12-F versus `memory_off` (95% CI [−4.17, +2.92] pp) and −0.83 pp versus `symbol_full_read` (95% CI [−5.42, +2.92] pp). Both lower confidence bounds were above the prespecified −12 pp non-inferiority margin. The non-inferiority criterion was therefore met for both comparisons. These results do not establish ESR superiority: both intervals include zero, and the preregistered analysis did not make an ESR superiority claim.
 
 Table 2 reports the paired primary contrasts. Negative token differences favor V12-F; negative ESR differences indicate a lower observed success rate for V12-F.
 Table 2. P1 preregistered paired comparisons. Confidence intervals are task-cluster bootstrap intervals; the ESR margin was −12 pp.
+
+| Paired contrast (V12-F − reference) | Δ prompt tokens / episode (95% CI) | Δ TPAE (95% CI) | Δ ESR (95% CI) | ESR non-inferiority |
+|---|---|---|---|---|
+| V12-F − memory_off | −777.0 [−974.8, −584.4] | −786.6 [−979.3, −601.8] | −0.83 pp [−4.17, +2.92] | PASS |
+| V12-F − symbol_full_read | −801.2 [−1,003.3, −603.3] | −845.3 [−1,058.7, −640.1] | −0.83 pp [−5.42, +2.92] | PASS |
+
 The observed prompt savings increased with task length. Mean prompt tokens were 624.0 for V12-F versus 748.6 for `memory_off` on short tasks, 1,792.1 versus 2,264.5 on medium tasks, and 5,114.6 versus 6,848.5 on long tasks. The long-task difference was 1,733.9 tokens per episode (approximately 25.3%). This pattern is consistent with savings accumulating as repeated full-context overhead grows across longer trajectories.
 
 There were 47 failed episodes across the three architectures. One short-task variant (`p1_S03c`) failed in all 15 repetitions across all three architectures; it was retained in the ESR denominator as required by the preregistered rules. Protocol violations were also recorded (2 for V12-F, 6 for `memory_off`, and 4 for `symbol_full_read`) and counted as failures. V12-F had zero INSUFFICIENT steps and zero delivery-hazard events under the P1 accounting. These details matter because the aggregate ESR differences are small and the task set contains a concentrated failure mode.
@@ -182,7 +195,7 @@ In the 1,680-episode P2 ablation batch, disabling the VP omission/reuse path inc
 
 This ablation identifies the cost contribution of the VP omission/reuse path in the P2 configuration. It does not isolate the VP final-message verifier from every other component of that path, and it is not an S1 ablation. History redaction also reduced prompt volume but adversely affected visible-context recall, while the must-closure ablation had a comparatively small prompt effect. These findings motivated the later separation of delivery reuse from historical file-body projection.
 
-**Figure 5. P2 mechanism ablation. Both panels use the same difference direction: no-VP minus F. The prompt-cost increase is +397.6 tokens per episode (95% CI [275.4, 524.8]); the ESR difference is +0.42 pp (95% CI [−2.08, +2.92] pp), which crosses zero. The paired unit is the task; the bootstrap used 10,000 replicates and seed 20261102.**
+**Figure 5. P2 mechanism ablation (omission/reuse path; historical name O′ / no-VP). Differences are (ablation − F): prompt +397.6 tokens/episode (95% CI [275.4, 524.8]); ESR +0.42 pp (95% CI [−2.08, +2.92] pp), CI crosses zero. Task-paired bootstrap, seed 20261102, B=10,000. Source PNG `fig8_vso_ablation.png` still carries the pre-renumber title “Figure 8”; panel (b) axis wording in the PNG may differ from ablation−F — **caption and frozen CSV are authoritative** (figure regen: 待核验). Not an isolated final-message-verifier-only ablation.**
 
 ## 6.3 VP controlled fault-injection results
 In Phase 1, all 31 scenarios received their expected decisions. The unsafe-omission rate was 0/13, the safe-omission rate was 10/10 (nine ordinary positive cases plus the C4 boundary case), the false-block rate was 0, and the fallback-success rate was 13/13. The joint prespecified engineering threshold was met. The mechanism comparison on visibility scenarios V1–V5 produced detection rates of 1.00 for VP, 0.00 for B1, and 0.80 for B2. VP's exclusive detection occurred in V4, where the content hash remained valid and the file had previously been sent, but the corresponding block was absent from the final messages.
@@ -201,6 +214,18 @@ S1-only capability. The PROJ−F ESR difference was −5.4 pp on DeepSeek (95% C
 
 Combined SAH configuration. SAH−F reduced prompt tokens by 632.6 (95% CI [−885.7, −403.5]; 16.9%) on DeepSeek and 697.3 (95% CI [−969.7, −446.7]; 18.6%) on Qwen. ESR differences were −1.2 pp (95% CI [−5.4, +3.0] pp) and +1.8 pp (95% CI [−0.6, +5.4] pp), respectively. These results describe F+S1+S2 as a combined configuration. Because the experiment did not include an F+S2-only arm, they do not identify an independent S2 effect.
 
+
+**Table 3. V13E confirmatory arm means (168 episodes/arm/model). PROJ=F+S1; SAH=F+S1+S2.**
+
+| Model | Arm | ESR | Prompt tokens / episode |
+|---|---|---|---|
+| DeepSeek | F | 0.649 | 3747.5 |
+| DeepSeek | PROJ (F+S1) | 0.595 | 3068.9 |
+| DeepSeek | SAH (F+S1+S2) | 0.637 | 3114.9 |
+| Qwen | F | 0.512 | 3740.2 |
+| Qwen | PROJ (F+S1) | 0.536 | 3055.2 |
+| Qwen | SAH (F+S1+S2) | 0.530 | 3042.9 |
+
 **Figures 1 and 2. Figure 1 reports prompt tokens per episode; Figure 2 reports ESR on an untruncated 0–100% scale. Error bars are 95% task-level bootstrap intervals. The model panels are reported separately and are not pooled.**
 
 **Figure 1. Prompt tokens per episode for F, PROJ, and SAH. Points are means of task-level means; whiskers are 95% task-bootstrap confidence intervals (seed 20261102; 10,000 replicates). DeepSeek and Qwen are shown separately. PROJ−F is the direct S1-only comparison; SAH additionally includes S2.**
@@ -218,6 +243,18 @@ SUMM had the highest prompt cost once summarizer prompt tokens were included in 
 **Figure 3. Prompt tokens per episode for the six compared context-management methods. Bars show episode means; whiskers show 95% task-bootstrap intervals. The zero-based vertical axis preserves TRUNC's lower prompt cost. SUMM prompt accounting includes the summarizer prompt overhead; auxiliary tokens are shown only as a decomposition and are not added a second time.**
 
 **Figure 4. Efficiency–capability plane. The horizontal axis is prompt tokens per episode (lower is better); the vertical axis is ESR (higher is better) and spans 0–100%. Points are episode means with task-bootstrap uncertainty intervals. The figure is descriptive; it does not establish a universal ranking across models or workloads.**
+
+**Table 4. Six context-management methods: mean prompt tokens/episode and ESR by model (same V13E batch; external arms are local reimplementations).**
+
+| Method | DeepSeek prompt | DeepSeek ESR | Qwen prompt | Qwen ESR |
+|---|---|---|---|---|
+| F | 3747.5 | 0.649 | 3740.2 | 0.512 |
+| PROJ | 3068.9 | 0.595 | 3055.2 | 0.536 |
+| SAH | 3114.9 | 0.637 | 3042.9 | 0.530 |
+| TRUNC | 2456.4 | 0.631 | 2347.2 | 0.530 |
+| SUMM | 5006.5 | 0.637 | 4248.7 | 0.506 |
+| RETR | 3268.5 | 0.643 | 3175.9 | 0.488 |
+
 ## 6.6 Cross-model consistency
 The directions of the primary PROJ−F prompt comparisons were consistent across DeepSeek and Qwen, and both models met the ESR non-inferiority criterion. Absolute ESR levels differed substantially between the models, so the results are reported separately rather than pooled. The replication supports directional consistency across these two model families, but it is not a multi-provider replication because both models were accessed through the same MaaS endpoint.
 
@@ -286,6 +323,15 @@ For coding-agent systems that omit files because they are believed to have been 
 
 # 9. Conclusion
 This paper presented VAM-Coder, a verifiable context-management strategy for multi-turn coding agents. VAM-Coder combines selective context delivery with Verified History Projection (S1) and a final-request Visibility Proof (VP). S1 reduces repeated complete assistant file blocks while preserving the path-keyed, last-write-wins file mapping consumed by the verifier under the specified extraction rules. VP checks that in-scope files whose omission is relied upon remain completely visible and version-consistent in the concrete request, with reinjection and re-verification on failure and fail-closed behavior when verification remains unsatisfied. In the 56-task V13E confirmatory study, PROJ reduced prompt tokens relative to F by 18.1% on DeepSeek and 18.3% on Qwen, meeting the prespecified −12 pp ESR non-inferiority margin; the DeepSeek ESR point estimate nevertheless decreased by 5.4 pp. The separate P1_TRANSFER subset showed approximately 95% lower prompt volume for PROJ than full-repository injection, while MOFF achieved higher observed ESR. Controlled VP fault-injection tests produced the expected decisions in the tested scenarios. Taken together, the evidence supports VAM-Coder as a context-management strategy that can reduce redundant context transmission while making selected omission assumptions explicit and testable. The findings do not establish universal task superiority, semantic equivalence of arbitrary histories, unrestricted safety, or improvements in latency, prefill time, or server-side KV-cache behavior.
+
+
+## Data and Code Availability
+
+The VAM-Coder software is released under the MIT License. Implementation, frozen preregistration documents, experiment runners, and analysis scripts are available in the VAM-Coder repository (see repository README and `docs/REPRODUCIBILITY.md`). Confirmatory batches, fault-injection scenarios, and transfer-subset protocols are retained with run metadata and code snapshots under the experiment directories. Exact commit identifiers and preregistration freeze hashes will be listed in the repository release accompanying this submission. Raw model outputs are retained under institutional policy; derived statistics reproduce from the published scripts and frozen CSVs.
+
+**Conflicts of Interest:** The author declares no competing interests.  
+**Funding:** [TODO prior to submission — or: This research received no external funding.]  
+**Generative AI use:** [TODO per target journal policy prior to submission.]
 
 # References
 [1] Nelson F. Liu, Kevin Lin, John Hewitt, Ashwin Paranjape, Michele Bevilacqua, Fabio Petroni, and Percy Liang. Lost in the Middle: How Language Models Use Long Contexts. Transactions of the Association for Computational Linguistics, 12:157–173, 2024. arXiv:2307.03172.

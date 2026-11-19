@@ -2,13 +2,13 @@
 
 | 路径 | 说明 |
 | --- | --- |
-| `source/VAM-Coder_manuscript_v1.1_polished.md` | **当前精修主稿（自 v1.0 DOCX）** |
-| `source/VAM-Coder_manuscript_v1.1_polished.docx` | 精修 Word 投稿稿 |
-| `source/VAM-Coder_manuscript_v1.0_restructured.docx` | 用户提供的 v1.0 结构稿（源） |
-| `source/VAM_CODER_V13E_SCI_Q4_v0.7.md` | 更早 SCI Q4 结构化摘要版 |
+| `source/VAM-Coder_manuscript_v1.1_polished.docx` | **当前投稿主稿（已恢复 Table 1–4 + Availability）** |
+| `source/VAM-Coder_manuscript_v1.1_polished.md` | 同文 Markdown |
+| `source/VAM-Coder_manuscript_v1.0_restructured.docx` | 用户 v1.0 结构稿（源，未改） |
+| `stage1_submission_audit.md`（工作区根） | 投稿前审计报告 |
+| `source/VAM_CODER_V13E_SCI_Q4_v0.7.md` | 更早结构化摘要版 |
 | `source/论文草稿_v0.6_*.md/.docx` | v0.6 基线（保留） |
-| `source/V13E_MANUSCRIPT_REVISION_v0.6.md` | v0.6 修订说明 |
-| `figures/fig4–fig9*.png` | 数据图（真实实验导出） |
+| `figures/fig4–fig9*.png` | 数据图；**Figure 5** 文件名仍为 `fig8_vso_ablation.png`（内容=P2 消融） |
 | `tables/` `references/` `supplementary/` | 表格 / 文献 / 补充（按需） |
 | `archived-versions/` | 更早稿 |
 
