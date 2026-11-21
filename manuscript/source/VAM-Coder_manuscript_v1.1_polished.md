@@ -1,7 +1,7 @@
 # VAM-Coder: A Verifiable Context-Management Strategy for Multi-Turn Coding Agents
 
-**Manuscript v1.2 (optimized from v1.1)** · SCI Q4 · Evidence frozen · Software: MIT  
-**Author block:** see title page in DOCX (affiliation/email/funding TODO before submission)
+**Manuscript v1.3** · SCI Q4 · Evidence frozen · Software: MIT  
+**Email:** Xu1764602693@hotmail.com · Affiliation/Funding: TODO before submission · COI: none
 
 ---
 
@@ -196,7 +196,7 @@ In the 1,680-episode P2 ablation batch, disabling the omission/reuse delivery pa
 
 This ablation identifies the cost contribution of the VP omission/reuse path in the P2 configuration. It does not isolate the VP final-message verifier from every other component of that path, and it is not an S1 ablation. History redaction also reduced prompt volume but adversely affected visible-context recall, while the must-closure ablation had a comparatively small prompt effect. These findings motivated the later separation of delivery reuse from historical file-body projection.
 
-**Figure 5. P2 mechanism ablation (omission/reuse path; historical name O′ / no-VP). Differences are (ablation − F): prompt +397.6 tokens/episode (95% CI [275.4, 524.8]); ESR +0.42 pp (95% CI [−2.08, +2.92] pp), CI crosses zero. Task-paired bootstrap, seed 20261102, B=10,000. Source PNG `fig8_vso_ablation.png` still carries the pre-renumber title “Figure 8”; panel (b) axis wording in the PNG may differ from ablation−F — **caption and frozen CSV are authoritative** (figure regen: 待核验). Not an isolated final-message-verifier-only ablation.**
+**Figure 5. P2 mechanism ablation (disabling the omission/reuse path; historical name O′). Differences are (ablation − F): prompt +397.6 tokens/episode (95% CI [275.4, 524.8]); ESR +0.42 pp (95% CI [−2.08, +2.92] pp), CI crosses zero. Task-paired bootstrap, seed 20261102, B=10,000. Not an isolated final-message-verifier-only ablation. File: `figures/fig5_p2_ablation.png`.**
 
 ## 6.3 VP controlled fault-injection results
 In Phase 1, all 31 scenarios received their expected decisions (Figure 5; see also §6.2). The unsafe-omission rate was 0/13, the safe-omission rate was 10/10 (nine ordinary positive cases plus the C4 boundary case), the false-block rate was 0, and the fallback-success rate was 13/13. The joint prespecified engineering threshold was met. The mechanism comparison on visibility scenarios V1–V5 produced detection rates of 1.00 for VP, 0.00 for B1, and 0.80 for B2. VP's exclusive detection occurred in V4, where the content hash remained valid and the file had previously been sent, but the corresponding block was absent from the final messages.
@@ -346,6 +346,7 @@ This paper presented VAM-Coder, a verifiable context-management strategy for mul
 
 The VAM-Coder software is released under the MIT License. Implementation, frozen preregistration documents, experiment runners, and analysis scripts are available in the VAM-Coder repository (see repository README and `docs/REPRODUCIBILITY.md`). Confirmatory batches, fault-injection scenarios, and transfer-subset protocols are retained with run metadata and code snapshots under the experiment directories. Exact commit identifiers and preregistration freeze hashes will be listed in the repository release accompanying this submission. Raw model outputs are retained under institutional policy; derived statistics reproduce from the published scripts and frozen CSVs.
 
+**Corresponding email:** Xu1764602693@hotmail.com  
 **Conflicts of Interest:** The author declares no competing interests.  
 **Funding:** [TODO prior to submission — or: This research received no external funding.]  
 **Generative AI use:** [TODO per target journal policy prior to submission.]
@@ -428,14 +429,16 @@ The VAM-Coder software is released under the MIT License. Implementation, frozen
 | Figure 2 | `fig5_esr_line.png` |
 | Figure 3 | `fig6_methods_bars.png` |
 | Figure 4 | `fig7_tradeoff_scatter.png` |
-| Figure 5 | `fig8_vso_ablation.png` |
+| Figure 5 | `fig5_p2_ablation.png` (regenerated; old `fig8_vso_ablation.png` superseded) |
 | Figure 6a | `fig9a_forest_prompt.png` |
 | Figure 6b | `fig9b_forest_esr.png` |
 
 ## Author TODO before submission
 
-- [ ] Affiliation, email, funding
+- [x] Email: Xu1764602693@hotmail.com
+- [ ] Affiliation
+- [ ] Funding
 - [ ] Target journal template + reference style
-- [ ] Confirm Figure 5 caption (P2 ablation vs file name `fig8_vso_ablation`)
+- [x] Figure 5 regenerated as `fig5_p2_ablation.png` (title Figure 5; ablation−F directions)
 
 *Polished from v1.0 restructured DOCX; quantitative claims unchanged; no new experiments.*
