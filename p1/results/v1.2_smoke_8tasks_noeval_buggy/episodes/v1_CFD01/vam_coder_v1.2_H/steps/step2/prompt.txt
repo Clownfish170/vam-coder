@@ -1,8 +1,0 @@
-=== TASK ===
-在 invoice.py 中新增 net_total(cents)，返回不含税金额 int(cents/(1+tax_rate()))。
-
-=== CONTEXT ===
-[ctx] v1.2-H
-
-=== OUTPUT FORMAT ===
-Respond only with FILE: blocks (or NO_EDIT).

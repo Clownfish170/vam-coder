@@ -1,8 +1,0 @@
-=== TASK ===
-bill.py 新增 due_fast(qty)：写死当前公式（禁止调用 service），与 due() 行为一致。
-
-=== CONTEXT ===
-[ctx] v1.2-G
-
-=== OUTPUT FORMAT ===
-Respond only with FILE: blocks (or NO_EDIT).

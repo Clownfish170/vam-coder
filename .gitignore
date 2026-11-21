@@ -4,21 +4,29 @@ __pycache__/
 .backup/
 state/
 logs/
-# P1-v0.2：原始 run 数据不入库（保留在磁盘；哈希锚点在 run_meta/manifests）
-p1/results/runs/
-p1/.cache/
-# 实验逐步日志/工作区快照（体量大且含临时 workspace；摘要与 CSV/报告入库）
-p1/experiments/**/episode_logs/
-p1/experiments/**/phase2_runs/runs/
-p1/experiments/validation_p0/protocol_retest_4096/runs/
-p1/experiments/**/validate_ctx/
-p1/experiments/**/drytest/
-p1/experiments/**/runner_out/
-# 大体量归档与本地服务日志（磁盘保留；见 archive/README.md 与备份目录）
+.p1/.cache/
+
+# ===== 开源范围：只保留项目本体（代码+架构文档+元数据）=====
+# 以下目录磁盘保留，但不进入 Git 公开仓
+# 实验产出 / 任务集 / manifest / 结果（论文与复现用本地即可）
+p1/experiments/
+p1/results/
+p1/manifests/
+p1/tasks/
+p1/tasks_*/
+experiments/
+results/
+manuscript/
+
+# 大体量归档与本地服务日志
 archive/*.zip
 archive/*.bundle
 archive/server-logs/*.log
-# 方案B目录 junction 指向 p1/* —— 禁止 Git 跟随入库
+llama_server*.log
+**/llama_server*.log
+*.log
+
+# 方案B junction（指向 p1/*，禁止 Git 跟随）
 development/**/p1_docs_*/
 development/**/v11_visibility/
 development/**/v12_scripts/
@@ -30,30 +38,6 @@ development/**/v13b_deepseek/
 development/**/v13b_icg/
 development/**/v13b_sp/
 development/**/v13d_preview/
-experiments/V12-F/runs/
-experiments/V12-F/tasks/
-experiments/V13E/runs/
-experiments/V13E/tasks/
-experiments/V13E/fault-injection/
-experiments/P1-TRANSFER/runs/
-experiments/P1-TRANSFER/tasks/
-# 未审/大体量实验与任务目录：磁盘保留，不进 Git（开源与 private 推送前剔除）
-p1/experiments/v13e_p1_swebench/
-p1/experiments/v13e_p1_transfer/
-p1/experiments/v13b_icg/
-p1/tasks_independent_v1_dose/
-p1/tasks_transfer_v1/
-p1/tasks_v13a_screen/
-p1/tasks_v13a_testpart/
-p1/tasks_v13d_chain/
-# 本地/服务/运行日志：磁盘保留，不进 Git（与论文结论无关）
-llama_server*.log
-**/llama_server*.log
-p1/**/run_stdout.log
-p1/**/run_stderr.log
-p1/**/retest_stdout.log
-p1/**/retest_stderr.log
-p1/experiments/**/dualtoken_fullrun.log
-p1/experiments/**/dualtoken_fullrun.err.log
-*.log
-!p1/docs/**/*.log
+experiments/**/runs/
+experiments/**/tasks/
+experiments/**/fault-injection/

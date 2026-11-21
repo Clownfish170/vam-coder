@@ -1,8 +1,0 @@
-=== TASK ===
-新增 c3() 返回 c1()+c2()。
-
-=== CONTEXT ===
-[ctx] v1.2-F
-
-=== OUTPUT FORMAT ===
-Respond only with FILE: blocks (or NO_EDIT).

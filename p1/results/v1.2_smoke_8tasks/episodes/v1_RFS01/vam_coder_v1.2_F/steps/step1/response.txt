@@ -1,4 +1,0 @@
-FILE: mode.py
-```python
-"""Mode."""
-```

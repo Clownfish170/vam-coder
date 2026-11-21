@@ -1,9 +1,0 @@
-id,severity,category,description,evidence,action_needed,blocks_p1
-B01,BLOCKER,RESOURCE,llama-server在本门禁时/v1/models超时未响应,curl timeout;P0时曾可用,P1当日启动并healthcheck,YES_until_server_ok
-W01,WARNING,WORKSPACE,正式runner尚无pre/post manifest挂钩,workspace_sha_design;run_p1_v12无该调用,授权改runner或接受降级隔离证明,NO_but_affects_data_quality
-W02,WARNING,SAFETY,INSUFFICIENT阻断未在真实模型正向触发,P0 blocked=0;unit 10 passed,报告区分mock与live,NO
-W03,WARNING,STATISTICAL,功效有限不能保证5%TPSE,prereg§4,报告限制声明,NO
-W04,WARNING,TERMINOLOGY,历史文档仍有O′字样,method/arch旧名,新报告用VP/vproof,NO
-I01,INFO,TESTS,181+10 passed,pytest记录,P1前再跑一次,NO
-I02,INFO,DISK,D free约34GB,shutil.disk_usage,足够,NO
-I03,INFO,SCOPE,READY FOR USER AUTHORIZATION≠P1授权,本门禁定义,等待用户,NO

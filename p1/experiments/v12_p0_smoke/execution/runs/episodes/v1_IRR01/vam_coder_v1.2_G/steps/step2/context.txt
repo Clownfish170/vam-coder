@@ -1,9 +1,0 @@
-[ctx] v1.2-G
---- FILE alpha.py (full current source) ---
-def a():
-    return 10
-
---- FILE beta.py (full current source) ---
-def b():
-    return 2
-

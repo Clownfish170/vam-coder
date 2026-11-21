@@ -1,5 +1,0 @@
-[ctx] v1.2-H
---- FILE beta.py (full current source) ---
-def b():
-    return 2
-

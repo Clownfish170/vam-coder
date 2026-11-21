@@ -1,4 +1,0 @@
-[ctx] v1.2-F
---- FILE mode.py (full current source) ---
-"""Mode."""
-

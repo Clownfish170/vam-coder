@@ -1,2 +1,0 @@
-0
-scenario_exit=0

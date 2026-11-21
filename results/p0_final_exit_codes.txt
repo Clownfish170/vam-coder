@@ -1,2 +1,0 @@
-pytest_exit=0
-scenario_exit=0

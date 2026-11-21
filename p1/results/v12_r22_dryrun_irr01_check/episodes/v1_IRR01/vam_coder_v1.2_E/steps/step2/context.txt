@@ -1,6 +1,0 @@
-[ctx] v1.2-E
---- FILE alpha.py (full current source) ---
-def a():
-    return 1
-
---- INDEX beta.py ---

@@ -1,5 +1,0 @@
-[ctx] v1.2-E
---- FILE lib.py (full current source) ---
-def keep():
-    return 21
-

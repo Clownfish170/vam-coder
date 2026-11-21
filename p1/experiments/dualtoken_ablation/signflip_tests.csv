@@ -1,9 +1,0 @@
-pair,comparison_kind,metric,test,stat,p_value,seed,p_holm_primary
-dualtoken_B_symbolic_addressing−vam_coder_v1.2_F,primary,prompt_per_episode,task_signflip,mean_diff=-28.65,0.056694,20261102,0.108990
-dualtoken_B_symbolic_addressing−vam_coder_v1.2_F,primary,ESR,task_signflip,mean_diff=-0.0625,0.162184,20261102,0.185782
-dualtoken_C_static_rep_plus_symbolic_id−vam_coder_v1.2_F,primary,prompt_per_episode,task_signflip,mean_diff=-28.96,0.054495,20261102,0.108990
-dualtoken_C_static_rep_plus_symbolic_id−vam_coder_v1.2_F,primary,ESR,task_signflip,mean_diff=-0.0708,0.092891,20261102,0.185782
-dualtoken_A_inline_full_context−vam_coder_v1.2_F,secondary,prompt_per_episode,task_signflip,mean_diff=403.15,0.000100,20261102,NA
-dualtoken_A_inline_full_context−vam_coder_v1.2_F,secondary,ESR,task_signflip,mean_diff=0.0083,0.585241,20261102,NA
-dualtoken_C_static_rep_plus_symbolic_id−dualtoken_B_symbolic_addressing,secondary,prompt_per_episode,task_signflip,mean_diff=-0.30,0.922808,20261102,NA
-dualtoken_C_static_rep_plus_symbolic_id−dualtoken_B_symbolic_addressing,secondary,ESR,task_signflip,mean_diff=-0.0083,0.691931,20261102,NA

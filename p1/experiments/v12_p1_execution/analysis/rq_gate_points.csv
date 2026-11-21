@@ -1,6 +1,0 @@
-gate_id,description,point_estimate_pass,ci_lo,ci_hi,threshold,evidence_sufficiency
-G1_ESR_E_vs_D,ESR_E >= ESR_D - 0.1,True,-0.1111111111111111,0.16666666666666669,ΔESR >= -0.1,point_only
-G2_ESR_E_vs_A,ESR_E >= ESR_A - 0.15,True,-0.23611111111111116,0.18055555555555558,ΔESR >= -0.15,point_only
-G3_TPSE_E_vs_D,TPSE_E <= 0.95 * TPSE_D (Δ <= -74.13),True,-940.2685185185184,328.5423893606387,ΔTPSE <= -74.13,point_only
-G4_TPAE_E_vs_D,TPAE_E <= 1.05 * TPAE_D (Δ <= 30.89),True,-62.47256944444451,-18.72222222222217,ΔTPAE <= 30.89,point_and_ci
-G5_E_vs_A_cost_claim,E vs A: ESR+TPSE+TPAE gates for cost claim,False,-733.3894552669551,755.4621212121212,"TPSE<=0.95*A, TPAE<=1.05*A, ESR>=A-0.15",point_only

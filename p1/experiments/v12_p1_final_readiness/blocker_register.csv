@@ -1,9 +1,0 @@
-id,priority,category,description,evidence,required_before_p1,blocks_authorization_review
-B001,P0,none,No absolute P0 blocker found,git+hash+tests,PASS,NO
-B010,P1,ENVIRONMENT,llama-server not running connection refused,environment_check.md 10061,YES start+healthcheck before run,NO_for_authorization_only
-B011,P1,DATA_WORKSPACE,workspace pre/post manifest not wired in runner,pre_manifest in run_p1_v12=False,YES implement or written waiver,NO
-B012,P1,TRACE,P1 randomization_manifest not created yet,missing file,YES create after P1 authorization before first request,NO
-B020,P2,SAFETY,INSUFFICIENT live path not fired in real runs,P0 blocked=0;mock only,disclose in paper,NO
-B021,P2,STATISTICAL,power limited for 5% TPSE,prereg§4,disclose,NO
-B022,P2,TERMINOLOGY,historical Oprime naming in old docs,legacy,texts use VP/vproof going forward,NO
-B030,P3,PROCESS,consider messages_sha sampling audit,optional,optional,NO

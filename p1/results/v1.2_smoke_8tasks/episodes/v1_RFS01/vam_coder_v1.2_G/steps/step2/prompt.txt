@@ -1,8 +1,0 @@
-=== TASK ===
-app.py 新增 is_active()：当模式为 active 时返回 True。
-
-=== CONTEXT ===
-[ctx] v1.2-G
-
-=== OUTPUT FORMAT ===
-Respond only with FILE: blocks (or NO_EDIT).

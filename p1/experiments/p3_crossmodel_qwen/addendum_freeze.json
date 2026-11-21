@@ -1,8 +1,0 @@
-{
-  "schema": "p3a-addendum-freeze-v1",
-  "frozen_at": "2026-11-06T04:17:36+00:00",
-  "document": "p1/docs/v12f_validation_preregistration_addendum_p3a.md",
-  "sha256": "2ce8defff22395fcfe7d48325a7c9f9fc5cd8c867b7f8be7643833dd2e38fffe",
-  "model": "qwen3.8-flash",
-  "declared_before_any_p3a_request": true
-}
