@@ -10,6 +10,7 @@
 | [EXPERIMENT_INDEX.md](EXPERIMENT_INDEX.md) | 实验索引 |
 | [REPRODUCIBILITY.md](REPRODUCIBILITY.md) | 复现说明 |
 | [LIMITATIONS.md](LIMITATIONS.md) | 局限性 |
+| [OPEN_SOURCE_CHECKLIST.md](OPEN_SOURCE_CHECKLIST.md) | 开源前依赖/数据许可与发布检查 |
 | [APPENDIX_INDEX.md](APPENDIX_INDEX.md) | 附录/图料索引 |
 | [archive/](archive/) | 历史清理报告 |
 
