@@ -1,3 +1,0 @@
-[resume] done=719 prior_tokens=3652725
-  [resume-cleanup] partial runner_out removed: p1_L07a_symbol_full_read_R2
-SUMMARY {"finished_at": "2026-11-07T02:06:36+00:00", "planned": 720, "done_total": 720, "executed_new": 1, "ok_new": 1, "fail_new": 0, "requests_new": 10, "cumulative_tokens": 3662576, "s5_limit": 6000000, "randomization_seed": 20261109, "max_tokens": 2048, "stop_code": "", "stop_reason": "", "resumed": true}

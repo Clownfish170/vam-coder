@@ -46,3 +46,14 @@ p1/tasks_transfer_v1/
 p1/tasks_v13a_screen/
 p1/tasks_v13a_testpart/
 p1/tasks_v13d_chain/
+# 本地/服务/运行日志：磁盘保留，不进 Git（与论文结论无关）
+llama_server*.log
+**/llama_server*.log
+p1/**/run_stdout.log
+p1/**/run_stderr.log
+p1/**/retest_stdout.log
+p1/**/retest_stderr.log
+p1/experiments/**/dualtoken_fullrun.log
+p1/experiments/**/dualtoken_fullrun.err.log
+*.log
+!p1/docs/**/*.log
