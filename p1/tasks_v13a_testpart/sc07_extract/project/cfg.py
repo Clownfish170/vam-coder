@@ -1,0 +1,2 @@
+LIMIT = 42
+NAME = 'sc07'

@@ -1,0 +1,13 @@
+"""Deposit slips"""
+
+
+class Deposit:
+    def __init__(self, balance):
+        self.balance = balance
+
+    def takeout(self, amount):
+        self.balance -= amount
+        return self.balance
+
+    def report(self):
+        return "acct:" + str(self.balance)

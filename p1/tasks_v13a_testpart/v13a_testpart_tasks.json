@@ -1,0 +1,246 @@
+{
+  "schema": "v13a-testpart-tasks-v1",
+  "episodes": [
+    {
+      "id": "sc01_reuse",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请参考 rates.py 中的 RATE 定义。修改 engine.py 中的 apply(v)：结果应为 v * RATE（当前为相加）。不要修改 rates.py。",
+          "eval": "eval/step1"
+        },
+        {
+          "id": "step2",
+          "instruction": "请参考 rates.py 中的 RATE 定义。修改 engine.py 中的 clamp(x)：应返回 min(100, max(0, x))。不要修改 rates.py。",
+          "eval": "eval/step2"
+        },
+        {
+          "id": "step3",
+          "instruction": "请参考 rates.py 中的 RATE 定义。请在 engine.py 新增 scale(v) 返回 apply(v) * 2。不要修改 rates.py 与 noise.py。",
+          "eval": "eval/step3"
+        },
+        {
+          "id": "step4",
+          "instruction": "请参考 rates.py 中的 RATE 定义。修改 engine.py 中的 scale(v)：改为返回 apply(v) + 1。不要修改 rates.py。",
+          "eval": "eval/step4"
+        },
+        {
+          "id": "step5",
+          "instruction": "请参考 rates.py 中的 RATE 定义。修改 engine.py 中的 apply(v)：当 v < 0 时返回 0，否则 v * RATE。不要修改 rates.py。",
+          "eval": "eval/step5"
+        }
+      ]
+    },
+    {
+      "id": "sc02_const_version",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请参考 config_consts.py 中的 MARGIN 定义。修改 app.py 中的 fee(x)：返回 x + MARGIN * 10。不要修改 config_consts.py。",
+          "eval": "eval/step1"
+        },
+        {
+          "id": "step2",
+          "instruction": "请参考 app.py 当前实现。修改 config_consts.py 中 MARGIN 为 0.20（当前 0.10）。不要修改 app.py。",
+          "eval": "eval/step2"
+        },
+        {
+          "id": "step3",
+          "instruction": "请参考 config_consts.py 中的 MARGIN 定义。修改 app.py 中的 price(x)：返回 x * (1 + MARGIN) * 2。不要修改 config_consts.py。",
+          "eval": "eval/step3"
+        },
+        {
+          "id": "step4",
+          "instruction": "请参考 config_consts.py 中的 MARGIN 定义。请在 app.py 新增 total(xs) 返回 sum(price(x) for x in xs)。不要修改 config_consts.py。",
+          "eval": "eval/step4"
+        },
+        {
+          "id": "step5",
+          "instruction": "请参考 config_consts.py 中的 MARGIN 定义。修改 app.py 中的 fee(x)：返回 x + MARGIN（去掉 *10）。不要修改 config_consts.py。",
+          "eval": "eval/step5"
+        }
+      ]
+    },
+    {
+      "id": "sc03_similar",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请参考 copy_a.py 中的 helper 形态。修改 target.py 中的 calc(n)：返回 n + 2。不要修改 copy_a.py。",
+          "eval": "eval/step1"
+        },
+        {
+          "id": "step2",
+          "instruction": "请参考 copy_a.py 与 copy_b.py 中的 helper 形态。修改 target.py 中的 calc(n)：返回 n * 2。不要修改 copy_a.py 与 copy_b.py。",
+          "eval": "eval/step2"
+        },
+        {
+          "id": "step3",
+          "instruction": "请参考 copy_a.py 中的 helper 形态。请在 target.py 新增 double(n) 返回 calc(n) * 2。不要修改 copy_a.py。",
+          "eval": "eval/step3"
+        },
+        {
+          "id": "step4",
+          "instruction": "请参考 copy_a.py 中的 helper 形态。修改 target.py 中的 double(n)：改为返回 calc(n) * 3（当前 *2）。不要修改 copy 文件。",
+          "eval": "eval/step4"
+        },
+        {
+          "id": "step5",
+          "instruction": "请参考 copy_a.py 中的 helper 形态。修改 target.py 中的 calc(n)：返回 n + 3。不要修改 copy_a.py。",
+          "eval": "eval/step5"
+        }
+      ]
+    },
+    {
+      "id": "sc04_update",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请参考 taxrate.py 中的 RATE 定义。修改 biz.py 中的 net(x)：返回 x - x * RATE + 1（在原展开式上加 1）。不要修改 taxrate.py。",
+          "eval": "eval/step1"
+        },
+        {
+          "id": "step2",
+          "instruction": "请参考 biz.py 当前实现。修改 taxrate.py 中 RATE 为 0.25（当前 0.1）。不要修改 biz.py。",
+          "eval": "eval/step2"
+        },
+        {
+          "id": "step3",
+          "instruction": "请参考 taxrate.py 中的 RATE 定义。请在 biz.py 新增 gross(x) 返回 x + x * RATE。不要修改 taxrate.py。",
+          "eval": "eval/step3"
+        },
+        {
+          "id": "step4",
+          "instruction": "请参考 taxrate.py 中的 RATE 定义。修改 biz.py 中的 net(x)：当 x <= 0 返回 -1，否则 x - x * RATE + 1。不要修改 taxrate.py。",
+          "eval": "eval/step4"
+        },
+        {
+          "id": "step5",
+          "instruction": "请参考 taxrate.py 中的 RATE 定义。修改 biz.py 中的 gross(x)：返回 x * (1 + RATE) * 2（翻倍）。不要修改 taxrate.py。",
+          "eval": "eval/step5"
+        }
+      ]
+    },
+    {
+      "id": "sc05_range",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请参考 side.py 中的 SIDE 定义。修改 core.py 中的 alpha(a)：返回 a + 10。不要修改 side.py。",
+          "eval": "eval/step1"
+        },
+        {
+          "id": "step2",
+          "instruction": "请参考 side.py 中的 SIDE 定义。修改 core.py 中的 beta(b)：返回 b * 2。不要修改 side.py。",
+          "eval": "eval/step2"
+        },
+        {
+          "id": "step3",
+          "instruction": "请参考 side.py 中的 SIDE 定义。修改 core.py 中的 gamma(g)：返回 g * 3。不要修改 side.py。",
+          "eval": "eval/step3"
+        },
+        {
+          "id": "step4",
+          "instruction": "请参考 side.py 中的 SIDE 定义。请在 core.py 新增 delta(d) 返回 alpha(d) + beta(d)。不要修改 side.py。",
+          "eval": "eval/step4"
+        },
+        {
+          "id": "step5",
+          "instruction": "请参考 side.py 中的 SIDE 定义。修改 core.py 中的 alpha(a)：当 a < 0 返回 0，否则 a + 10。不要修改 side.py。",
+          "eval": "eval/step5"
+        }
+      ]
+    },
+    {
+      "id": "sc06_filter",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请参考 limits.py 中的 MAX 定义。修改 main.py 中的 clamp(n)：若 n < 0 返回 0，否则 min(n, MAX)。不要修改 limits.py。",
+          "eval": "eval/step1"
+        },
+        {
+          "id": "step2",
+          "instruction": "请参考 main.py 当前实现。修改 limits.py 中 MAX 为 50（当前 10）。不要修改 main.py。",
+          "eval": "eval/step2"
+        },
+        {
+          "id": "step3",
+          "instruction": "请参考 limits.py 中的 MAX 定义。修改 main.py 中的 zero(n)：返回 -1 if n == 0 else (0 if n < 0 else n)。不要修改 limits.py。",
+          "eval": "eval/step3"
+        },
+        {
+          "id": "step4",
+          "instruction": "请参考 limits.py 中的 MAX 定义。请在 main.py 新增 bounded(n) 返回 clamp(zero(n))。不要修改 limits.py 与 junk 文件。",
+          "eval": "eval/step4"
+        },
+        {
+          "id": "step5",
+          "instruction": "请参考 limits.py 中的 MAX 定义。修改 main.py 中的 bounded(n)：返回 zero(clamp(n))（交换组合顺序）。不要修改 limits.py。",
+          "eval": "eval/step5"
+        }
+      ]
+    },
+    {
+      "id": "sc07_extract",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请读取 cfg.py 中的 LIMIT 值。写死到 app.py 的 get()，返回该常量数值（不要写符号名）。不要修改 cfg.py。",
+          "eval": "eval/step1"
+        },
+        {
+          "id": "step2",
+          "instruction": "请读取 cfg.py 中的 LIMIT。写死到 app.py 的 get()：返回该数值减 2。不要修改 cfg.py。",
+          "eval": "eval/step2"
+        },
+        {
+          "id": "step3",
+          "instruction": "请在 app.py 新增 double_get() 返回 get() * 2。不要修改 cfg.py 与 noise.py。",
+          "eval": "eval/step3"
+        },
+        {
+          "id": "step4",
+          "instruction": "请读取 cfg.py 中的 LIMIT。写死到 app.py 的 get()：返回该数值加 0。不要修改 cfg.py。",
+          "eval": "eval/step4"
+        },
+        {
+          "id": "step5",
+          "instruction": "请修改 app.py 中的 double_get()：返回 get() + get()。不要修改 cfg.py。",
+          "eval": "eval/step5"
+        }
+      ]
+    },
+    {
+      "id": "sc08_extract_noise",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请读取 tax.py 中的 RATE 值。写死到 bill.py 的 total(x)，返回 x 乘以该数值。不要修改 tax.py。",
+          "eval": "eval/step1"
+        },
+        {
+          "id": "step2",
+          "instruction": "请读取 tax.py 中的 RATE。写死到 bill.py 的 total(x)：返回 x 乘以该数值再加 1。不要修改 tax.py。",
+          "eval": "eval/step2"
+        },
+        {
+          "id": "step3",
+          "instruction": "请在 bill.py 新增 fee(x) 返回 total(x) * 2。不要修改 tax.py 与 junk.py。",
+          "eval": "eval/step3"
+        },
+        {
+          "id": "step4",
+          "instruction": "请修改 bill.py 中的 fee(x)：返回 total(x) + 1。不要修改 tax.py。",
+          "eval": "eval/step4"
+        },
+        {
+          "id": "step5",
+          "instruction": "请修改 bill.py 中的 total(x)：写死为 x * 0.5。不要修改 tax.py。",
+          "eval": "eval/step5"
+        }
+      ]
+    }
+  ],
+  "discrimination_problems": []
+}

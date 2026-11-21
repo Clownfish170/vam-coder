@@ -1,0 +1,151 @@
+{
+  "schema": "v13d-chain-tasks-v1",
+  "episodes": [
+    {
+      "id": "chainA_t01",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请参考 price_table.py 中的 RATE。修改 engine.py 中的 quote(x)：返回 x * RATE。不要修改 price_table.py。",
+          "eval": "eval/step1"
+        }
+      ],
+      "chain": "chainA",
+      "order": 1
+    },
+    {
+      "id": "chainA_t02",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请参考 price_table.py 中的 TAX。修改 engine.py 中的 discount(x)：返回 x - TAX。不要修改 price_table.py。",
+          "eval": "eval/step1"
+        }
+      ],
+      "chain": "chainA",
+      "order": 2
+    },
+    {
+      "id": "chainA_t03",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请在 engine.py 新增 total(x) 返回 quote(x) + discount(x)。不要修改 price_table.py 与 noise.py。",
+          "eval": "eval/step1"
+        }
+      ],
+      "chain": "chainA",
+      "order": 3
+    },
+    {
+      "id": "chainA_t04",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请参考 price_table.py 的 RATE。修改 engine.py 中的 quote(x)：x < 0 返回 0，否则 x * RATE。不要修改 price_table.py。",
+          "eval": "eval/step1"
+        }
+      ],
+      "chain": "chainA",
+      "order": 4
+    },
+    {
+      "id": "chainA_t05",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请修改 engine.py 中的 total(x)：返回 quote(x) - discount(x)。不要修改 price_table.py。",
+          "eval": "eval/step1"
+        }
+      ],
+      "chain": "chainA",
+      "order": 5
+    },
+    {
+      "id": "chainA_t06",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请修改 engine.py 中的 discount(x)：返回 x - TAX * 2。不要修改 price_table.py。",
+          "eval": "eval/step1"
+        }
+      ],
+      "chain": "chainA",
+      "order": 6
+    },
+    {
+      "id": "chainB_t01",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请参考 routes.py 中的 DEFAULT。修改 dispatch.py 中的 route(key)：当 key 是空字符串 '' 时返回 ALT，其他情况返回 DEFAULT。不要修改 routes.py。",
+          "eval": "eval/step1"
+        }
+      ],
+      "chain": "chainB",
+      "order": 1
+    },
+    {
+      "id": "chainB_t02",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请参考 routes.py 中的 COUNT。修改 dispatch.py 中的 fallback()：返回 COUNT。不要修改 routes.py。",
+          "eval": "eval/step1"
+        }
+      ],
+      "chain": "chainB",
+      "order": 2
+    },
+    {
+      "id": "chainB_t03",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请在 dispatch.py 新增 size() 返回 COUNT * 2。不要修改 routes.py 与 unused.py。",
+          "eval": "eval/step1"
+        }
+      ],
+      "chain": "chainB",
+      "order": 3
+    },
+    {
+      "id": "chainB_t04",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请参考 routes.py 的 DEFAULT。修改 dispatch.py 中的 route(key)：key == 'x' 返回 ALT。不要修改 routes.py。",
+          "eval": "eval/step1"
+        }
+      ],
+      "chain": "chainB",
+      "order": 4
+    },
+    {
+      "id": "chainB_t05",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请修改 dispatch.py 中的 size()：返回 COUNT + 1。不要修改 routes.py。",
+          "eval": "eval/step1"
+        }
+      ],
+      "chain": "chainB",
+      "order": 5
+    },
+    {
+      "id": "chainB_t06",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请修改 dispatch.py 中的 fallback()：返回 ALT + '!'。不要修改 routes.py。",
+          "eval": "eval/step1"
+        }
+      ],
+      "chain": "chainB",
+      "order": 6
+    }
+  ],
+  "discrimination_problems": [],
+  "note": "each episode 1 step; same initial project within chain; shared SlowStore across chain order"
+}

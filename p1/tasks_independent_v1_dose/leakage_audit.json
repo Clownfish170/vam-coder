@@ -1,0 +1,13 @@
+{
+  "forbidden_hits": [],
+  "forbidden_pass": true,
+  "instruction_containment": [],
+  "containment_pass": true,
+  "file_sha_overlap": 0,
+  "sha_pass": true,
+  "intra_dup_instructions": 0,
+  "intra_unique_pass": true,
+  "n_dose_tasks": 8,
+  "n_dose_steps": 40,
+  "overall_pass": true
+}

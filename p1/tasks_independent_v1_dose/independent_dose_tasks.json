@@ -1,0 +1,246 @@
+{
+  "schema": "independent-dose-tasks-v1",
+  "episodes": [
+    {
+      "id": "dose_D01",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请参考 fee_consts.py 中的 BASE 定义。修改 bill_core.py 中的 charge(n)：返回 n + BASE。不要修改 fee_consts.py。",
+          "eval": "eval/step1"
+        },
+        {
+          "id": "step2",
+          "instruction": "请参考 fee_consts.py 中的 LABEL。修改 bill_core.py 中的 charge(n)：返回 n + BASE * 2。不要修改 fee_consts.py。",
+          "eval": "eval/step2"
+        },
+        {
+          "id": "step3",
+          "instruction": "请在 bill_core.py 新增 discount(n) 返回 charge(n) - 1。不要修改 fee_consts.py 与 ledger_noise.py。",
+          "eval": "eval/step3"
+        },
+        {
+          "id": "step4",
+          "instruction": "请参考 fee_consts.py 的 BASE。修改 bill_core.py 中的 discount(n)：返回 charge(n) - BASE。不要修改 fee_consts.py。",
+          "eval": "eval/step4"
+        },
+        {
+          "id": "step5",
+          "instruction": "请修改 bill_core.py 中的 charge(n)：当 n < 0 返回 0，否则 n + BASE * 2。不要修改 fee_consts.py。",
+          "eval": "eval/step5"
+        }
+      ]
+    },
+    {
+      "id": "dose_D02",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请参考 route_table.py 中的 DEFAULT_PATH。修改 router.py 中的 resolve(key)：未知键返回 DEFAULT_PATH。不要修改 route_table.py。",
+          "eval": "eval/step1"
+        },
+        {
+          "id": "step2",
+          "instruction": "请参考 route_table.py 中的 ALIAS。修改 router.py 中的 resolve(key)：先查 ALIAS，未命中返回 DEFAULT_PATH。不要修改 route_table.py。",
+          "eval": "eval/step2"
+        },
+        {
+          "id": "step3",
+          "instruction": "请在 router.py 新增 has_alias(key) 返回 key 是否在 ALIAS。不要修改 route_table.py 与 unused_trace.py。",
+          "eval": "eval/step3"
+        },
+        {
+          "id": "step4",
+          "instruction": "请参考 route_table.py 的 DEFAULT_PATH。修改 router.py 中的 resolve(key)：未知键返回 None（不再回退 DEFAULT_PATH）。不要修改 route_table.py。",
+          "eval": "eval/step4"
+        },
+        {
+          "id": "step5",
+          "instruction": "请修改 router.py 中的 has_alias(key)：单字符键不视为别名（长度至少 2）。不要修改 route_table.py。",
+          "eval": "eval/step5"
+        }
+      ]
+    },
+    {
+      "id": "dose_D03",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请参考 thresholds.py 中的 CUT。修改 filter_core.py 中的 keep(x)：返回 x >= CUT。不要修改 thresholds.py。",
+          "eval": "eval/step1"
+        },
+        {
+          "id": "step2",
+          "instruction": "请参考 thresholds.py 中的 MAX_N。修改 filter_core.py 中的 keep(x)：返回 x >= CUT 且 x <= MAX_N。不要修改 thresholds.py。",
+          "eval": "eval/step2"
+        },
+        {
+          "id": "step3",
+          "instruction": "请在 filter_core.py 新增 count(xs) 返回 keep 为真的个数。不要修改 thresholds.py 与 bench_extra.py。",
+          "eval": "eval/step3"
+        },
+        {
+          "id": "step4",
+          "instruction": "请参考 thresholds.py 的 CUT。修改 filter_core.py 中的 keep(x)：只保留 x >= CUT（去掉 MAX_N 上限）。不要修改 thresholds.py。",
+          "eval": "eval/step4"
+        },
+        {
+          "id": "step5",
+          "instruction": "请修改 filter_core.py 中的 keep(x)：改为严格大于 CUT（x > CUT）。不要修改 thresholds.py。",
+          "eval": "eval/step5"
+        }
+      ]
+    },
+    {
+      "id": "dose_D04",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请参考 fmt_strings.py 中的 SEP。修改 fmt_core.py 中的 join3(a,b,c)：用 SEP 连接三者。不要修改 fmt_strings.py。",
+          "eval": "eval/step1"
+        },
+        {
+          "id": "step2",
+          "instruction": "请参考 fmt_strings.py 中的 EMPTY。修改 fmt_core.py 中的 join3：任一参数为 None 时该位置用 EMPTY。不要修改 fmt_strings.py。",
+          "eval": "eval/step2"
+        },
+        {
+          "id": "step3",
+          "instruction": "请在 fmt_core.py 新增 join_list(xs) 用 SEP 连接全部元素。不要修改 fmt_strings.py 与 scratch_pad.py。",
+          "eval": "eval/step3"
+        },
+        {
+          "id": "step4",
+          "instruction": "请参考 fmt_strings.py 的 SEP。修改 fmt_core.py 中的 join_list：跳过 None 元素。不要修改 fmt_strings.py。",
+          "eval": "eval/step4"
+        },
+        {
+          "id": "step5",
+          "instruction": "请修改 fmt_core.py 中的 join_list：返回 (文本, 有效元素个数) 元组。不要修改 fmt_strings.py。",
+          "eval": "eval/step5"
+        }
+      ]
+    },
+    {
+      "id": "dose_D05",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请参考 pool_cap.py 中的 CAP。修改 pool_mgr.py 中的 acquire()：返回 CAP。不要修改 pool_cap.py。",
+          "eval": "eval/step1"
+        },
+        {
+          "id": "step2",
+          "instruction": "请参考 pool_cap.py 的 CAP。修改 pool_mgr.py 中的 acquire()：返回 CAP - 1。不要修改 pool_cap.py。",
+          "eval": "eval/step2"
+        },
+        {
+          "id": "step3",
+          "instruction": "请在 pool_mgr.py 新增 remaining(used) 返回 CAP - used。不要修改 pool_cap.py 与 pool_log.py。",
+          "eval": "eval/step3"
+        },
+        {
+          "id": "step4",
+          "instruction": "请参考 pool_cap.py 的 CAP。修改 pool_mgr.py 中的 remaining(used)：used < 0 时返回 CAP。不要修改 pool_cap.py。",
+          "eval": "eval/step4"
+        },
+        {
+          "id": "step5",
+          "instruction": "请修改 pool_mgr.py 中的 remaining(used)：used > CAP 时返回 0。不要修改 pool_cap.py。",
+          "eval": "eval/step5"
+        }
+      ]
+    },
+    {
+      "id": "dose_D06",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请参考 match_pat.py 中的 PREFIX。修改 match_core.py 中的 match(s)：返回 s 是否以 PREFIX 开头。不要修改 match_pat.py。",
+          "eval": "eval/step1"
+        },
+        {
+          "id": "step2",
+          "instruction": "请参考 match_pat.py 中的 SUFFIX。修改 match_core.py 中的 match(s)：以 PREFIX 开头且以 SUFFIX 结尾。不要修改 match_pat.py。",
+          "eval": "eval/step2"
+        },
+        {
+          "id": "step3",
+          "instruction": "请在 match_core.py 新增 strip_affix(s) 去掉首尾前后缀。不要修改 match_pat.py 与 match_noise.py。",
+          "eval": "eval/step3"
+        },
+        {
+          "id": "step4",
+          "instruction": "请参考 match_pat.py 的 PREFIX。修改 match_core.py 中的 match(s)：s 为 None 返回 False。不要修改 match_pat.py。",
+          "eval": "eval/step4"
+        },
+        {
+          "id": "step5",
+          "instruction": "请修改 match_core.py 中的 strip_affix(s)：非字符串输入原样返回。不要修改 match_pat.py。",
+          "eval": "eval/step5"
+        }
+      ]
+    },
+    {
+      "id": "dose_D07",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请参考 score_w.py 中的 W_BASE。修改 score_core.py 中的 score(v)：返回 v * W_BASE。不要修改 score_w.py。",
+          "eval": "eval/step1"
+        },
+        {
+          "id": "step2",
+          "instruction": "请参考 score_w.py 中的 W_BONUS。修改 score_core.py 中的 score(v)：v > 0 时再加 W_BONUS。不要修改 score_w.py。",
+          "eval": "eval/step2"
+        },
+        {
+          "id": "step3",
+          "instruction": "请在 score_core.py 新增 total(xs) 返回 score 之和。不要修改 score_w.py 与 score_dump.py。",
+          "eval": "eval/step3"
+        },
+        {
+          "id": "step4",
+          "instruction": "请参考 score_w.py 的 W_BASE。修改 score_core.py 中的 score(v)：v < 0 返回 0。不要修改 score_w.py。",
+          "eval": "eval/step4"
+        },
+        {
+          "id": "step5",
+          "instruction": "请修改 score_core.py 中的 total(xs)：返回最大 score 而非求和。不要修改 score_w.py。",
+          "eval": "eval/step5"
+        }
+      ]
+    },
+    {
+      "id": "dose_D08",
+      "steps": [
+        {
+          "id": "step1",
+          "instruction": "请参考 unit_scale.py 中的 SCALE。修改 unit_api.py 中的 to_display(x)：返回 x * SCALE。不要修改 unit_scale.py。",
+          "eval": "eval/step1"
+        },
+        {
+          "id": "step2",
+          "instruction": "请参考 unit_scale.py 中的 UNIT。修改 unit_api.py 中的 to_display(x)：返回元组 (x * SCALE, UNIT)。不要修改 unit_scale.py。",
+          "eval": "eval/step2"
+        },
+        {
+          "id": "step3",
+          "instruction": "请在 unit_api.py 新增 from_display(y) 返回 y // SCALE。不要修改 unit_scale.py 与 unit_doc.py。",
+          "eval": "eval/step3"
+        },
+        {
+          "id": "step4",
+          "instruction": "请参考 unit_scale.py 的 SCALE。修改 unit_api.py 中的 from_display(y)：y < 0 返回 0。不要修改 unit_scale.py。",
+          "eval": "eval/step4"
+        },
+        {
+          "id": "step5",
+          "instruction": "请修改 unit_api.py 中的 to_display(x)：x < 0 返回 0。不要修改 unit_scale.py。",
+          "eval": "eval/step5"
+        }
+      ]
+    }
+  ],
+  "discrimination_problems": []
+}

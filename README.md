@@ -1,49 +1,97 @@
-# VAM-Coder — Repository Structure
+# VAM-Coder
 
-旗舰研究对象：**V13E**（V1.3E）  
-演进主线：V1.0 → V1.1 → V1.2F → V1.3E  
-双 Token：探索过程，**不是**最终核心创新。
+**Verifiable context-management for multi-turn coding agents.**
 
-**License:** MIT (`LICENSE`) · Third-party notices: `NOTICE` · Open-source checklist: `docs/OPEN_SOURCE_CHECKLIST.md`
+VAM-Coder reduces redundant context transmission while checking that omitted workspace content remains **visible and version-consistent** at the final model-request boundary.
 
-## Quick start (product library)
+| Core mechanism | Role |
+| --- | --- |
+| **VP** (Visibility Proof) | Final-message visibility / hash check; reinject or fail closed |
+| **F** (Selective Context Delivery) | Baseline selective delivery of related context |
+| **S1** (Verified History Projection) | Fold redundant assistant `FILE` blocks by path (keeps first/last) |
+| **S2** | Optional obligation-ledger heuristic (auxiliary only) |
+
+**License:** MIT (`LICENSE`) · Third-party notices: `NOTICE`
+
+---
+
+## Repository layout
+
+```text
+vam-coder/
+├── src/vam_coder/     # Product library (only production code entry)
+├── tests/             # Unit tests for the product library
+├── p1/scripts/        # Experiment harness (VP / S1 / S2 / runners)
+├── p1/docs/           # Design & frozen preregistration documents
+├── p1/tasks*/         # Self-designed evaluation task sets
+├── docs/              # Architecture, glossary, history, reproducibility
+│   ├── history/       # Version evolution notes (V1.0 → V1.3E)
+│   └── archive/       # Historical notes & large archives (local)
+├── tools/             # Utility scripts
+├── config/            # Default runtime config (config/default.json)
+├── requirements.txt   # Pinned Python dependencies
+├── LICENSE  NOTICE  CITATION.cff  CONTRIBUTING.md  CHANGELOG.md
+└── README.md          # This file
+```
+
+**Not in this public tree** (kept on disk only): experiment runs, raw logs, manifests, manuscript sources. See `docs/OPEN_SOURCE_CHECKLIST.md`.
+
+---
+
+## Quick start
 
 ```bash
 # Python >= 3.10 (tested 3.12.x)
 pip install -r requirements.txt
 
-# from repository root
-python -c "import sys; sys.path.insert(0, 'src'); import vam_coder; print(vam_coder.__name__)"
+# import smoke test (from repo root)
+python -c "import sys; sys.path.insert(0, 'src'); import vam_coder; print('ok')"
+
+# product unit tests
+python -m pytest tests/ -q
+
+# optional: P0 scenario self-check
+python tools/run_p0_scenario.py
 ```
 
-- Product package: `src/vam_coder/` (only production code entry).
-- Experiment harness: `p1/scripts/` (frozen experiment paths; do not relocate casually).
-- Reproducibility: `docs/REPRODUCIBILITY.md`.
+---
 
-## 顶层目录
+## Documentation
 
-| 目录 | 职责 |
+| Doc | Content |
 | --- | --- |
-| [development/](development/README.md) | 架构研发与版本演进（仅真实存在的版本） |
-| [src/](src/README.md) | **唯一**可运行产品代码入口（`vam_coder`） |
-| [experiments/](experiments/README.md) | 独立实验体系索引（物理 run 见各 README 的 canonical path） |
-| [manuscript/](manuscript/README.md) | 论文、图表、参考文献、补充材料 |
-| [docs/](docs/README.md) | 总览、演进、术语、复现、局限 |
-| [scripts/](scripts/README.md) | 通用工具脚本 |
-| [archive/](archive/README.md) | 历史材料、归档包、服务日志 |
+| [docs/ARCHITECTURE_OVERVIEW.md](docs/ARCHITECTURE_OVERVIEW.md) | System overview |
+| [docs/ARCHITECTURE_V13E.md](docs/ARCHITECTURE_V13E.md) | V13E flagship architecture |
+| [docs/MECHANISM_VISIBILITY_PROOF.md](docs/MECHANISM_VISIBILITY_PROOF.md) | VP mechanism & boundaries |
+| [docs/GLOSSARY.md](docs/GLOSSARY.md) | Terms (incl. O′ → VP) |
+| [docs/DEVELOPMENT_HISTORY.md](docs/DEVELOPMENT_HISTORY.md) | Evolution V1.0 → V1.3E |
+| [docs/history/](docs/history/README.md) | Per-version notes |
+| [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md) | How to rerun experiments |
+| [docs/LIMITATIONS.md](docs/LIMITATIONS.md) | Claim boundaries |
+| [docs/OPEN_SOURCE_CHECKLIST.md](docs/OPEN_SOURCE_CHECKLIST.md) | License / release checklist |
+| [p1/README.md](p1/README.md) | Experiment harness guide |
 
-## 关键约定
+---
 
-1. **冻结数据**在 `p1/experiments/**`、`p1/tasks*`、`p1/docs` 根目录、`p1/manifests` — **禁止移动/改写**。
-2. 实验 harness 在 `p1/scripts/`（非产品代码）；产品代码仅 `src/vam_coder/`。
-3. 术语见 [docs/GLOSSARY.md](docs/GLOSSARY.md)（O′→VP 映射；不改历史原文）。
-4. 结构重组映射：`../VAM_CODER_RESTRUCTURE_MAPPING.tsv` 或见 `VAM_CODER_REPOSITORY_STRUCTURE_REPORT.md`。
+## Design task sets
 
-## 入口文档
+Self-designed multi-step repository-editing tasks live under `p1/`:
 
-- 架构总览：[docs/ARCHITECTURE_OVERVIEW.md](docs/ARCHITECTURE_OVERVIEW.md)
-- V13E：[docs/ARCHITECTURE_V13E.md](docs/ARCHITECTURE_V13E.md)
-- 演进：[docs/DEVELOPMENT_HISTORY.md](docs/DEVELOPMENT_HISTORY.md)
-- 实验索引：[docs/EXPERIMENT_INDEX.md](docs/EXPERIMENT_INDEX.md)
-- 复现：[docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md)
-- 局限：[docs/LIMITATIONS.md](docs/LIMITATIONS.md)
+- `p1/tasks/` — core task registry  
+- `p1/tasks_p1_validation/` — 48-task confirmation suite  
+- `p1/tasks_independent_v1*` — independent archetype suite  
+- `p1/tasks_v13_holdout/` — holdout set  
+- `p1/tasks_v13a_*`, `p1/tasks_v13d_chain/` — screening / chain variants  
+- `p1/tasks_transfer_v1/` — transfer-style synthetic tasks  
+
+Each task ships a small `project/` workspace, `eval/` tests, and `reference/` solutions.
+
+---
+
+## Citation
+
+See `CITATION.cff`. If you use this software, please cite the associated manuscript when published.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md). Frozen experiment paths under `p1/experiments/**` (local only) must not be rewritten.

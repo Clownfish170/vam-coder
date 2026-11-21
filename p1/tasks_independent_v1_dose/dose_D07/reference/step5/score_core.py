@@ -1,0 +1,16 @@
+from score_w import W_BASE, W_BONUS
+
+
+def score(v):
+    if v < 0:
+        return 0
+    s = v * W_BASE
+    if v > 0:
+        s += W_BONUS
+    return s
+
+
+def total(xs):
+    if not xs:
+        return 0
+    return max(score(v) for v in xs)

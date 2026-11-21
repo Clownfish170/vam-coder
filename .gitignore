@@ -6,38 +6,35 @@ state/
 logs/
 p1/.cache/
 
-# ===== 开源范围：只保留项目本体（代码+架构文档+元数据）=====
-# 以下目录磁盘保留，但不进入 Git 公开仓
-# 实验产出 / 任务集 / manifest / 结果（论文与复现用本地即可）
+# ===== 公开仓范围：项目本体 + 自研题目；不含实验产出 =====
+# 实验产出 / manifest / 结果 / 手稿（本地保留，不进公开 Git）
 p1/experiments/
 p1/results/
 p1/manifests/
-p1/tasks/
-p1/tasks_*/
 experiments/
 results/
 manuscript/
 
-# 大体量归档与本地服务日志
-archive/*.zip
-archive/*.bundle
-archive/server-logs/*.log
+# 大体量归档与本地服务日志（磁盘保留）
+docs/archive/*.zip
+docs/archive/*.bundle
+docs/archive/server-logs/*.log
 llama_server*.log
 **/llama_server*.log
 *.log
 
-# 方案B junction（指向 p1/*，禁止 Git 跟随）
-development/**/p1_docs_*/
-development/**/v11_visibility/
-development/**/v12_scripts/
-development/**/p1_scripts/
-development/**/dualtoken_ablation/
-development/**/v13a_cr_local/
-development/**/v13a_testpart/
-development/**/v13b_deepseek/
-development/**/v13b_icg/
-development/**/v13b_sp/
-development/**/v13d_preview/
+# junction → p1/*（禁止 Git 跟随）
+docs/history/**/p1_docs_*/
+docs/history/**/v11_visibility/
+docs/history/**/v12_scripts/
+docs/history/**/p1_scripts/
+docs/history/**/dualtoken_ablation/
+docs/history/**/v13a_cr_local/
+docs/history/**/v13a_testpart/
+docs/history/**/v13b_deepseek/
+docs/history/**/v13b_icg/
+docs/history/**/v13b_sp/
+docs/history/**/v13d_preview/
 experiments/**/runs/
 experiments/**/tasks/
 experiments/**/fault-injection/

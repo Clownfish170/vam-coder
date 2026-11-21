@@ -21,7 +21,7 @@ V1.0 初始架构
 | --- | --- |
 | 设计目标 | 可运行的编码记忆/装配原型与任务集 |
 | 原有不足 | `history_sent` 与当前 messages 不一致（后续 V1.1 文档明确） |
-| 主要文档 | `p1/docs/v1.0/`（canonical；指针 `development/V1.0/`） |
+| 主要文档 | `p1/docs/v1.0/`（canonical；指针 `docs/history/V1.0/`） |
 | 冻结记录 | `p1/results/freeze_v1_0.md`；manifest `p1/manifests/p1_v1.0_manifest_*.json` |
 | 代码 | `p1/scripts/run_p1.py`（早期 runner） |
 | 遗留影响 | 可见性记账缺陷 → V1.1 必须引入 VP |
