@@ -34,7 +34,7 @@ vam-coder/
 └── README.md          # This file
 ```
 
-**Not in this public tree** (kept on disk only): experiment runs, raw logs, manifests, manuscript sources. See `docs/OPEN_SOURCE_CHECKLIST.md`.
+**Not in this public tree** (kept on disk only): experiment runs, raw logs, manifests, manuscript sources, and `p1/tasks_transfer_v1/` (embeds third-party library sources; not license-reviewed). See `docs/OPEN_SOURCE_CHECKLIST.md`.
 
 ---
 
@@ -82,9 +82,10 @@ Self-designed multi-step repository-editing tasks live under `p1/`:
 - `p1/tasks_independent_v1*` — independent archetype suite  
 - `p1/tasks_v13_holdout/` — holdout set  
 - `p1/tasks_v13a_*`, `p1/tasks_v13d_chain/` — screening / chain variants  
-- `p1/tasks_transfer_v1/` — transfer-style synthetic tasks  
 
 Each task ships a small `project/` workspace, `eval/` tests, and `reference/` solutions.
+
+> **Not included here:** `p1/tasks_transfer_v1/` (local only) — contains third-party library sources pending license review.
 
 ---
 

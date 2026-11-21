@@ -6,7 +6,7 @@ state/
 logs/
 p1/.cache/
 
-# ===== 公开仓范围：项目本体 + 自研题目；不含实验产出 =====
+# ===== 公开仓范围：项目本体 + 自研合成题目；不含实验产出 =====
 # 实验产出 / manifest / 结果 / 手稿（本地保留，不进公开 Git）
 p1/experiments/
 p1/results/
@@ -14,6 +14,9 @@ p1/manifests/
 experiments/
 results/
 manuscript/
+
+# transfer 题含第三方库源码（pluggy/packaging/idna/…），未做许可审查 → 不进公开 Git
+p1/tasks_transfer_v1/
 
 # 大体量归档与本地服务日志（磁盘保留）
 docs/archive/*.zip
