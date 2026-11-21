@@ -1,0 +1,35 @@
+# NOTICE — VAM-Coder third-party software
+
+This repository’s original code is licensed under the MIT License (see `LICENSE`).
+
+The following **runtime dependencies** are installed via pip and are **not vendored** in this repository. Their licenses apply to those packages only. Versions match `requirements.txt` where pinned.
+
+| Package | Version (pinned) | License (PyPI metadata, checked 2026-11-21) | Source |
+|---------|------------------|-----------------------------------------------|--------|
+| tree-sitter | 0.26.0 | MIT (PyPI classifier: OSI Approved :: MIT License) | https://pypi.org/project/tree-sitter/ |
+| tree-sitter-python | 0.25.0 | MIT (PyPI `license` field) | https://pypi.org/project/tree-sitter-python/ |
+| blake3 | 1.0.11 | CC0-1.0 **OR** Apache-2.0 (PyPI `license` field) | https://pypi.org/project/blake3/ |
+| pytest | 9.1.1 | MIT (PyPI `license_expression`) | https://pypi.org/project/pytest/ |
+
+**Python runtime:** CPython is distributed under the Python Software Foundation License (PSF-2.0). See https://docs.python.org/3/license.html
+
+## Data and evaluation assets
+
+| Asset | Use | Redistribution |
+|-------|-----|----------------|
+| Synthetic micro-repository tasks (`p1/tasks*`) | Main confirmatory study | Original to this project; covered by repo MIT if you redistribute them with this project |
+| SWE-bench Lite (10-instance transfer subset) | External transfer check only | **NEEDS REVIEW** before redistributing instance text or workspace dumps; prefer publishing instance IDs + download instructions |
+| Model outputs / API usage logs | Experiments | Contain third-party repository snippets in some run logs; **do not bulk-publish** without license review (see `docs/OPEN_SOURCE_CHECKLIST.md`) |
+
+## Services (not redistributed)
+
+- DeepSeek and Qwen / OpenAI-compatible endpoints are used under their respective terms of service.
+- API keys must be supplied via environment variables (`VAM_API_KEY`, `OPENAI_API_KEY`); never commit keys.
+
+## Local reimplementations
+
+TRUNC, SUMM, and RETR in the paper are **local policy reimplementations** for the experimental runner. They are **not** official code from the original authors.
+
+---
+
+*This NOTICE is not legal advice. Confirm license texts and dataset cards at release time.*

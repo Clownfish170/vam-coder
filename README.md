@@ -4,6 +4,22 @@
 演进主线：V1.0 → V1.1 → V1.2F → V1.3E  
 双 Token：探索过程，**不是**最终核心创新。
 
+**License:** MIT (`LICENSE`) · Third-party notices: `NOTICE` · Open-source checklist: `docs/OPEN_SOURCE_CHECKLIST.md`
+
+## Quick start (product library)
+
+```bash
+# Python >= 3.10 (tested 3.12.x)
+pip install -r requirements.txt
+
+# from repository root
+python -c "import sys; sys.path.insert(0, 'src'); import vam_coder; print(vam_coder.__name__)"
+```
+
+- Product package: `src/vam_coder/` (only production code entry).
+- Experiment harness: `p1/scripts/` (frozen experiment paths; do not relocate casually).
+- Reproducibility: `docs/REPRODUCIBILITY.md`.
+
 ## 顶层目录
 
 | 目录 | 职责 |

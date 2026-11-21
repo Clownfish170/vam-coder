@@ -31,10 +31,10 @@ Source of truth for versions: `requirements.txt` (pinned). Verify each row on Py
 
 | Package | Pinned version | Declared license (verify) | Compatible with MIT? | Redistribution in this repo? | Action |
 |---------|----------------|---------------------------|----------------------|------------------------------|--------|
-| tree-sitter | 0.26.0 | **NEEDS REVIEW** (commonly MIT — confirm PyPI) | Likely yes if MIT | Not vendored (pip dep) | Record license text link in NOTICE |
-| tree-sitter-python | 0.25.0 | **NEEDS REVIEW** (commonly MIT — confirm) | Likely yes if MIT | Not vendored | Same |
-| blake3 | 1.0.11 | **NEEDS REVIEW** (confirm PyPI classifier / LICENSE file) | **Confirm** before MIT claim for combined work | Not vendored | Same |
-| pytest | 9.1.1 | **NEEDS REVIEW** (commonly MIT) | Likely yes | Not vendored | Same |
+| tree-sitter | 0.26.0 | **MIT** (PyPI classifier, checked 2026-11-21) | Yes | Not vendored (pip dep) | Listed in `NOTICE` |
+| tree-sitter-python | 0.25.0 | **MIT** (PyPI license field, checked 2026-11-21) | Yes | Not vendored | Listed in `NOTICE` |
+| blake3 | 1.0.11 | **CC0-1.0 OR Apache-2.0** (PyPI license field, checked 2026-11-21) | Yes (either) | Not vendored | Listed in `NOTICE` |
+| pytest | 9.1.1 | **MIT** (PyPI license_expression, checked 2026-11-21) | Yes | Not vendored | Listed in `NOTICE` |
 | Python stdlib / runtime | ≥3.10 (3.12.x used) | PSF-2.0 (typical) | Yes | N/A | Note in README |
 | Docker Engine / Desktop (used only for transfer eval) | host-dependent | **NEEDS REVIEW** (Docker ToS; not redistributed) | N/A if not shipped | **Do not** redistribute Docker | State “optional for transfer experiments” |
 | WSL2 (was used for Docker backend) | system | Microsoft terms | N/A | Not redistributed | Already removed on this machine; document as optional |
@@ -125,7 +125,7 @@ Source of truth for versions: `requirements.txt` (pinned). Verify each row on Py
 | `CITATION.cff` | **DONE** (verify author formatting for GitHub) |
 | `CONTRIBUTING.md` | **DONE** |
 | `CHANGELOG.md` | **DONE** |
-| `NOTICE` (third-party) | **TODO** after §1 |
+| `NOTICE` (third-party) | **DONE** (`NOTICE` — deps verified from PyPI 2026-11-21) |
 | Dataset download instructions for SWE-bench | **TODO** if Option C |
 | Security contact / vulnerability policy | **TODO** (optional for Q4 code release) |
 
@@ -162,7 +162,7 @@ Source of truth for versions: `requirements.txt` (pinned). Verify each row on Py
 
 | Block | Owner | Date | Initial |
 |-------|-------|------|---------|
-| §1 Dependency licenses | | | |
+| §1 Dependency licenses | 2026-11-21 PyPI check + `NOTICE` written | **DONE** (deps) |
 | §2 Dataset redistribution | | | |
 | §3 Model/API ToS | | | |
 | §4 Privacy/paths | | | |
