@@ -4,7 +4,7 @@ __pycache__/
 .backup/
 state/
 logs/
-.p1/.cache/
+p1/.cache/
 
 # ===== 开源范围：只保留项目本体（代码+架构文档+元数据）=====
 # 以下目录磁盘保留，但不进入 Git 公开仓
