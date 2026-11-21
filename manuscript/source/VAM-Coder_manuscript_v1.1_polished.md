@@ -1,7 +1,10 @@
 # VAM-Coder: A Verifiable Context-Management Strategy for Multi-Turn Coding Agents
 
-**Manuscript v1.3** · SCI Q4 · Evidence frozen · Software: MIT  
-**Email:** Xu1764602693@hotmail.com · Affiliation/Funding: TODO before submission · COI: none
+**Manuscript v1.4** · SCI Q4 · Evidence frozen · Software: MIT  
+**Affiliation:** Qingdao University of Technology (undergraduate student; 青岛理工大学本科在读)  
+**Email:** Xu1764602693@hotmail.com  
+**Funding:** This research received no external funding.  
+**COI:** none declared
 
 ---
 
@@ -348,7 +351,7 @@ The VAM-Coder software is released under the MIT License. Implementation, frozen
 
 **Corresponding email:** Xu1764602693@hotmail.com  
 **Conflicts of Interest:** The author declares no competing interests.  
-**Funding:** [TODO prior to submission — or: This research received no external funding.]  
+**Funding:** This research received no external funding.  
 **Generative AI use:** [TODO per target journal policy prior to submission.]
 
 # References
@@ -436,8 +439,8 @@ The VAM-Coder software is released under the MIT License. Implementation, frozen
 ## Author TODO before submission
 
 - [x] Email: Xu1764602693@hotmail.com
-- [ ] Affiliation
-- [ ] Funding
+- [x] Affiliation: Qingdao University of Technology (undergraduate student; 青岛理工大学本科在读)
+- [x] Funding: This research received no external funding.
 - [ ] Target journal template + reference style
 - [x] Figure 5 regenerated as `fig5_p2_ablation.png` (title Figure 5; ablation−F directions)
 
