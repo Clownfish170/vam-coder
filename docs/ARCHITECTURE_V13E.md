@@ -4,7 +4,7 @@
 生成：2026-11-18  
 正式写法：**V13E**（并用 V1.3E）；项目名 **VAM-Coder**
 
-> 本文只描述**已实现、可核对**的机制。设计稿中的目标若未落地，标 **UNVERIFIED**。
+> 本文只描述**已实现、可核对**的机制；设计稿中尚未落地的目标会明确标注为设计目标。
 
 ## 1. 定位
 
@@ -112,4 +112,4 @@ O′: hash_match ∧ previously_visible_in_messages ∧ file_not_in_current_ctx
 
 ## 7. 图与伪代码索引
 
-见 `docs/APPENDIX_INDEX.md`（架构图、VP 流程、F+S1 流程、伪代码位置）。
+图示与伪代码可由 §2 执行顺序与各模块源码直接还原；版本背景见 `history/`。

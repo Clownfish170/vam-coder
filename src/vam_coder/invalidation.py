@@ -1,6 +1,6 @@
 """失效管理器：源码变更检测、版本校验、依赖闭包失效、tombstone。
 
-规则（对齐报告 §4.5，closure_depth 默认 2）：
+规则（closure_depth 默认 2）：
 1. 解析哈希 == source_hash（上次观察）→ 完全不变，零状态写入（幂等）。
    仅当解析出的 deps 漂移时刷新依赖边（不动版本/validity）。
 2. 解析哈希 != source_hash → 观察到变化：source_hash 更新、version+1；
@@ -8,7 +8,7 @@
    否则 validity=stale（旧记忆失效，禁止 REUSE_KV）。
    注：content_hash 不更新——它是“记忆建立时的依据”，stale 即由
    content_hash != source_hash 驱动，可被回退或 verify 恢复。
-3. 【任务 A + 本轮任务 1】符号消失的推断与一切记忆更新仅在文件
+3. 【解析边界】符号消失的推断与一切记忆更新仅在文件
    **success（完整解析）** 时成立：
    - 文件状态 success 且符号缺失 → 删除/重命名 → tombstoned；
    - 文件真实从仓库消失（根校验通过后未再遍历到）→ 同上；
@@ -22,7 +22,7 @@
    unverified（已是 stale/tombstoned 的保持原状态；已 unverified 幂等跳过）；
    置 unverified 时在 provenance 记录 dep_snapshot（依赖版本+内容快照）。
    解析不可信文件不产生闭包种子（无法确认的变化不向依赖方传播）。
-5. unverified 恢复（任务 B）：verify() 分两个判断——
+5. unverified 恢复：verify() 分两个判断——
    a) 自身内容与记忆依据一致（重哈希匹配）是必要条件；
    b) 依赖状态足以支持记忆继续有效是充分条件的另一半：依赖缺失、
       validity≠valid、dep_edges 不一致、解析出的依赖集漂移、或依赖
@@ -31,7 +31,7 @@
       广度优先（循环依赖不递归爆栈），单次检查节点数有上限。
    sync() 不自动治愈 unverified（保守：依赖语义可能已变，需显式校验）。
 
-事务与日志（任务 D）：一次 sync/verify 的全部数据库写入在同一个
+事务与日志：一次 sync/verify 的全部数据库写入在同一个
 store.transaction() 中提交或回滚；JSONL 事件在事务内仅入缓冲，
 提交成功后才落盘，回滚则丢弃缓冲并单独追加一条 sync_aborted/
 verify_aborted（append-only 日志无法回滚，故不声称与数据库原子一致，
@@ -74,10 +74,10 @@ class SyncOutcome:
     deps_refreshed: list[str] = field(default_factory=list)
     skipped_files: list[dict] = field(default_factory=list)
     parse_warnings: list[dict] = field(default_factory=list)
-    # 任务 A：解析不可信导致的保守收紧（不推断删除）
+    # 解析不可信导致的保守收紧（不推断删除）
     unconfirmed: list[dict] = field(default_factory=list)
     snapshot_refreshed: list[str] = field(default_factory=list)
-    # 本轮任务 1：部分解析文件中观察到的新符号 —— 未注册，仅诊断
+    # 部分解析文件中观察到的新符号 —— 未注册，仅诊断
     incomplete_symbols: list[dict] = field(default_factory=list)
 
     @property
@@ -140,7 +140,7 @@ class InvalidationManager:
         self.store = store
         self.config = config
         self.logger = logger or JsonlLogger(None)
-        # 事务内事件缓冲（任务 D）：非 None 时不落盘
+        # 事务内事件缓冲：非 None 时不落盘
         self._log_buffer: list[tuple[str, dict]] | None = None
 
     # ---------- 日志 ----------
@@ -171,7 +171,7 @@ class InvalidationManager:
 
     # ---------- 主流程 ----------
     def sync(self, repo_root: str | Path, repo_id: str) -> SyncOutcome:
-        # 仓库根校验与解析先于任何数据库写入（任务 A：解析失败不产生状态）
+        # 仓库根校验与解析先于任何数据库写入（解析失败不产生状态）
         repo_root = Path(repo_root)
         parsed = parse_repo(repo_root, repo_id, self.config)
         return self.sync_parsed(repo_root, repo_id, parsed)
@@ -325,7 +325,7 @@ class InvalidationManager:
                 )
             # 其余状态（stale/unverified/tombstoned）：原样保留
 
-        # 任务 A：缺失符号逐个判定——仅 success 解析完整才允许 tombstone
+        # 缺失符号逐个判定——仅 success 解析完整才允许 tombstone
         tombstones: list[str] = []
         for sid in sorted(existing):
             entry = existing[sid]
@@ -362,7 +362,7 @@ class InvalidationManager:
                 draft.start_byte : draft.end_byte
             ].decode("utf-8", errors="replace")
 
-        # ---- 事务（任务 D）：B+C+D+E 单一提交/回滚 ----
+        # ---- 事务：单一提交/回滚 ----
         self._log_buffer = []
         try:
             with self.store.transaction():
@@ -528,7 +528,7 @@ class InvalidationManager:
                                "version/validity untouched",
                     )
 
-                # ---- 阶段 E：unverified 符号的依赖快照刷新（任务 B）----
+                # ---- unverified 符号的依赖快照刷新 ----
                 for entry in self.store.list_symbols(
                     repo_id, include_tombstoned=False
                 ).values():
@@ -576,7 +576,7 @@ class InvalidationManager:
         )
         return outcome
 
-    # ---------- 依赖快照（任务 B） ----------
+    # ---------- 依赖快照 ----------
     def _build_dep_snapshot(self, entry: MemoryEntry) -> dict[str, dict]:
         snap: dict[str, dict] = {}
         for dep_id in entry.deps:
@@ -597,7 +597,7 @@ class InvalidationManager:
     def _dependency_gate(
         self, entry: MemoryEntry, fresh_deps: list[str]
     ) -> tuple[bool, list[str]]:
-        """依赖状态是否足以支持记忆恢复 valid（任务 B）。
+        """依赖状态是否足以支持记忆恢复 valid。
 
         检查：解析出的依赖集漂移、dep_edges 一致性、逐依赖存在性与
         validity、依赖快照（版本+内容）匹配。BFS 带 visited 集，
@@ -655,15 +655,15 @@ class InvalidationManager:
             queue.extend(dep.deps)
         return (not reasons), reasons
 
-    # ---------- verify（任务 A+B+D） ----------
+    # ---------- verify ----------
     def verify(self, symbol_id: str, repo_root: str | Path) -> str:
-        """显式校验与恢复（两个判断，任务 B）：
+        """显式校验与恢复（两个判断）：
 
         1) 自身内容与记忆依据一致（重哈希匹配）——必要条件；
         2) 依赖状态足以支持恢复（依赖门控）——充分条件的另一半。
         返回值：valid / stale / tombstoned / unverified（依赖门控不通过）。
         文件读取失败、语法错误（符号未观察到）→ 不推断删除，收紧为
-        unverified 并记录原因（任务 A）。全部写入单事务提交/回滚。
+        unverified 并记录原因。全部写入单事务提交/回滚。
         """
         repo_root = Path(repo_root)
         if not repo_root.exists():
@@ -681,7 +681,7 @@ class InvalidationManager:
             Path(entry.file_path).suffix.lower()
         )
         if language is None:
-            # unsupported：不推断任何状态变化，直接报错（任务 A）
+            # unsupported：不推断任何状态变化，直接报错
             raise RuntimeError(f"unsupported language: {entry.file_path}")
 
         self._log_buffer = []
@@ -777,7 +777,7 @@ class InvalidationManager:
             )
             return Validity.STALE.value
 
-        # --- 判断 2：依赖状态足以支持恢复（任务 B） ---
+        # --- 判断 2：依赖状态足以支持恢复 ---
         bindings = {
             entry.file_path: extract_import_bindings(
                 src, entry.file_path, language

@@ -25,8 +25,7 @@ vam-coder/
 ├── p1/docs/           # Design & frozen preregistration documents
 ├── p1/tasks*/         # Self-designed evaluation task sets
 ├── docs/              # Architecture, glossary, history, reproducibility
-│   ├── history/       # Version evolution notes (V1.0 → V1.3E)
-│   └── archive/       # Historical notes & large archives (local)
+│   └── history/       # Version evolution notes (V1.0 → V1.3E)
 ├── tools/             # Utility scripts
 ├── config/            # Default runtime config (config/default.json)
 ├── requirements.txt   # Pinned Python dependencies
@@ -34,7 +33,7 @@ vam-coder/
 └── README.md          # This file
 ```
 
-**Not in this public tree** (kept on disk only): experiment runs, raw logs, manifests, manuscript sources, and `p1/tasks_transfer_v1/` (embeds third-party library sources; not license-reviewed). See `docs/OPEN_SOURCE_CHECKLIST.md`.
+**Not in this public tree** (kept on local disk only): experiment runs, raw logs, manifests, manuscript sources, and `p1/tasks_transfer_v1/` (embeds third-party library sources).
 
 ---
 
@@ -68,7 +67,6 @@ python tools/run_p0_scenario.py
 | [docs/history/](docs/history/README.md) | Per-version notes |
 | [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md) | How to rerun experiments |
 | [docs/LIMITATIONS.md](docs/LIMITATIONS.md) | Claim boundaries |
-| [docs/OPEN_SOURCE_CHECKLIST.md](docs/OPEN_SOURCE_CHECKLIST.md) | License / release checklist |
 | [p1/README.md](p1/README.md) | Experiment harness guide |
 
 ---

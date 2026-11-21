@@ -1,6 +1,6 @@
 """流程编排：打开存储 → sync（失效管理）→ route（表示路由）。
 
-动作语义（任务 G）：本模块只编排“失效检测”与“路由决策”两步——
+动作语义：本模块只编排“失效检测”与“路由决策”两步——
 ``route_repo`` 返回的是**决策结果**（含 EXPAND 决策），不执行 EXPAND 所
 意味着的源码读取、上下文装配、模型推理或 KV 复用（not implemented）。
 """
@@ -55,7 +55,7 @@ def route_repo(
     task_content: str | None = None,
     logger: JsonlLogger | None = None,
 ) -> RouteResult:
-    """路由决策（任务 E 追踪字段由调用方可选提供）。
+    """路由决策。
 
     task_content 只参与 request_id/日志哈希，不会原文写入日志；
     repo_versions 取库中当前仓库版本，随决策日志落盘。

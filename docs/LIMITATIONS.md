@@ -9,6 +9,6 @@
 5. **P1_TRANSFER**：10 实例子集、本地 Docker FAIL_TO_PASS，**非**官方 SWE-bench leaderboard；**不取代** V13E 主实验。  
 6. P1 任务集族依赖 / 有效独立设计 < 题面数（见 V12F 报告 D8）。  
 7. ESR 地板与生成非确定性 → 聚类 + 非劣界，不作轻率优效主张。  
-8. 本仓库代码许可为 **MIT**；第三方依赖与数据集再分发条款仍 **NEEDS REVIEW**（发布前核对）。
+8. 本仓库代码许可为 **MIT**；第三方依赖许可见 `NOTICE`。
 
-证据入口：`docs/APPENDIX_INDEX.md` · `experiments/*/README.md`
+证据入口：`p1/docs/` 预注册与设计文档、`docs/history/` 版本笔记。

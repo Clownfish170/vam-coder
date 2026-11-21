@@ -1,4 +1,4 @@
-"""规则路由器（报告 §4.6 阶段 A，无训练）：REUSE_KV / COMPRESS / EXPAND / DROP。
+"""规则路由器（无训练）：REUSE_KV / COMPRESS / EXPAND / DROP。
 
 逐条目规则（优先级从上到下）：
 1. validity=tombstoned → DROP   （对象已不存在）
@@ -11,7 +11,7 @@
       （valid: REUSE_KV/EXPAND→COMPRESS→DROP；非 valid: EXPAND→DROP），
       直到满足预算。动态层（当前指令/最新报错）保护不在本阶段范围。
 
-【动作语义（任务 G）】本路由器只**输出动作决策**：
+【动作语义】本路由器只**输出动作决策**：
 - EXPAND = “决定重新读取完整源码”这一路由决策；P0 不实际执行文件读取、
   上下文装配、模型推理或 KV 复用（not implemented）。
 - 能力边界见 CAPABILITY_STATUS：每项标注 implemented / simulated /
@@ -33,7 +33,7 @@ from .models import (
     Validity,
 )
 
-# 任务 G：能力边界（写入决策日志，供验收核对）
+# 能力边界（写入决策日志，供验收核对）
 CAPABILITY_STATUS: dict[str, str] = {
     "symbol_index": "implemented",
     "content_hash_versioning": "implemented",
@@ -199,7 +199,7 @@ class RuleRouter:
                 d.reasons.append("default: no rule matched → DROP")
             d.reasons.append(f"final action={d.action}, est_tokens={d.est_tokens}")
 
-        # 任务 E：request_id = 规范化任务内容哈希 + 预算/配置/记忆状态
+        # request_id = 规范化任务内容哈希 + 预算/配置/记忆状态
         task_hash = _task_content_hash(request.task_content, cfg.hash_algo)
         state_digest = self._request_id(entries, budget)
 

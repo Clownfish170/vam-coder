@@ -1,6 +1,6 @@
 """静态记忆存储：SQLite 单文件库（symbols / dep_edges / repo_state）。
 
-表结构与报告 §4.4 对应：
+表结构说明：
 - symbols：symbol_id, content_hash(记忆依据), source_hash(最近观察),
   version, deps(JSON), summary, validity, kv_ptr, provenance, span 等
 - dep_edges：依赖边（depender → dependee），symbols.deps 的派生索引

@@ -100,7 +100,7 @@ class RouteRequest:
     entries: list[MemoryEntry]
     budget_tokens: int | None = None
     request_meta: dict = field(default_factory=dict)
-    # 任务 E：可复现的请求标识 + 追踪维度（调用方可选提供）
+    # 可复现的请求标识 + 追踪维度（调用方可选提供）
     episode_id: str | None = None
     step_id: str | None = None
     task_content: str | None = None   # 仅用于哈希，绝不原样写入日志
@@ -114,7 +114,7 @@ class RouteResult:
     total_estimated_tokens: int
     decisions: list[RouteDecision]
     config_digest: str
-    # 任务 E：追踪字段（request_id 含任务内容哈希，不同任务可区分）
+    # 追踪字段（request_id 含任务内容哈希，不同任务可区分）
     task_content_hash: str = ""
     episode_id: str | None = None
     step_id: str | None = None

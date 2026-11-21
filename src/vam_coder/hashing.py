@@ -1,4 +1,4 @@
-"""内容哈希：默认 blake3（报告 §4.4），可退化到 blake2b。"""
+"""内容哈希：默认 blake3，可退化到 blake2b。"""
 
 from __future__ import annotations
 

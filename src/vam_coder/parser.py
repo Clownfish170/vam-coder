@@ -1,13 +1,13 @@
 """符号解析：Tree-sitter 提取函数/类/方法及依赖（当前仅支持 Python）。
 
-语言支持限制（P0 实测边界，务必与 config.supported_languages 保持一致）：
+语言支持边界（须与 config.supported_languages 保持一致）：
 - 已支持：.py（tree-sitter-python 语法）
 - 不支持：.js/.ts/.java/.go/.rs/.c/.cpp 等（本环境未安装对应 grammar），
   解析时按扩展名记入 ParseResult.skipped_files，reason=unsupported_language。
 - Python 内部限制：仅提取模块级函数、类、类方法；函数内嵌套函数/嵌套类
   不作为独立符号（其调用计入外层符号）。
 
-解析完整性（任务 A + 本轮任务 1）——ParseResult.file_status 逐文件记录：
+解析完整性——ParseResult.file_status 逐文件记录：
 - success：读取成功且语法树完整 → **只有该状态**允许以本次结果更新符号
   内容依据、依赖边，并允许推断“符号缺失”（删除/重命名）；
 - partial：读取成功但有语法错误 → 部分 AST **非权威**：不更新既有符号的
@@ -19,7 +19,7 @@
 对不可推断文件中的既有符号：保留原内容依据与依赖，仅在原状态为 valid 时
 保守收紧为 unverified（由 invalidation 记录原因；不允许 REUSE_KV）。
 
-依赖消解（任务 C + 本轮任务 2）——模块身份与 import 作用域：
+依赖消解——模块身份与 import 作用域：
 1. import 分“模块级”（无函数/类祖先，含模块级 if/try 内）与“局部”
   （函数/类体内；嵌套函数计入其被索引的外层符号）；局部 import
   **只对其所在符号的调用生效，不泄漏给同文件其他函数**；
@@ -56,7 +56,7 @@ UNSUPPORTED_CODE_SUFFIXES = {
 SKIP_DIRS = {".git", "__pycache__", ".venv", "venv", "node_modules", ".mimocode",
              ".playwright-cli", ".pytest_cache", ".backup"}
 
-# 逐文件解析状态（任务 A + 本轮任务 1）
+# 逐文件解析状态
 # success：读取成功且语法树完整；partial：读取成功但有语法错误（部分 AST，
 # 非权威）；failed：读取失败；unsupported_language：认得出但无 grammar。
 # 错误细节保留在 ParseResult.file_errors / parse_warnings。
@@ -88,10 +88,10 @@ class ParseResult:
     skipped_files: list[dict] = field(default_factory=list)
     parse_warnings: list[dict] = field(default_factory=list)
     unresolved_calls: list[dict] = field(default_factory=list)
-    # 任务 A：受支持后缀文件 → 解析状态（缺失的文件见模块 docstring）
+    # 受支持后缀文件 → 解析状态（缺失的文件见模块 docstring）
     file_status: dict[str, str] = field(default_factory=dict)
     file_errors: dict[str, str] = field(default_factory=dict)
-    # 任务 C：文件相对路径 → {本地名: import 绑定}
+    # 文件相对路径 → {本地名: import 绑定}
     import_bindings: dict[str, dict[str, dict]] = field(default_factory=dict)
 
 
@@ -176,7 +176,7 @@ def parse_source(
 
 
 # ---------------------------------------------------------------------------
-# 任务 C：import 绑定与模块身份
+# import 绑定与模块身份
 # ---------------------------------------------------------------------------
 
 def _node_text(node: Node) -> str:
@@ -628,7 +628,7 @@ def parse_repo(root: str | Path, repo_id: str, config: AppConfig) -> ParseResult
     """遍历仓库（确定性顺序），解析受支持语言文件并回填依赖。
 
     仓库根不存在/不是目录 → 抛 FileNotFoundError/NotADirectoryError
-    （任务 A：不得把空解析结果当作"所有符号被删除"）。
+    。
     """
     root = Path(root)
     if not root.exists():
