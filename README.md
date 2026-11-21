@@ -30,7 +30,7 @@ vam-coder/
 ├── tools/             # Utility scripts
 ├── config/            # Default runtime config (config/default.json)
 ├── requirements.txt   # Pinned Python dependencies
-├── LICENSE  NOTICE  CITATION.cff  CHANGELOG.md
+├── LICENSE  NOTICE  CITATION.cff
 └── README.md          # This file
 ```
 
