@@ -127,7 +127,7 @@ Source of truth for versions: `requirements.txt` (pinned). Verify each row on Py
 | `README` install for `src/` | **PARTIAL** — add `pip install -r requirements.txt` + import smoke test |
 | Repro doc | `docs/REPRODUCIBILITY.md` **DONE** (link from README) |
 | `CITATION.cff` | **DONE** (verify author formatting for GitHub) |
-| `CONTRIBUTING.md` | **DONE** |
+| `CONTRIBUTING.md` | **REMOVED** (internal prep doc; not for public) |
 | `CHANGELOG.md` | **DONE** |
 | `NOTICE` (third-party) | **DONE** (`NOTICE` — deps verified from PyPI 2026-11-21) |
 | Dataset download instructions for SWE-bench | **TODO** if Option C |

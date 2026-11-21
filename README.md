@@ -30,7 +30,7 @@ vam-coder/
 ├── tools/             # Utility scripts
 ├── config/            # Default runtime config (config/default.json)
 ├── requirements.txt   # Pinned Python dependencies
-├── LICENSE  NOTICE  CITATION.cff  CONTRIBUTING.md  CHANGELOG.md
+├── LICENSE  NOTICE  CITATION.cff  CHANGELOG.md
 └── README.md          # This file
 ```
 
@@ -95,4 +95,4 @@ See `CITATION.cff`. If you use this software, please cite the associated manuscr
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Frozen experiment paths under `p1/experiments/**` (local only) must not be rewritten.
+Issues and pull requests are welcome. Do not rewrite frozen experiment paths under local `p1/experiments/**`, and do not commit API keys or raw third-party datasets.
