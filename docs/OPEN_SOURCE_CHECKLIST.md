@@ -81,11 +81,15 @@ Source of truth for versions: `requirements.txt` (pinned). Verify each row on Py
 | OpenAI-compatible MaaS wrapper | harness | Vendor-specific | Describe as “OpenAI-compatible endpoint” without leaking base URL secrets |
 | Hugging Face (dataset download path, if any) | SWE-bench Lite fetch | Dataset card terms | Prefer official download instructions |
 
-**Credential scan (pre-publish):**
+**Credential scan (pre-publish) — executed 2026-11-21:**
 
-- [ ] `rg` for `sk-`, `Bearer `, hardcoded `api_key = "..."` in **tracked** files (exclude known benchmark noise under `episodes/**`)  
-- [ ] Confirm `.gitignore` covers `.env`, `*.key`, logs with secrets  
-- [ ] Rotate any key that was ever pasted into a chat/log (outside this repo)
+- [x] Tracked-file scan for `sk-…`, `ghp_…`, `AKIA…`, private-key PEM blocks: **0 hits** in product/docs scope  
+- [x] Source/docs/scripts deep scan (`.py/.md/.json/...`): **0 hits** of real key material  
+- [x] API usage is **environment variables only** (`VAM_API_KEY` / `OPENAI_API_KEY` via `os.environ`) — docs mention the *names*, not values  
+- [x] No `.env` / `*.pem` / `id_rsa*` / credential files tracked in git  
+- [x] Benchmark episode text may contain *example* passwords/Bearer strings from third-party repos — noise, not your keys; still avoid bulk-publishing raw episode dumps  
+- [ ] **Before public push:** re-run scan on the exact tree you will publish; never commit `.env` or real keys  
+- [ ] If a key was ever pasted into chat/logs outside the repo: **rotate it**
 
 ---
 
