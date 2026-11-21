@@ -37,3 +37,12 @@ experiments/V13E/tasks/
 experiments/V13E/fault-injection/
 experiments/P1-TRANSFER/runs/
 experiments/P1-TRANSFER/tasks/
+# 未审/大体量实验与任务目录：磁盘保留，不进 Git（开源与 private 推送前剔除）
+p1/experiments/v13e_p1_swebench/
+p1/experiments/v13e_p1_transfer/
+p1/experiments/v13b_icg/
+p1/tasks_independent_v1_dose/
+p1/tasks_transfer_v1/
+p1/tasks_v13a_screen/
+p1/tasks_v13a_testpart/
+p1/tasks_v13d_chain/
