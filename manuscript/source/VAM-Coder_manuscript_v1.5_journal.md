@@ -159,7 +159,7 @@ Each model used seven arms × three repetitions per task–arm cell (168 episode
 | RETR | BM25 top-3 history retrieval; latest history retained |
 | MOFF | Full-repository injection each step (context policy, not an external agent) |
 
-TRUNC, SUMM, and RETR are **local reimplementations**, not original-author code. **PROJ−F** estimates the incremental effect of S1. **SAH−F** estimates F+S1+S2 jointly and **must not** be read as an isolated S2 effect.
+TRUNC, SUMM, and RETR are **local reimplementations**, not original-author code. Their settings follow the main-study prompt accounting (including summarizer prompt tokens for SUMM) and are fixed before the confirmatory comparisons; they are intended as same-runner policy references rather than official replications of the original systems. **PROJ−F** estimates the incremental effect of S1. **SAH−F** estimates F+S1+S2 jointly and **must not** be read as an isolated S2 effect.
 
 ### 4.3 Metrics and statistics
 
@@ -296,7 +296,7 @@ PROJ did **not** show incremental prompt reduction over F in this single-step se
 
 ### 7.3 Interpretation and limits
 
-The subset is small, single-step, and model-substituted for Qwen; it does not recreate long multi-turn histories where S1 matters most. It does not compare complete systems such as SWE-agent or OpenHands. The API `cached_tokens` field was recorded but is **not** a measurement of server-side KV-cache memory; no claims about KV capacity, prefill latency, end-to-end latency, or serving cost are drawn. Transfer results are **not pooled** with the 56-task main study.
+The subset is small, single-step, and model-substituted for Qwen; it does not recreate long multi-turn histories where S1 matters most. **This small transfer subset serves only as a preliminary external transfer check rather than a comprehensive benchmark evaluation.** It does not compare complete systems such as SWE-agent or OpenHands. The API `cached_tokens` field was recorded but is **not** a measurement of server-side KV-cache memory; no claims about KV capacity, prefill latency, end-to-end latency, or serving cost are drawn. Transfer results are **not pooled** with the 56-task main study.
 
 ---
 
@@ -316,7 +316,7 @@ TRUNC remains the cheapest same-batch method on prompt tokens; VP+S1 is not a to
 2. Two model families on **one** endpoint—directional consistency, not multi-provider replication; temperature 0 is not bit-deterministic on hosted APIs (task is the statistical unit).  
 3. Shared archetypes; post-hoc cluster analysis widens prompt CIs (~34–39%) without reversing primary directions.  
 4. S1 preservation is relative to a regex extractor, path normalization, complete-block grammar, and last-write-wins map—not full semantic equivalence; replay used last-only while confirmatory used first_last (shared last-block condition).  
-5. VP scope depends on prior identification of omissions/edit targets; no proof of complete discovery; TOCTOU window remains (no lock through HTTP).  
+5. VP scope depends on prior identification of omissions/edit targets; no proof of complete discovery; a time-of-check/time-of-use window remains because the implementation does not hold a lock across verification and HTTP send. Production hardening (retry, monitoring of failed checks, stronger request serialization) is outside the scope of this paper.  
 6. Phase-1/2 fault injection is controlled; zero unsafe ships apply only to frozen scenarios; phase-2 evidence is from one model family.  
 7. S2 is a rule-based auxiliary heuristic without a baseline+S2-only arm; no independent S2 claim.  
 8. External baselines are local reimplementations with possible parameterization differences.
